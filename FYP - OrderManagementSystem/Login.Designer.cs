@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.enterButton = new System.Windows.Forms.Button();
             this.clearUNButton = new System.Windows.Forms.Button();
             this.unLabel = new System.Windows.Forms.Label();
@@ -41,9 +42,9 @@
             // 
             // enterButton
             // 
-            this.enterButton.Location = new System.Drawing.Point(100, 158);
+            this.enterButton.Location = new System.Drawing.Point(367, 231);
             this.enterButton.Name = "enterButton";
-            this.enterButton.Size = new System.Drawing.Size(84, 33);
+            this.enterButton.Size = new System.Drawing.Size(115, 33);
             this.enterButton.TabIndex = 3;
             this.enterButton.Text = "Enter";
             this.enterButton.UseVisualStyleBackColor = true;
@@ -51,9 +52,9 @@
             // 
             // clearUNButton
             // 
-            this.clearUNButton.Location = new System.Drawing.Point(323, 34);
+            this.clearUNButton.Location = new System.Drawing.Point(519, 88);
             this.clearUNButton.Name = "clearUNButton";
-            this.clearUNButton.Size = new System.Drawing.Size(39, 23);
+            this.clearUNButton.Size = new System.Drawing.Size(39, 20);
             this.clearUNButton.TabIndex = 5;
             this.clearUNButton.Text = "Clear";
             this.clearUNButton.UseVisualStyleBackColor = true;
@@ -62,7 +63,7 @@
             // unLabel
             // 
             this.unLabel.AutoSize = true;
-            this.unLabel.Location = new System.Drawing.Point(20, 34);
+            this.unLabel.Location = new System.Drawing.Point(303, 72);
             this.unLabel.Name = "unLabel";
             this.unLabel.Size = new System.Drawing.Size(61, 13);
             this.unLabel.TabIndex = 2;
@@ -71,7 +72,7 @@
             // pwLabel
             // 
             this.pwLabel.AutoSize = true;
-            this.pwLabel.Location = new System.Drawing.Point(20, 81);
+            this.pwLabel.Location = new System.Drawing.Point(303, 144);
             this.pwLabel.Name = "pwLabel";
             this.pwLabel.Size = new System.Drawing.Size(59, 13);
             this.pwLabel.TabIndex = 3;
@@ -80,7 +81,7 @@
             // forgotPWLink
             // 
             this.forgotPWLink.AutoSize = true;
-            this.forgotPWLink.Location = new System.Drawing.Point(215, 101);
+            this.forgotPWLink.Location = new System.Drawing.Point(421, 183);
             this.forgotPWLink.Name = "forgotPWLink";
             this.forgotPWLink.Size = new System.Drawing.Size(92, 13);
             this.forgotPWLink.TabIndex = 7;
@@ -89,7 +90,7 @@
             // 
             // unTextBox
             // 
-            this.unTextBox.Location = new System.Drawing.Point(100, 34);
+            this.unTextBox.Location = new System.Drawing.Point(306, 88);
             this.unTextBox.Name = "unTextBox";
             this.unTextBox.Size = new System.Drawing.Size(207, 20);
             this.unTextBox.TabIndex = 1;
@@ -97,7 +98,7 @@
             // 
             // pwTextBox
             // 
-            this.pwTextBox.Location = new System.Drawing.Point(100, 78);
+            this.pwTextBox.Location = new System.Drawing.Point(306, 160);
             this.pwTextBox.Name = "pwTextBox";
             this.pwTextBox.PasswordChar = '*';
             this.pwTextBox.Size = new System.Drawing.Size(207, 20);
@@ -106,9 +107,9 @@
             // 
             // exitButton
             // 
-            this.exitButton.Location = new System.Drawing.Point(218, 158);
+            this.exitButton.Location = new System.Drawing.Point(367, 280);
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(89, 33);
+            this.exitButton.Size = new System.Drawing.Size(115, 33);
             this.exitButton.TabIndex = 4;
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = true;
@@ -116,9 +117,9 @@
             // 
             // clearPWButton
             // 
-            this.clearPWButton.Location = new System.Drawing.Point(323, 81);
+            this.clearPWButton.Location = new System.Drawing.Point(519, 160);
             this.clearPWButton.Name = "clearPWButton";
-            this.clearPWButton.Size = new System.Drawing.Size(39, 23);
+            this.clearPWButton.Size = new System.Drawing.Size(39, 20);
             this.clearPWButton.TabIndex = 6;
             this.clearPWButton.Text = "Clear";
             this.clearPWButton.UseVisualStyleBackColor = true;
@@ -128,7 +129,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(425, 211);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(584, 340);
             this.Controls.Add(this.clearPWButton);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.pwTextBox);
