@@ -20,7 +20,6 @@ namespace FYP___OrderManagementSystem
 
         private void Products_Load(object sender, EventArgs e)
         {
-            StatusComboBox.SelectedIndex = 0;
             LoadData();
         }
 
@@ -29,33 +28,30 @@ namespace FYP___OrderManagementSystem
             SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             // Insert Logic
             connection.Open();
-            bool status;
-            if (StatusComboBox.SelectedIndex == 0)
-            {
-                status = true;
-            }
-            else
-            {
-                status = false;
-            }
             SqlCommand command = new SqlCommand(@"INSERT INTO [dbo].[Products]
-                        ([ProductCode]
-                    ,[ProductName]
-                ,[ProductStatus])
+                                ([ProductCode]
+                            ,[ProductName]
+                        ,[ProductSupplier]
+                    ,[ProductSupplierCode]
+                ,[ProductPrice])
             VALUES
-                ('" + PCTextBox.Text + "', '" + PNTextBox.Text + "', '" + status +"')", connection);
+                ('" + PCTextBox.Text + "', '" + PNTextBox.Text + "', '" + SNTextBox.Text + "', '" + SCTextBox.Text + "', '" + PriceTextBox.Text + "')", connection);
             command.ExecuteNonQuery();
             connection.Close();
 
             LoadData();
+            PCTextBox.Focus();
+            clearText();
         }
 
         public void LoadData()
         {
             SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             SqlDataAdapter sda = new SqlDataAdapter(@"SELECT [ProductCode]
-                    ,[ProductName]
-                ,[ProductStatus]
+                            ,[ProductName]
+                        ,[ProductSupplier]
+                    ,[ProductSupplierCode]
+                ,[ProductPrice]
             FROM[dbo].[Products]", connection);
             DataTable dt = new DataTable();
             sda.Fill(dt);
@@ -65,14 +61,17 @@ namespace FYP___OrderManagementSystem
                 int n = dataGridView1.Rows.Add();
                 dataGridView1.Rows[n].Cells[0].Value = item["ProductCode"].ToString();
                 dataGridView1.Rows[n].Cells[1].Value = item["ProductName"].ToString();
-                if ((bool)item["ProductStatus"])
+                dataGridView1.Rows[n].Cells[2].Value = item["ProductSupplier"].ToString();
+                dataGridView1.Rows[n].Cells[3].Value = item["ProductSupplierCode"].ToString();
+                dataGridView1.Rows[n].Cells[4].Value = item["ProductPrice"].ToString();
+                /*if ((bool)item["ProductStatus"])
                 {
                     dataGridView1.Rows[n].Cells[2].Value = "Active";
                 }
                 else
                 {
                     dataGridView1.Rows[n].Cells[2].Value = "Deactive";
-                }
+                }*/
             }
         }
 
@@ -80,14 +79,18 @@ namespace FYP___OrderManagementSystem
         {
             PCTextBox.Text = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
             PNTextBox.Text = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
-            if (dataGridView1.SelectedRows[0].Cells[2].Value.ToString() == "Active")
-            {
-                StatusComboBox.SelectedIndex = 0;
-            }
-            else
-            {
-                StatusComboBox.SelectedIndex = 1;
-            }
+            SNTextBox.Text = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
+            SCTextBox.Text = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
+            PriceTextBox.Text = dataGridView1.SelectedRows[0].Cells[4].Value.ToString();
+        }
+
+        public void clearText()
+        {
+            PCTextBox.Clear();
+            PNTextBox.Clear();
+            SNTextBox.Clear();
+            SCTextBox.Clear();
+            PriceTextBox.Clear();
         }
     }
 }
