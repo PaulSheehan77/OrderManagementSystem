@@ -23,19 +23,34 @@ namespace FYP___OrderManagementSystem
             LoadData();
         }
 
+        private bool IfProductExists(SqlConnection connection, string prodCode)
+        {
+            SqlDataAdapter sda = new SqlDataAdapter(@"SELECT 1 FROM[Products] WHERE[ProductCode] = '" + prodCode + "'", connection);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            if (dt.Rows.Count > 0)
+                return true;
+            else
+                return false;
+        }
+
         private void AddButton_Click(object sender, EventArgs e)
         {
             SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            // Insert Logic
             connection.Open();
-            SqlCommand command = new SqlCommand(@"INSERT INTO [dbo].[Products]
-                                ([ProductCode]
-                            ,[ProductName]
-                        ,[ProductSupplier]
-                    ,[ProductSupplierCode]
-                ,[ProductPrice])
-            VALUES
-                ('" + PCTextBox.Text + "', '" + PNTextBox.Text + "', '" + SNTextBox.Text + "', '" + SCTextBox.Text + "', '" + PriceTextBox.Text + "')", connection);
+            var sqlQuery = "";
+            
+            if (IfProductExists(connection, PCTextBox.Text))
+            {
+                sqlQuery = @"UPDATE[Products] SET[ProductName] = '" + PNTextBox.Text + "', [ProductSupplier] = '" + SNTextBox.Text + "' , [ProductSupplierCode] = '" + SCTextBox.Text + "', [ProductPrice] = '" + PriceTextBox.Text + "' WHERE[ProductCode] = '" + PCTextBox.Text + "'";
+            }
+            else
+            {
+                sqlQuery = @"INSERT INTO[Products] ([ProductCode], [ProductName], [ProductSupplier], [ProductSupplierCode], [ProductPrice]) VALUES
+                             ('" + PCTextBox.Text + "', '" + PNTextBox.Text + "', '" + SNTextBox.Text + "', '" + SCTextBox.Text + "', '" + PriceTextBox.Text + "')";
+            }
+
+            SqlCommand command = new SqlCommand(sqlQuery, connection);
             command.ExecuteNonQuery();
             connection.Close();
 
@@ -43,16 +58,11 @@ namespace FYP___OrderManagementSystem
             PCTextBox.Focus();
             clearText();
         }
-
+        
         public void LoadData()
         {
             SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            SqlDataAdapter sda = new SqlDataAdapter(@"SELECT [ProductCode]
-                            ,[ProductName]
-                        ,[ProductSupplier]
-                    ,[ProductSupplierCode]
-                ,[ProductPrice]
-            FROM[dbo].[Products]", connection);
+            SqlDataAdapter sda = new SqlDataAdapter(@"SELECT * FROM[Products]", connection);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             dataGridView1.Rows.Clear();
@@ -91,6 +101,29 @@ namespace FYP___OrderManagementSystem
             SNTextBox.Clear();
             SCTextBox.Clear();
             PriceTextBox.Clear();
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            var sqlQuery = "";
+
+            if (IfProductExists(connection, PCTextBox.Text))
+            {
+                connection.Open();
+                sqlQuery = @"DELETE FROM[Products] WHERE[ProductCode] = '" + PCTextBox.Text + "'";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+            else
+            {
+                MessageBox.Show("This item does not exist!");
+            }
+
+            LoadData();
+            PCTextBox.Focus();
+            clearText();
         }
     }
 }

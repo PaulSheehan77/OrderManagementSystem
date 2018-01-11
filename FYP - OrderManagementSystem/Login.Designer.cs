@@ -42,7 +42,7 @@
             // 
             // enterButton
             // 
-            this.enterButton.Location = new System.Drawing.Point(367, 231);
+            this.enterButton.Location = new System.Drawing.Point(306, 280);
             this.enterButton.Name = "enterButton";
             this.enterButton.Size = new System.Drawing.Size(115, 33);
             this.enterButton.TabIndex = 3;
@@ -63,6 +63,7 @@
             // unLabel
             // 
             this.unLabel.AutoSize = true;
+            this.unLabel.ForeColor = System.Drawing.Color.White;
             this.unLabel.Location = new System.Drawing.Point(303, 72);
             this.unLabel.Name = "unLabel";
             this.unLabel.Size = new System.Drawing.Size(61, 13);
@@ -72,6 +73,7 @@
             // pwLabel
             // 
             this.pwLabel.AutoSize = true;
+            this.pwLabel.ForeColor = System.Drawing.Color.White;
             this.pwLabel.Location = new System.Drawing.Point(303, 144);
             this.pwLabel.Name = "pwLabel";
             this.pwLabel.Size = new System.Drawing.Size(59, 13);
@@ -81,7 +83,9 @@
             // forgotPWLink
             // 
             this.forgotPWLink.AutoSize = true;
-            this.forgotPWLink.Location = new System.Drawing.Point(421, 183);
+            this.forgotPWLink.ForeColor = System.Drawing.Color.Yellow;
+            this.forgotPWLink.LinkColor = System.Drawing.Color.Goldenrod;
+            this.forgotPWLink.Location = new System.Drawing.Point(421, 192);
             this.forgotPWLink.Name = "forgotPWLink";
             this.forgotPWLink.Size = new System.Drawing.Size(92, 13);
             this.forgotPWLink.TabIndex = 7;
@@ -107,7 +111,7 @@
             // 
             // exitButton
             // 
-            this.exitButton.Location = new System.Drawing.Point(367, 280);
+            this.exitButton.Location = new System.Drawing.Point(443, 280);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(115, 33);
             this.exitButton.TabIndex = 4;

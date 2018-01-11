@@ -20,7 +20,9 @@ namespace FYP___OrderManagementSystem
 
         private void Login_Load(object sender, EventArgs e)
         {
-            
+            unLabel.BackColor = Color.Transparent;
+            pwLabel.BackColor = Color.Transparent;
+            forgotPWLink.BackColor = Color.Transparent;
         }
 
         private void clearUNButton_Click(object sender, EventArgs e)

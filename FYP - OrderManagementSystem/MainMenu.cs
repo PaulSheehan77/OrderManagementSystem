@@ -28,5 +28,10 @@ namespace FYP___OrderManagementSystem
             products.MdiParent = this;
             products.Show();
         }
+
+        private void MainMenu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
