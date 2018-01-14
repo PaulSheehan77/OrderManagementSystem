@@ -63,6 +63,7 @@
             // unLabel
             // 
             this.unLabel.AutoSize = true;
+            this.unLabel.BackColor = System.Drawing.Color.Transparent;
             this.unLabel.ForeColor = System.Drawing.Color.White;
             this.unLabel.Location = new System.Drawing.Point(303, 72);
             this.unLabel.Name = "unLabel";
@@ -73,6 +74,7 @@
             // pwLabel
             // 
             this.pwLabel.AutoSize = true;
+            this.pwLabel.BackColor = System.Drawing.Color.Transparent;
             this.pwLabel.ForeColor = System.Drawing.Color.White;
             this.pwLabel.Location = new System.Drawing.Point(303, 144);
             this.pwLabel.Name = "pwLabel";
@@ -83,6 +85,7 @@
             // forgotPWLink
             // 
             this.forgotPWLink.AutoSize = true;
+            this.forgotPWLink.BackColor = System.Drawing.Color.Transparent;
             this.forgotPWLink.ForeColor = System.Drawing.Color.Yellow;
             this.forgotPWLink.LinkColor = System.Drawing.Color.Goldenrod;
             this.forgotPWLink.Location = new System.Drawing.Point(421, 192);

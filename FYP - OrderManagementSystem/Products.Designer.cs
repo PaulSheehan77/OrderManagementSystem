@@ -38,6 +38,7 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PCLabel = new System.Windows.Forms.Label();
             this.PNLabel = new System.Windows.Forms.Label();
             this.SCLabel = new System.Windows.Forms.Label();
@@ -47,6 +48,9 @@
             this.SNTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.PriceTextBox = new System.Windows.Forms.TextBox();
+            this.FindButton = new System.Windows.Forms.Button();
+            this.StockLabel = new System.Windows.Forms.Label();
+            this.StockTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,20 +70,20 @@
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(636, 53);
+            this.DeleteButton.Location = new System.Drawing.Point(630, 78);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(88, 34);
-            this.DeleteButton.TabIndex = 6;
+            this.DeleteButton.TabIndex = 9;
             this.DeleteButton.Text = "Delete";
             this.DeleteButton.UseVisualStyleBackColor = true;
             this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(636, 16);
+            this.AddButton.Location = new System.Drawing.Point(526, 31);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(88, 33);
-            this.AddButton.TabIndex = 5;
+            this.AddButton.TabIndex = 6;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
@@ -87,18 +91,20 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3,
             this.Column4,
-            this.Column5});
+            this.Column5,
+            this.Column6});
             this.dataGridView1.Location = new System.Drawing.Point(36, 144);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(688, 277);
-            this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.TabIndex = 10;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // Column1
@@ -127,10 +133,19 @@
             // 
             this.Column5.HeaderText = "Price";
             this.Column5.Name = "Column5";
+            this.Column5.Width = 60;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Stock";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 60;
             // 
             // PCLabel
             // 
             this.PCLabel.AutoSize = true;
+            this.PCLabel.BackColor = System.Drawing.Color.Transparent;
             this.PCLabel.Location = new System.Drawing.Point(33, 28);
             this.PCLabel.Name = "PCLabel";
             this.PCLabel.Size = new System.Drawing.Size(72, 13);
@@ -140,6 +155,7 @@
             // PNLabel
             // 
             this.PNLabel.AutoSize = true;
+            this.PNLabel.BackColor = System.Drawing.Color.Transparent;
             this.PNLabel.Location = new System.Drawing.Point(208, 28);
             this.PNLabel.Name = "PNLabel";
             this.PNLabel.Size = new System.Drawing.Size(75, 13);
@@ -149,6 +165,7 @@
             // SCLabel
             // 
             this.SCLabel.AutoSize = true;
+            this.SCLabel.BackColor = System.Drawing.Color.Transparent;
             this.SCLabel.Location = new System.Drawing.Point(208, 76);
             this.SCLabel.Name = "SCLabel";
             this.SCLabel.Size = new System.Drawing.Size(73, 13);
@@ -158,6 +175,7 @@
             // SNLabel
             // 
             this.SNLabel.AutoSize = true;
+            this.SNLabel.BackColor = System.Drawing.Color.Transparent;
             this.SNLabel.Location = new System.Drawing.Point(33, 76);
             this.SNLabel.Name = "SNLabel";
             this.SNLabel.Size = new System.Drawing.Size(76, 13);
@@ -166,31 +184,33 @@
             // 
             // UpdateButton
             // 
-            this.UpdateButton.Location = new System.Drawing.Point(636, 93);
+            this.UpdateButton.Location = new System.Drawing.Point(630, 31);
             this.UpdateButton.Name = "UpdateButton";
             this.UpdateButton.Size = new System.Drawing.Size(88, 33);
             this.UpdateButton.TabIndex = 7;
             this.UpdateButton.Text = "Update";
             this.UpdateButton.UseVisualStyleBackColor = true;
+            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
             // SCTextBox
             // 
             this.SCTextBox.Location = new System.Drawing.Point(211, 93);
             this.SCTextBox.Name = "SCTextBox";
             this.SCTextBox.Size = new System.Drawing.Size(100, 20);
-            this.SCTextBox.TabIndex = 3;
+            this.SCTextBox.TabIndex = 4;
             // 
             // SNTextBox
             // 
             this.SNTextBox.Location = new System.Drawing.Point(36, 92);
             this.SNTextBox.Name = "SNTextBox";
             this.SNTextBox.Size = new System.Drawing.Size(100, 20);
-            this.SNTextBox.TabIndex = 2;
+            this.SNTextBox.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(378, 76);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(378, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 16;
@@ -198,16 +218,47 @@
             // 
             // PriceTextBox
             // 
-            this.PriceTextBox.Location = new System.Drawing.Point(381, 95);
+            this.PriceTextBox.Location = new System.Drawing.Point(381, 45);
             this.PriceTextBox.Name = "PriceTextBox";
             this.PriceTextBox.Size = new System.Drawing.Size(100, 20);
-            this.PriceTextBox.TabIndex = 4;
+            this.PriceTextBox.TabIndex = 2;
+            // 
+            // FindButton
+            // 
+            this.FindButton.Location = new System.Drawing.Point(526, 79);
+            this.FindButton.Name = "FindButton";
+            this.FindButton.Size = new System.Drawing.Size(88, 33);
+            this.FindButton.TabIndex = 8;
+            this.FindButton.Text = "Find";
+            this.FindButton.UseVisualStyleBackColor = true;
+            this.FindButton.Click += new System.EventHandler(this.FindButton_Click);
+            // 
+            // StockLabel
+            // 
+            this.StockLabel.AutoSize = true;
+            this.StockLabel.BackColor = System.Drawing.Color.Transparent;
+            this.StockLabel.Location = new System.Drawing.Point(378, 76);
+            this.StockLabel.Name = "StockLabel";
+            this.StockLabel.Size = new System.Drawing.Size(35, 13);
+            this.StockLabel.TabIndex = 18;
+            this.StockLabel.Text = "Stock";
+            // 
+            // StockTextBox
+            // 
+            this.StockTextBox.Location = new System.Drawing.Point(381, 93);
+            this.StockTextBox.Name = "StockTextBox";
+            this.StockTextBox.Size = new System.Drawing.Size(100, 20);
+            this.StockTextBox.TabIndex = 5;
+            this.StockTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Products
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(761, 454);
+            this.Controls.Add(this.StockLabel);
+            this.Controls.Add(this.StockTextBox);
+            this.Controls.Add(this.FindButton);
             this.Controls.Add(this.PriceTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.SCLabel);
@@ -222,9 +273,11 @@
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.PNTextBox);
             this.Controls.Add(this.PCTextBox);
+            this.Location = new System.Drawing.Point(32, 72);
             this.Name = "Products";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Products";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.Products_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -253,5 +306,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.Button FindButton;
+        private System.Windows.Forms.Label StockLabel;
+        private System.Windows.Forms.TextBox StockTextBox;
     }
 }
