@@ -37,14 +37,13 @@ namespace FYP___OrderManagementSystem
 
         private void MainMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Login login = new Login();
-            var userName = login.GetUserName();
+            DateTime localDate = DateTime.Now;
+            var userName = Login.UserName;
+            DateTime logInTime = Login.LogInTime;
             SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             connection.Open();
-            SqlCommand command = new SqlCommand(@"SELECT [Username], [LoggedInAt] FROM [Active] WHERE [Username]  = userName", connection);
+            SqlCommand command = new SqlCommand(@"UPDATE[Active] SET[LoggedOutAt] = '" + localDate + "' WHERE[LoggedInAt] = '" + logInTime + "'", connection);
             command.ExecuteNonQuery();
-            SqlCommand commandB = new SqlCommand(@"DELETE FROM [Active]", connection);
-            commandB.ExecuteNonQuery();
             connection.Close();
             Application.Exit();
         }
@@ -151,6 +150,18 @@ namespace FYP___OrderManagementSystem
 
         private void LoadData()
         {
+            var userName = Login.UserName;
+            if (userName == "factory")
+            {
+                productsToolStripMenuItem.Visible = false;
+                manageOrdersToolStripMenuItem.Visible = false;
+                accountManagementToolStripMenuItem.Visible = false;
+                reportsToolStripMenuItem.Visible = false;
+                suppliersToolStripMenuItem.Visible = false;
+                dataGridView1.Visible = false;
+                label1.Visible = false;
+                RefreshButton.Visible = false;
+            }
             SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             connection.Open();
             SqlDataAdapter sda = new SqlDataAdapter(@"SELECT [ProductCode], [ProductStock] FROM[Products] WHERE [ProductStock] < 10", connection);

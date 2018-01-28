@@ -13,7 +13,31 @@ namespace FYP___OrderManagementSystem
 {
     public partial class Login : Form
     {
-        private string userName;
+        private static DateTime logInTime;
+        public static DateTime LogInTime
+        {
+            get
+            {
+                return logInTime;
+            }
+            set
+            {
+                logInTime = value;
+            }
+        }
+
+        private static string userName;
+        public static string UserName
+        {
+            get
+            {
+                return userName;
+            }
+            set
+            {
+                userName = value;
+            }
+        }
         public Login()
         {
             InitializeComponent();
@@ -24,16 +48,6 @@ namespace FYP___OrderManagementSystem
             unLabel.BackColor = Color.Transparent;
             pwLabel.BackColor = Color.Transparent;
             forgotPWLink.BackColor = Color.Transparent;
-        }
-
-        private void SetUserName(string userName)
-        {
-            this.userName = userName;
-        }
-
-        public string GetUserName()
-        {
-            return userName;
         }
 
         private void clearUNButton_Click(object sender, EventArgs e)
@@ -51,6 +65,7 @@ namespace FYP___OrderManagementSystem
         private void enterButton_Click(object sender, EventArgs e)
         {
             DateTime localDate = DateTime.Now;
+            LogInTime = localDate;
             SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             // Handles connection.Open() && connection.Close()
             SqlDataAdapter sda = new SqlDataAdapter(@"SELECT * FROM [FYP_DB].[dbo].[Login]
@@ -59,10 +74,10 @@ namespace FYP___OrderManagementSystem
             sda.Fill(dt);
             if (dt.Rows.Count == 1)
             {
-                SetUserName(unTextBox.Text);
+                userName = unTextBox.Text;
                 connection.Open();
                 SqlCommand command = new SqlCommand(@"INSERT INTO[Active] ([Username], [LoggedInAt]) VALUES
-                             ('" + GetUserName() + "', '" + localDate +"')", connection);
+                             ('" + userName + "', '" + localDate +"')", connection);
                 command.ExecuteNonQuery();
                 connection.Close();
                 this.Hide();
