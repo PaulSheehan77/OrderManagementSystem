@@ -37,6 +37,15 @@ namespace FYP___OrderManagementSystem
 
         private void MainMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Login login = new Login();
+            var userName = login.GetUserName();
+            SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            connection.Open();
+            SqlCommand command = new SqlCommand(@"SELECT [Username], [LoggedInAt] FROM [Active] WHERE [Username]  = userName", connection);
+            command.ExecuteNonQuery();
+            SqlCommand commandB = new SqlCommand(@"DELETE FROM [Active]", connection);
+            commandB.ExecuteNonQuery();
+            connection.Close();
             Application.Exit();
         }
 

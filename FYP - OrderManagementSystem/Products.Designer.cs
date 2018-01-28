@@ -51,6 +51,7 @@
             this.FindButton = new System.Windows.Forms.Button();
             this.StockLabel = new System.Windows.Forms.Label();
             this.StockTextBox = new System.Windows.Forms.TextBox();
+            this.RefreshButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -251,11 +252,22 @@
             this.StockTextBox.TabIndex = 5;
             this.StockTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+            // RefreshButton
+            // 
+            this.RefreshButton.Location = new System.Drawing.Point(666, 428);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(58, 26);
+            this.RefreshButton.TabIndex = 19;
+            this.RefreshButton.Text = "Refresh";
+            this.RefreshButton.UseVisualStyleBackColor = true;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
+            // 
             // Products
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(761, 454);
+            this.ClientSize = new System.Drawing.Size(772, 466);
+            this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.StockLabel);
             this.Controls.Add(this.StockTextBox);
             this.Controls.Add(this.FindButton);
@@ -310,5 +322,6 @@
         private System.Windows.Forms.Button FindButton;
         private System.Windows.Forms.Label StockLabel;
         private System.Windows.Forms.TextBox StockTextBox;
+        private System.Windows.Forms.Button RefreshButton;
     }
 }

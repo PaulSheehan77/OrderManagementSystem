@@ -197,5 +197,10 @@ namespace FYP___OrderManagementSystem
         {
 
         }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
     }
 }
