@@ -49,9 +49,16 @@
             this.TimeLabel = new System.Windows.Forms.Label();
             this.DateLabel = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip
@@ -195,7 +202,7 @@
             this.TimeLabel.BackColor = System.Drawing.Color.Transparent;
             this.TimeLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TimeLabel.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.TimeLabel.Location = new System.Drawing.Point(928, 477);
+            this.TimeLabel.Location = new System.Drawing.Point(947, 493);
             this.TimeLabel.Name = "TimeLabel";
             this.TimeLabel.Size = new System.Drawing.Size(49, 20);
             this.TimeLabel.TabIndex = 9;
@@ -207,7 +214,7 @@
             this.DateLabel.BackColor = System.Drawing.Color.Transparent;
             this.DateLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateLabel.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.DateLabel.Location = new System.Drawing.Point(900, 509);
+            this.DateLabel.Location = new System.Drawing.Point(919, 525);
             this.DateLabel.Name = "DateLabel";
             this.DateLabel.Size = new System.Drawing.Size(44, 19);
             this.DateLabel.TabIndex = 10;
@@ -218,12 +225,75 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.Column3});
+            this.dataGridView2.Location = new System.Drawing.Point(778, 98);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.Size = new System.Drawing.Size(319, 147);
+            this.dataGridView2.TabIndex = 13;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(775, 72);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 15);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Current Orders";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(870, 262);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(144, 26);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "Refresh";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.FillWeight = 53.76453F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Order ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.FillWeight = 77.95859F;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Requestee";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.FillWeight = 50F;
+            this.Column3.HeaderText = "Status";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 70;
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1150, 634);
+            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.DateLabel);
             this.Controls.Add(this.TimeLabel);
             this.Controls.Add(this.statusStrip);
@@ -243,6 +313,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -268,6 +339,12 @@
         private System.Windows.Forms.Label TimeLabel;
         private System.Windows.Forms.Label DateLabel;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }
 

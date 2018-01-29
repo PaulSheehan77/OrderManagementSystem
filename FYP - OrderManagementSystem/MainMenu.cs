@@ -37,11 +37,15 @@ namespace FYP___OrderManagementSystem
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
+            dataGridView2.Visible = false;
+            label2.Visible = false;
+            button2.Visible = false;
             timer1.Start();
             TimeLabel.Text = DateTime.Now.ToLongTimeString();
             DateLabel.Text = DateTime.Now.ToLongDateString();
             label1.BackColor = Color.Transparent;
             dataGridView1.BackgroundColor = Color.White;
+            dataGridView2.BackgroundColor = Color.White;
             InitTimer();
             LoadData();
         }
@@ -49,6 +53,8 @@ namespace FYP___OrderManagementSystem
         private void LoadData()
         {
             var userName = Login.UserName;
+            SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            connection.Open();
 
             if (userName == "factory")
             {
@@ -60,30 +66,47 @@ namespace FYP___OrderManagementSystem
                 dataGridView1.Visible = false;
                 label1.Visible = false;
                 RefreshButton.Visible = false;
-            }
+                dataGridView2.Visible = true;
+                label2.Visible = true;
+                button2.Visible = true;
+                SqlDataAdapter sdaB = new SqlDataAdapter(@"SELECT [OrderID], [Requestee], [OrderStatus] FROM[Orders]", connection);
+                DataTable dtB = new DataTable();
+                sdaB.Fill(dtB);
+                dataGridView2.Rows.Clear();
+                TimeLabel.Location = new Point(914, 498);
+                DateLabel.Location = new Point(886,530);
 
-            SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            connection.Open();
-            SqlDataAdapter sda = new SqlDataAdapter(@"SELECT [ProductCode], [ProductStock] FROM[Products] WHERE [ProductStock] < 10", connection);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            dataGridView1.Rows.Clear();
-
-            foreach (DataRow item in dt.Rows)
-            {
-                int n = dataGridView1.Rows.Add();
-                dataGridView1.Rows[n].Cells[0].Value = item["ProductCode"].ToString();
-                dataGridView1.Rows[n].Cells[1].Value = item["ProductStock"].ToString();
-                /*if ((bool)item["ProductStatus"])
+                foreach (DataRow item in dtB.Rows)
                 {
-                    dataGridView1.Rows[n].Cells[2].Value = "Active";
+                    int n = dataGridView2.Rows.Add();
+                    dataGridView2.Rows[n].Cells[0].Value = item["OrderID"].ToString();
+                    dataGridView2.Rows[n].Cells[1].Value = item["Requestee"].ToString();
+                    dataGridView2.Rows[n].Cells[2].Value = item["OrderStatus"].ToString();
                 }
-                else
-                {
-                    dataGridView1.Rows[n].Cells[2].Value = "Deactive";
-                }*/
             }
+            else
+            {
+                SqlDataAdapter sda = new SqlDataAdapter(@"SELECT [ProductCode], [ProductStock] FROM[Products] WHERE [ProductStock] < 10", connection);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                dataGridView1.Rows.Clear();
 
+                foreach (DataRow item in dt.Rows)
+                {
+                    int n = dataGridView1.Rows.Add();
+                    dataGridView1.Rows[n].Cells[0].Value = item["ProductCode"].ToString();
+                    dataGridView1.Rows[n].Cells[1].Value = item["ProductStock"].ToString();
+                    /*if ((bool)item["ProductStatus"])
+                    {
+                        dataGridView1.Rows[n].Cells[2].Value = "Active";
+                    }
+                    else
+                    {
+                        dataGridView1.Rows[n].Cells[2].Value = "Deactive";
+                    }*/
+                }
+            }
+            
             connection.Close();
         }
 
@@ -93,7 +116,7 @@ namespace FYP___OrderManagementSystem
             int randomNumber = random.Next(1, GetTableSize() + 1);
             SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             connection.Open();
-            SqlCommand command = new SqlCommand(@"UPDATE[Products] SET[ProductStock] -= 1 WHERE[ProductCode] =  + '" + randomNumber + "'", connection);
+            SqlCommand command = new SqlCommand(@"UPDATE[Products] SET[ProductStock] -= 1 WHERE[ProductCode] =  + '" + randomNumber + "' AND [ProductStock] > 0", connection);
             command.ExecuteNonQuery();
             connection.Close();
         }
@@ -177,7 +200,12 @@ namespace FYP___OrderManagementSystem
             }
         }*/
 
-       private void RefreshButton_Click(object sender, EventArgs e)
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
         {
             LoadData();
         }

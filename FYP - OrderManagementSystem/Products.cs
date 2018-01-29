@@ -56,7 +56,7 @@ namespace FYP___OrderManagementSystem
                 return false;
         }
 
-        public void ClearText()
+        private void ClearText()
         {
             PCTextBox.Clear();
             PNTextBox.Clear();
