@@ -1,43 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FYP___OrderManagementSystem
 {
     public partial class Login : Form
     {
-        private static DateTime logInTime;
-        public static DateTime LogInTime
-        {
-            get
-            {
-                return logInTime;
-            }
-            set
-            {
-                logInTime = value;
-            }
-        }
+        public static DateTime LogInTime { get; set; }
+        public static string UserName { get; set; }
+        public static string AccessLevel { get; set; }
 
-        private static string userName;
-        public static string UserName
-        {
-            get
-            {
-                return userName;
-            }
-            set
-            {
-                userName = value;
-            }
-        }
         public Login()
         {
             InitializeComponent();
@@ -50,43 +24,45 @@ namespace FYP___OrderManagementSystem
             forgotPWLink.BackColor = Color.Transparent;
         }
 
-        private void clearUNButton_Click(object sender, EventArgs e)
+        private void ClearUNButton_Click(object sender, EventArgs e)
         {
             unTextBox.Clear();
             unTextBox.Focus();
         }
 
-        private void clearPWButton_Click(object sender, EventArgs e)
+        private void ClearPWButton_Click(object sender, EventArgs e)
         {
             pwTextBox.Clear();
             pwTextBox.Focus();
         }
 
-        private void enterButton_Click(object sender, EventArgs e)
+        private void EnterButton_Click(object sender, EventArgs e)
         {
-            DateTime localDate = DateTime.Now;
+            var errorMessage = "Invalid login details supplied";
+            var error = "Error";
+            var localDate = DateTime.Now;
             LogInTime = localDate;
-            SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             // Handles connection.Open() && connection.Close()
-            SqlDataAdapter sda = new SqlDataAdapter(@"SELECT * FROM [FYP_DB].[dbo].[Login]
+            var sda = new SqlDataAdapter(@"SELECT * FROM [FYP_DB].[dbo].[Login]
                 Where UserName = '"+ unTextBox.Text +"' and Password = '"+ pwTextBox.Text +"'", connection);
-            DataTable dt = new DataTable();
+            var dt = new DataTable();
             sda.Fill(dt);
             if (dt.Rows.Count == 1)
             {
-                userName = unTextBox.Text;
+                UserName = unTextBox.Text;
                 connection.Open();
-                SqlCommand command = new SqlCommand(@"INSERT INTO[Active] ([Username], [LoggedInAt]) VALUES
-                             ('" + userName + "', '" + localDate +"')", connection);
+                var command = new SqlCommand(@"INSERT INTO[Active] ([Username], [LoggedInAt]) VALUES
+                             ('" + UserName + "', '" + localDate +"')", connection);
                 command.ExecuteNonQuery();
                 connection.Close();
-                this.Hide();
-                MainMenu main = new MainMenu();
+                Hide();
+                var main = new MainMenu();
                 main.Show();
             }
             else
             {
-                MessageBox.Show("Invalid login details supplied", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errorMessage, error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 unTextBox.Clear();
                 pwTextBox.Clear();
                 unTextBox.Focus();
@@ -94,9 +70,9 @@ namespace FYP___OrderManagementSystem
             }
         }
 
-        private void exitButton_Click(object sender, EventArgs e)
+        private void ExitButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

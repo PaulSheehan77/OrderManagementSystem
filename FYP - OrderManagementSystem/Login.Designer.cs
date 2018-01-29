@@ -48,7 +48,7 @@
             this.enterButton.TabIndex = 3;
             this.enterButton.Text = "Enter";
             this.enterButton.UseVisualStyleBackColor = true;
-            this.enterButton.Click += new System.EventHandler(this.enterButton_Click);
+            this.enterButton.Click += new System.EventHandler(this.EnterButton_Click);
             // 
             // clearUNButton
             // 
@@ -58,7 +58,7 @@
             this.clearUNButton.TabIndex = 5;
             this.clearUNButton.Text = "Clear";
             this.clearUNButton.UseVisualStyleBackColor = true;
-            this.clearUNButton.Click += new System.EventHandler(this.clearUNButton_Click);
+            this.clearUNButton.Click += new System.EventHandler(this.ClearUNButton_Click);
             // 
             // unLabel
             // 
@@ -120,7 +120,7 @@
             this.exitButton.TabIndex = 4;
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = true;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            this.exitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // clearPWButton
             // 
@@ -130,7 +130,7 @@
             this.clearPWButton.TabIndex = 6;
             this.clearPWButton.Text = "Clear";
             this.clearPWButton.UseVisualStyleBackColor = true;
-            this.clearPWButton.Click += new System.EventHandler(this.clearPWButton_Click);
+            this.clearPWButton.Click += new System.EventHandler(this.ClearPWButton_Click);
             // 
             // Login
             // 

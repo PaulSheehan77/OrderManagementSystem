@@ -1,21 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FYP___OrderManagementSystem
 {
     public partial class MainMenu : Form
     {
-        private Timer timer;
-        private int[] productsWithLowStock;
-        private int yup = 0;
+        private Timer _timer;
+
         public MainMenu()
         {
             InitializeComponent();
@@ -23,46 +17,107 @@ namespace FYP___OrderManagementSystem
 
         public void InitTimer()
         {
-            timer = new Timer();
-            timer.Tick += new EventHandler(timer_Tick);
-            timer.Interval = 20000; // in miliseconds
-            timer.Start();
+            _timer = new Timer();
+            _timer.Tick += Timer_Tick;
+            _timer.Interval = 20000; // in miliseconds
+            _timer.Start();
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             SimulateProduction();
             //CheckLowStock();
         }
 
-        private void MainMenu_FormClosing(object sender, FormClosingEventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
-            DateTime localDate = DateTime.Now;
-            var userName = Login.UserName;
-            DateTime logInTime = Login.LogInTime;
-            SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            connection.Open();
-            SqlCommand command = new SqlCommand(@"UPDATE[Active] SET[LoggedOutAt] = '" + localDate + "' WHERE[LoggedInAt] = '" + logInTime + "'", connection);
-            command.ExecuteNonQuery();
-            connection.Close();
-            Application.Exit();
+            TimeLabel.Text = DateTime.Now.ToLongTimeString();
+            timer1.Start();
         }
 
-        private void productsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MainMenu_Load(object sender, EventArgs e)
         {
-            Products products = new Products();
-            products.MdiParent = this;
+            timer1.Start();
+            TimeLabel.Text = DateTime.Now.ToLongTimeString();
+            DateLabel.Text = DateTime.Now.ToLongDateString();
+            label1.BackColor = Color.Transparent;
+            dataGridView1.BackgroundColor = Color.White;
+            InitTimer();
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            var userName = Login.UserName;
+
+            if (userName == "factory")
+            {
+                productsToolStripMenuItem.Visible = false;
+                manageOrdersToolStripMenuItem.Visible = false;
+                accountManagementToolStripMenuItem.Visible = false;
+                reportsToolStripMenuItem.Visible = false;
+                suppliersToolStripMenuItem.Visible = false;
+                dataGridView1.Visible = false;
+                label1.Visible = false;
+                RefreshButton.Visible = false;
+            }
+
+            SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            connection.Open();
+            SqlDataAdapter sda = new SqlDataAdapter(@"SELECT [ProductCode], [ProductStock] FROM[Products] WHERE [ProductStock] < 10", connection);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            dataGridView1.Rows.Clear();
+
+            foreach (DataRow item in dt.Rows)
+            {
+                int n = dataGridView1.Rows.Add();
+                dataGridView1.Rows[n].Cells[0].Value = item["ProductCode"].ToString();
+                dataGridView1.Rows[n].Cells[1].Value = item["ProductStock"].ToString();
+                /*if ((bool)item["ProductStatus"])
+                {
+                    dataGridView1.Rows[n].Cells[2].Value = "Active";
+                }
+                else
+                {
+                    dataGridView1.Rows[n].Cells[2].Value = "Deactive";
+                }*/
+            }
+
+            connection.Close();
+        }
+
+        public void SimulateProduction()
+        {
+            Random random = new Random();
+            int randomNumber = random.Next(1, GetTableSize() + 1);
+            SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            connection.Open();
+            SqlCommand command = new SqlCommand(@"UPDATE[Products] SET[ProductStock] -= 1 WHERE[ProductCode] =  + '" + randomNumber + "'", connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        private void ProductsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var products = new Products {MdiParent = this};
             products.Show();
+        }
+
+        private void CreateOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var createOrder = new CreateOrder {MdiParent = this};
+            createOrder.Show();
         }
 
         public int GetTableSize()
         {
-            string stmt = "SELECT COUNT(*) FROM dbo.Products";
-            int count = 0;
+            const string stmt = "SELECT COUNT(*) FROM dbo.Products";
+            int count;
 
-            using (SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True"))
+            using (var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True"))
             {
-                using (SqlCommand cmd = new SqlCommand(stmt, connection))
+                using (var cmd = new SqlCommand(stmt, connection))
                 {
                     connection.Open();
                     count = (int)cmd.ExecuteScalar();
@@ -122,79 +177,22 @@ namespace FYP___OrderManagementSystem
             }
         }*/
 
-        public void SimulateProduction()
+       private void RefreshButton_Click(object sender, EventArgs e)
         {
-            Random random = new Random();
-            int randomNumber = random.Next(1, GetTableSize()+1);
-
-            SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            connection.Open();
-
-            var sqlQuery = @"UPDATE[Products] SET[ProductStock] -= 1 WHERE[ProductCode] =  + '" + randomNumber + "'";
-            SqlCommand command = new SqlCommand(sqlQuery, connection);
-            command.ExecuteNonQuery();
-
-            connection.Close();
-        }
-
-        private void MainMenu_Load(object sender, EventArgs e)
-        {
-            timer1.Start();
-            TimeLabel.Text = DateTime.Now.ToLongTimeString();
-            DateLabel.Text = DateTime.Now.ToLongDateString();
-            label1.BackColor = Color.Transparent;
-            dataGridView1.BackgroundColor = Color.White;
-            InitTimer();
             LoadData();
         }
 
-        private void LoadData()
+        private void MainMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
+            var localDate = DateTime.Now;
             var userName = Login.UserName;
-            if (userName == "factory")
-            {
-                productsToolStripMenuItem.Visible = false;
-                manageOrdersToolStripMenuItem.Visible = false;
-                accountManagementToolStripMenuItem.Visible = false;
-                reportsToolStripMenuItem.Visible = false;
-                suppliersToolStripMenuItem.Visible = false;
-                dataGridView1.Visible = false;
-                label1.Visible = false;
-                RefreshButton.Visible = false;
-            }
-            SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            var logInTime = Login.LogInTime;
+            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             connection.Open();
-            SqlDataAdapter sda = new SqlDataAdapter(@"SELECT [ProductCode], [ProductStock] FROM[Products] WHERE [ProductStock] < 10", connection);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            dataGridView1.Rows.Clear();
-            foreach (DataRow item in dt.Rows)
-            {
-                int n = dataGridView1.Rows.Add();
-                dataGridView1.Rows[n].Cells[0].Value = item["ProductCode"].ToString();
-                dataGridView1.Rows[n].Cells[1].Value = item["ProductStock"].ToString();
-                /*if ((bool)item["ProductStatus"])
-                {
-                    dataGridView1.Rows[n].Cells[2].Value = "Active";
-                }
-                else
-                {
-                    dataGridView1.Rows[n].Cells[2].Value = "Deactive";
-                }*/
-            }
-
+            var command = new SqlCommand(@"UPDATE[Active] SET[LoggedOutAt] = '" + localDate + "' WHERE[Username] = '" + userName + "' AND [LoggedInAt] = '" + logInTime + "'", connection);
+            command.ExecuteNonQuery();
             connection.Close();
-        }
-
-        private void RefreshButton_Click(object sender, EventArgs e)
-        {
-            LoadData();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            TimeLabel.Text = DateTime.Now.ToLongTimeString();
-            timer1.Start();
+            Application.Exit();
         }
     }
 }

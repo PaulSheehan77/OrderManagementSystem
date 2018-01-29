@@ -90,6 +90,7 @@
             this.createOrderToolStripMenuItem.Name = "createOrderToolStripMenuItem";
             this.createOrderToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
             this.createOrderToolStripMenuItem.Text = "Create Order";
+            this.createOrderToolStripMenuItem.Click += new System.EventHandler(this.CreateOrderToolStripMenuItem_Click);
             // 
             // manageOrdersToolStripMenuItem
             // 
@@ -102,7 +103,7 @@
             this.productsToolStripMenuItem.Name = "productsToolStripMenuItem";
             this.productsToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.productsToolStripMenuItem.Text = "Products";
-            this.productsToolStripMenuItem.Click += new System.EventHandler(this.productsToolStripMenuItem_Click);
+            this.productsToolStripMenuItem.Click += new System.EventHandler(this.ProductsToolStripMenuItem_Click);
             // 
             // suppliersToolStripMenuItem
             // 
@@ -215,7 +216,7 @@
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // MainMenu
             // 
