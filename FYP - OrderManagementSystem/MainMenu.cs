@@ -222,5 +222,18 @@ namespace FYP___OrderManagementSystem
             connection.Close();
             Application.Exit();
         }
+
+        private void LogoutButton_Click(object sender, EventArgs e)
+        {
+            var localDate = DateTime.Now;
+            var userName = Login.UserName;
+            var logInTime = Login.LogInTime;
+            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            connection.Open();
+            var command = new SqlCommand(@"UPDATE[Active] SET[LoggedOutAt] = '" + localDate + "' WHERE[Username] = '" + userName + "' AND [LoggedInAt] = '" + logInTime + "'", connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+            Application.Restart();
+        }
     }
 }

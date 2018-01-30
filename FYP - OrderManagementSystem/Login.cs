@@ -17,7 +17,7 @@ namespace FYP___OrderManagementSystem
             InitializeComponent();
         }
 
-        private void Login_Load(object sender, EventArgs e)
+        public void Login_Load(object sender, EventArgs e)
         {
             unLabel.BackColor = Color.Transparent;
             pwLabel.BackColor = Color.Transparent;
@@ -57,6 +57,9 @@ namespace FYP___OrderManagementSystem
                 command.ExecuteNonQuery();
                 connection.Close();
                 Hide();
+                unTextBox.Clear();
+                pwTextBox.Clear();
+                unTextBox.Focus();
                 var main = new MainMenu();
                 main.Show();
             }
