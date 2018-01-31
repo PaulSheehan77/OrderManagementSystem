@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateOrder));
             this.SOButton = new System.Windows.Forms.Button();
             this.QuantityLabel = new System.Windows.Forms.Label();
             this.PCLabel = new System.Windows.Forms.Label();
@@ -249,6 +250,7 @@
             this.Controls.Add(this.PCLabel);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.AddButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CreateOrder";
             this.Text = "CreateOrder";
             this.TopMost = true;

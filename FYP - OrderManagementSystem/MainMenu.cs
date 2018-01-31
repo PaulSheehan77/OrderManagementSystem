@@ -73,8 +73,7 @@ namespace FYP___OrderManagementSystem
                 DataTable dtB = new DataTable();
                 sdaB.Fill(dtB);
                 dataGridView2.Rows.Clear();
-                TimeLabel.Location = new Point(914, 498);
-                DateLabel.Location = new Point(886,530);
+                //TimeLabel.Location = new Point(914, 498);
 
                 foreach (DataRow item in dtB.Rows)
                 {

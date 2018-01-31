@@ -106,7 +106,7 @@ namespace FYP___OrderManagementSystem
                 sdaB.Fill(dtB);
                 dataGridView1.Rows.Clear();
 
-                foreach (DataRow itemm in dt.Rows)
+                foreach (DataRow item in dt.Rows)
                 {
                     NumOfItems = NumOfItems + 1;
                 }

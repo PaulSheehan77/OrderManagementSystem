@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Products));
             this.PCTextBox = new System.Windows.Forms.TextBox();
             this.PNTextBox = new System.Windows.Forms.TextBox();
             this.DeleteButton = new System.Windows.Forms.Button();
@@ -285,6 +286,7 @@
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.PNTextBox);
             this.Controls.Add(this.PCTextBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(32, 72);
             this.Name = "Products";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
