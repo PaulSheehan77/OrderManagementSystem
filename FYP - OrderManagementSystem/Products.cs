@@ -175,14 +175,14 @@ namespace FYP___OrderManagementSystem
             StockTextBox.Text = dataGridView1.SelectedRows[0].Cells[5].Value.ToString();
         }
 
-        private void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void AddButton_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

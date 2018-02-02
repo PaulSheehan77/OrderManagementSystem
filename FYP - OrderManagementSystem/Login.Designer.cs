@@ -42,7 +42,7 @@
             // 
             // enterButton
             // 
-            this.enterButton.Location = new System.Drawing.Point(306, 280);
+            this.enterButton.Location = new System.Drawing.Point(443, 266);
             this.enterButton.Name = "enterButton";
             this.enterButton.Size = new System.Drawing.Size(115, 33);
             this.enterButton.TabIndex = 3;
@@ -52,7 +52,7 @@
             // 
             // clearUNButton
             // 
-            this.clearUNButton.Location = new System.Drawing.Point(519, 88);
+            this.clearUNButton.Location = new System.Drawing.Point(519, 107);
             this.clearUNButton.Name = "clearUNButton";
             this.clearUNButton.Size = new System.Drawing.Size(39, 20);
             this.clearUNButton.TabIndex = 5;
@@ -65,7 +65,7 @@
             this.unLabel.AutoSize = true;
             this.unLabel.BackColor = System.Drawing.Color.Transparent;
             this.unLabel.ForeColor = System.Drawing.Color.White;
-            this.unLabel.Location = new System.Drawing.Point(303, 72);
+            this.unLabel.Location = new System.Drawing.Point(303, 91);
             this.unLabel.Name = "unLabel";
             this.unLabel.Size = new System.Drawing.Size(61, 13);
             this.unLabel.TabIndex = 2;
@@ -97,7 +97,7 @@
             // 
             // unTextBox
             // 
-            this.unTextBox.Location = new System.Drawing.Point(306, 88);
+            this.unTextBox.Location = new System.Drawing.Point(306, 107);
             this.unTextBox.Name = "unTextBox";
             this.unTextBox.Size = new System.Drawing.Size(207, 20);
             this.unTextBox.TabIndex = 1;
@@ -114,7 +114,7 @@
             // 
             // exitButton
             // 
-            this.exitButton.Location = new System.Drawing.Point(443, 280);
+            this.exitButton.Location = new System.Drawing.Point(306, 266);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(115, 33);
             this.exitButton.TabIndex = 4;
@@ -147,7 +147,10 @@
             this.Controls.Add(this.unLabel);
             this.Controls.Add(this.clearUNButton);
             this.Controls.Add(this.enterButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";

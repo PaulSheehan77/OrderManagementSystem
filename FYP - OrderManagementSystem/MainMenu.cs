@@ -13,6 +13,8 @@ namespace FYP___OrderManagementSystem
         public MainMenu()
         {
             InitializeComponent();
+            dataGridView2.BringToFront();
+            dataGridView2.SendToBack();
         }
 
         public void InitTimer()
@@ -33,17 +35,23 @@ namespace FYP___OrderManagementSystem
         {
             TimeLabel.Text = DateTime.Now.ToLongTimeString();
             timer1.Start();
+            if ((int)MdiChildren.GetLength(0) > 0)
+            {
+                panel1.Visible = false;
+            }
+            else
+            {
+                panel1.Visible = true;
+            }
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
             dataGridView2.Visible = false;
             label2.Visible = false;
-            button2.Visible = false;
             timer1.Start();
             TimeLabel.Text = DateTime.Now.ToLongTimeString();
             DateLabel.Text = DateTime.Now.ToLongDateString();
-            label1.BackColor = Color.Transparent;
             dataGridView1.BackgroundColor = Color.White;
             dataGridView2.BackgroundColor = Color.White;
             InitTimer();
@@ -65,10 +73,8 @@ namespace FYP___OrderManagementSystem
                 suppliersToolStripMenuItem.Visible = false;
                 dataGridView1.Visible = false;
                 label1.Visible = false;
-                RefreshButton.Visible = false;
                 dataGridView2.Visible = true;
                 label2.Visible = true;
-                button2.Visible = true;
                 SqlDataAdapter sdaB = new SqlDataAdapter(@"SELECT [OrderID], [Requestee], [OrderStatus] FROM[Orders]", connection);
                 DataTable dtB = new DataTable();
                 sdaB.Fill(dtB);
@@ -200,11 +206,6 @@ namespace FYP___OrderManagementSystem
         }*/
 
         private void RefreshButton_Click(object sender, EventArgs e)
-        {
-            LoadData();
-        }
-
-        private void Button2_Click(object sender, EventArgs e)
         {
             LoadData();
         }
