@@ -7,6 +7,11 @@ namespace FYP___OrderManagementSystem
 {
     public partial class Suppliers : Form
     {
+        private SqlConnection _connection;
+        private SqlCommand _command;
+        private SqlDataAdapter _sda;
+        private DataTable _dt;
+
         public Suppliers()
         {
             InitializeComponent();
@@ -15,13 +20,13 @@ namespace FYP___OrderManagementSystem
 
         public void LoadData()
         {
-            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            var sda = new SqlDataAdapter(@"SELECT * FROM[Suppliers]", connection);
-            var dt = new DataTable();
-            sda.Fill(dt);
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _sda = new SqlDataAdapter(@"SELECT * FROM[Suppliers]", _connection);
+            _dt = new DataTable();
+            _sda.Fill(_dt);
             dataGridView1.Rows.Clear();
 
-            foreach (DataRow item in dt.Rows)
+            foreach (DataRow item in _dt.Rows)
             {
                 var n = dataGridView1.Rows.Add();
                 dataGridView1.Rows[n].Cells[0].Value = item["SupplierName"].ToString();
@@ -31,15 +36,14 @@ namespace FYP___OrderManagementSystem
             }
         }
 
-        private static bool IfSupplierExists(SqlConnection connection, string supplierName)
+        private bool IfSupplierExists(SqlConnection connection, string supplierName)
         {
-            var sda = new SqlDataAdapter(@"SELECT 1 FROM[Suppliers] WHERE[SupplierName] = '" + supplierName + "'", connection);
-            var dt = new DataTable();
-            sda.Fill(dt);
-            if (dt.Rows.Count > 0)
+            _sda = new SqlDataAdapter(@"SELECT 1 FROM[Suppliers] WHERE[SupplierName] = '" + supplierName + "'", connection);
+            _dt = new DataTable();
+            _sda.Fill(_dt);
+            if (_dt.Rows.Count > 0)
                 return true;
-            else
-                return false;
+            return false;
         }
 
         private void ClearText()
@@ -53,10 +57,10 @@ namespace FYP___OrderManagementSystem
         private void AddButton_Click(object sender, EventArgs e)
         {
             const string errorMessage = "A supplier with this name already exists.\n\nPlease enter a different name.";
-            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            connection.Open();
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection.Open();
 
-            if (IfSupplierExists(connection, SNTextBox.Text))
+            if (IfSupplierExists(_connection, SNTextBox.Text))
             {
                 MessageBox.Show(errorMessage);
                 SNTextBox.Clear();
@@ -66,29 +70,29 @@ namespace FYP___OrderManagementSystem
             {
                 var sqlQuery = @"INSERT INTO[Suppliers] ([SupplierName], [SupplierAddress], [SupplierNumber], [SupplierEmail]) VALUES
                       ('" + SNTextBox.Text + "', '" + SATextBox.Text + "', '" + SNUTextBox.Text + "', '" + SETextBox.Text + "')";
-                var command = new SqlCommand(sqlQuery, connection);
-                command.ExecuteNonQuery();
+                _command = new SqlCommand(sqlQuery, _connection);
+                _command.ExecuteNonQuery();
                 ClearText();
                 SNTextBox.Focus();
             }
 
-            connection.Close();
+            _connection.Close();
             LoadData();
         }
 
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             const string errorMessage = "A supplier with this name doesn't exist.\n\nPlease enter a different name.";
-            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            connection.Open();
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection.Open();
 
-            if (IfSupplierExists(connection, SNTextBox.Text))
+            if (IfSupplierExists(_connection, SNTextBox.Text))
             {
                 var sqlQuery = @"UPDATE[Suppliers] SET[SupplierName] = '" + SNTextBox.Text + "', [SupplierAddress] = '" + SATextBox.Text + "' , [SupplierNumber] = '" + SNUTextBox.Text + "', [SupplierEmail] = '" + SETextBox.Text + "' WHERE[SupplierName] = '" + SNTextBox.Text + "'";
                 ClearText();
                 SNTextBox.Focus();
-                var command = new SqlCommand(sqlQuery, connection);
-                command.ExecuteNonQuery();
+                 _command = new SqlCommand(sqlQuery, _connection);
+                _command.ExecuteNonQuery();
             }
             else
             {
@@ -97,16 +101,16 @@ namespace FYP___OrderManagementSystem
                 SNTextBox.Focus();
             }
 
-            connection.Close();
+            _connection.Close();
             LoadData();
         }
 
         private void FindButton_Click(object sender, EventArgs e)
         {
             const string errorMessage = "This supplier does not exist!";
-            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
 
-            if (IfSupplierExists(connection, SNTextBox.Text))
+            if (IfSupplierExists(_connection, SNTextBox.Text))
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
@@ -129,15 +133,15 @@ namespace FYP___OrderManagementSystem
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             const string errorMessage = "This supplier does not exist!";
-            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
 
-            if (IfSupplierExists(connection, SNTextBox.Text))
+            if (IfSupplierExists(_connection, SNTextBox.Text))
             {
-                connection.Open();
+                _connection.Open();
                 var sqlQuery = @"DELETE FROM[Suppliers] WHERE[SupplierName] = '" + SNTextBox.Text + "'";
-                var command = new SqlCommand(sqlQuery, connection);
-                command.ExecuteNonQuery();
-                connection.Close();
+                _command = new SqlCommand(sqlQuery, _connection);
+                _command.ExecuteNonQuery();
+                _connection.Close();
             }
             else
             {

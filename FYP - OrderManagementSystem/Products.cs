@@ -7,6 +7,11 @@ namespace FYP___OrderManagementSystem
 {
     public partial class Products : Form
     {
+        private SqlConnection _connection;
+        private SqlCommand _command;
+        private SqlDataAdapter _sda;
+        private DataTable _dt;
+
         public Products()
         {
             InitializeComponent();
@@ -19,13 +24,13 @@ namespace FYP___OrderManagementSystem
 
         public void LoadData()
         {
-            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            var sda = new SqlDataAdapter(@"SELECT * FROM[Products]", connection);
-            var dt = new DataTable();
-            sda.Fill(dt);
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _sda = new SqlDataAdapter(@"SELECT * FROM[Products]", _connection);
+            _dt = new DataTable();
+            _sda.Fill(_dt);
             dataGridView1.Rows.Clear();
 
-            foreach (DataRow item in dt.Rows)
+            foreach (DataRow item in _dt.Rows)
             {
                 var n = dataGridView1.Rows.Add();
                 dataGridView1.Rows[n].Cells[0].Value = item["ProductCode"].ToString();
@@ -45,15 +50,14 @@ namespace FYP___OrderManagementSystem
             }
         }
 
-        private static bool IfProductExists(SqlConnection connection, string prodCode)
+        private bool IfProductExists(SqlConnection connection, string prodCode)
         {
-            var sda = new SqlDataAdapter(@"SELECT 1 FROM[Products] WHERE[ProductCode] = '" + prodCode + "'", connection);
-            var dt = new DataTable();
-            sda.Fill(dt);
-            if (dt.Rows.Count > 0)
+            _sda = new SqlDataAdapter(@"SELECT 1 FROM[Products] WHERE[ProductCode] = '" + prodCode + "'", connection);
+            _dt = new DataTable();
+            _sda.Fill(_dt);
+            if (_dt.Rows.Count > 0)
                 return true;
-            else
-                return false;
+            return false;
         }
 
         private void ClearText()
@@ -69,10 +73,10 @@ namespace FYP___OrderManagementSystem
         private void AddButton_Click(object sender, EventArgs e)
         {
             const string errorMessage = "An item with this product code already exists.\n\nPlease enter a different product code.";
-            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            connection.Open();
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection.Open();
 
-            if (IfProductExists(connection, PCTextBox.Text))
+            if (IfProductExists(_connection, PCTextBox.Text))
             {
                 MessageBox.Show(errorMessage);
                 PCTextBox.Clear();
@@ -82,29 +86,29 @@ namespace FYP___OrderManagementSystem
             {
                 var sqlQuery = @"INSERT INTO[Products] ([ProductCode], [ProductName], [ProductSupplier], [ProductSupplierCode], [ProductPrice], [ProductStock]) VALUES
                       ('" + PCTextBox.Text + "', '" + PNTextBox.Text + "', '" + SNTextBox.Text + "', '" + SCTextBox.Text + "', '" + PriceTextBox.Text + "', '" + StockTextBox.Text + "')";
-                var command = new SqlCommand(sqlQuery, connection);
-                command.ExecuteNonQuery();
+                _command = new SqlCommand(sqlQuery, _connection);
+                _command.ExecuteNonQuery();
                 ClearText();
                 PCTextBox.Focus();
             }
 
-            connection.Close();
+            _connection.Close();
             LoadData();
         }
 
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             const string errorMessage = "An item with this product code doesn't exist.\n\nPlease enter a different product code.";
-            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            connection.Open();
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection.Open();
 
-            if (IfProductExists(connection, PCTextBox.Text))
+            if (IfProductExists(_connection, PCTextBox.Text))
             {
                 var sqlQuery = @"UPDATE[Products] SET[ProductName] = '" + PNTextBox.Text + "', [ProductSupplier] = '" + SNTextBox.Text + "' , [ProductSupplierCode] = '" + SCTextBox.Text + "', [ProductPrice] = '" + PriceTextBox.Text + "', [ProductStock] = '" + StockTextBox.Text + "' WHERE[ProductCode] = '" + PCTextBox.Text + "'";
                 ClearText();
                 PCTextBox.Focus();
-                var command = new SqlCommand(sqlQuery, connection);
-                command.ExecuteNonQuery();
+                _command = new SqlCommand(sqlQuery, _connection);
+                _command.ExecuteNonQuery();
             }
             else
             {
@@ -113,16 +117,16 @@ namespace FYP___OrderManagementSystem
                 PCTextBox.Focus();
             }
             
-            connection.Close();
+            _connection.Close();
             LoadData();
         }
 
         private void FindButton_Click(object sender, EventArgs e)
         {
             const string errorMessage = "This item does not exist!";
-            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
 
-            if (IfProductExists(connection, PCTextBox.Text))
+            if (IfProductExists(_connection, PCTextBox.Text))
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
@@ -145,15 +149,15 @@ namespace FYP___OrderManagementSystem
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             const string errorMessage = "This item does not exist!";
-            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
 
-            if (IfProductExists(connection, PCTextBox.Text))
+            if (IfProductExists(_connection, PCTextBox.Text))
             {
-                connection.Open();
+                _connection.Open();
                 var sqlQuery = @"DELETE FROM[Products] WHERE[ProductCode] = '" + PCTextBox.Text + "'";
-                var command = new SqlCommand(sqlQuery, connection);
-                command.ExecuteNonQuery();
-                connection.Close();
+                _command = new SqlCommand(sqlQuery, _connection);
+                _command.ExecuteNonQuery();
+                _connection.Close();
             }
             else
             {

@@ -39,10 +39,10 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.OrderStatusLabel = new System.Windows.Forms.Label();
+            this.OrderStatusComboBox = new System.Windows.Forms.ComboBox();
             this.OCLabel = new System.Windows.Forms.Label();
             this.RefreshButton = new System.Windows.Forms.Button();
-            this.OrderStatusComboBox = new System.Windows.Forms.ComboBox();
-            this.OrderStatusLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -69,7 +69,9 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -147,6 +149,24 @@
             this.panel2.Size = new System.Drawing.Size(576, 66);
             this.panel2.TabIndex = 46;
             // 
+            // OrderStatusLabel
+            // 
+            this.OrderStatusLabel.AutoSize = true;
+            this.OrderStatusLabel.BackColor = System.Drawing.Color.Transparent;
+            this.OrderStatusLabel.Location = new System.Drawing.Point(243, 26);
+            this.OrderStatusLabel.Name = "OrderStatusLabel";
+            this.OrderStatusLabel.Size = new System.Drawing.Size(66, 13);
+            this.OrderStatusLabel.TabIndex = 43;
+            this.OrderStatusLabel.Text = "Order Status";
+            // 
+            // OrderStatusComboBox
+            // 
+            this.OrderStatusComboBox.FormattingEnabled = true;
+            this.OrderStatusComboBox.Location = new System.Drawing.Point(246, 42);
+            this.OrderStatusComboBox.Name = "OrderStatusComboBox";
+            this.OrderStatusComboBox.Size = new System.Drawing.Size(103, 21);
+            this.OrderStatusComboBox.TabIndex = 42;
+            // 
             // OCLabel
             // 
             this.OCLabel.AutoSize = true;
@@ -168,24 +188,6 @@
             this.RefreshButton.UseVisualStyleBackColor = true;
             this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
-            // OrderStatusComboBox
-            // 
-            this.OrderStatusComboBox.FormattingEnabled = true;
-            this.OrderStatusComboBox.Location = new System.Drawing.Point(246, 42);
-            this.OrderStatusComboBox.Name = "OrderStatusComboBox";
-            this.OrderStatusComboBox.Size = new System.Drawing.Size(103, 21);
-            this.OrderStatusComboBox.TabIndex = 42;
-            // 
-            // OrderStatusLabel
-            // 
-            this.OrderStatusLabel.AutoSize = true;
-            this.OrderStatusLabel.BackColor = System.Drawing.Color.Transparent;
-            this.OrderStatusLabel.Location = new System.Drawing.Point(243, 26);
-            this.OrderStatusLabel.Name = "OrderStatusLabel";
-            this.OrderStatusLabel.Size = new System.Drawing.Size(66, 13);
-            this.OrderStatusLabel.TabIndex = 43;
-            this.OrderStatusLabel.Text = "Order Status";
-            // 
             // OrderManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -194,7 +196,9 @@
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.panel2);
+            this.Location = new System.Drawing.Point(410, 15);
             this.Name = "OrderManagement";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "OrderManagement";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel2.ResumeLayout(false);

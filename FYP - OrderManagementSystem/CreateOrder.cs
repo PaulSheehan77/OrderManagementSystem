@@ -12,6 +12,10 @@ namespace FYP___OrderManagementSystem
         public static int NumOfItems { get; set; }
         public static string OrderId { get; set; }
         public static string Quantity { get; set; }
+        private SqlConnection _connection;
+        private SqlCommand _command;
+        private SqlDataAdapter _sda;
+        private DataTable _dt;
 
         public CreateOrder()
         {
@@ -27,13 +31,13 @@ namespace FYP___OrderManagementSystem
         {
             FillComboBox();
             FillComboBox2();
-            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            var sda = new SqlDataAdapter(@"SELECT * FROM[Products]", connection);
-            var dt = new DataTable();
-            sda.Fill(dt);
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _sda = new SqlDataAdapter(@"SELECT * FROM[Products]", _connection);
+            _dt = new DataTable();
+            _sda.Fill(_dt);
             dataGridView2.Rows.Clear();
 
-            foreach (DataRow item in dt.Rows)
+            foreach (DataRow item in _dt.Rows)
             {
                 var n = dataGridView2.Rows.Add();
                 dataGridView2.Rows[n].Cells[0].Value = item["ProductCode"].ToString();
@@ -47,19 +51,19 @@ namespace FYP___OrderManagementSystem
 
         private void FillComboBox()
         {
-            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            var command = new SqlCommand(@"SELECT * FROM[Products]", connection);
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _command = new SqlCommand(@"SELECT * FROM[Products]", _connection);
             try
             {
-                connection.Open();
-                var myReader = command.ExecuteReader();
+                _connection.Open();
+                var myReader = _command.ExecuteReader();
 
                 while (myReader.Read())
                 {
                     var pCode = myReader.GetString(0);
                     ProductCodeComboBox.Items.Add(pCode);
                 }
-                connection.Close();
+                _connection.Close();
             }
             catch(Exception ex)
             {
@@ -69,19 +73,19 @@ namespace FYP___OrderManagementSystem
 
         private void FillComboBox2()
         {
-            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            var command = new SqlCommand(@"SELECT * FROM[Department]", connection);
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _command = new SqlCommand(@"SELECT * FROM[Department]", _connection);
             try
             {
-                connection.Open();
-                var myReader = command.ExecuteReader();
+                _connection.Open();
+                var myReader = _command.ExecuteReader();
 
                 while (myReader.Read())
                 {
                     var x = myReader.GetString(0);
                     DepComboBox.Items.Add(x);
                 }
-                connection.Close();
+                _connection.Close();
             }
             catch (Exception ex)
             {
@@ -94,28 +98,29 @@ namespace FYP___OrderManagementSystem
             const string error = "The quantity you have chosen exceeds the current stock level.\n\nPlease enter another quantity.";
             var quantity = Convert.ToInt32(QuantityUpDown.Text);
             var prodCode = ProductCodeComboBox.Text;
-            SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            connection.Open();
-            SqlDataAdapter sda = new SqlDataAdapter(@"SELECT * FROM[Products] WHERE[ProductCode] = '" + prodCode + "'", connection);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection.Open();
+            _sda = new SqlDataAdapter(@"SELECT * FROM[Products] WHERE[ProductCode] = '" + prodCode + "'", _connection);
+            _dt = new DataTable();
+            _sda.Fill(_dt);
             dataGridView1.Rows.Clear();
-            if (dt.Rows.Count == 1 && quantity != 0)
-            {
-                var command = new SqlCommand(@"INSERT INTO[Cart]([ProductCode], [Quantity]) VALUES
-                   ('" + prodCode + "', '" + quantity + "')", connection);
-                command.ExecuteNonQuery();
-                var sdaB = new SqlDataAdapter(@"SELECT * FROM[Cart]", connection);
-                var dtB = new DataTable();
-                sdaB.Fill(dtB);
-                dataGridView1.Rows.Clear();
 
-                foreach (DataRow unused in dt.Rows)
+            if (_dt.Rows.Count == 1 && quantity != 0)
+            {
+                foreach (DataRow unused in _dt.Rows)
                 {
                     NumOfItems = NumOfItems + 1;
                 }
 
-                foreach (DataRow item in dtB.Rows)
+                _command = new SqlCommand(@"INSERT INTO[Cart]([ProductCode], [Quantity]) VALUES
+                   ('" + prodCode + "', '" + quantity + "')", _connection);
+                _command.ExecuteNonQuery();
+                _sda = new SqlDataAdapter(@"SELECT * FROM[Cart]", _connection);
+                _dt = new DataTable();
+                _sda.Fill(_dt);
+                dataGridView1.Rows.Clear();
+
+                foreach (DataRow item in _dt.Rows)
                 {
                     var n = dataGridView1.Rows.Add();
                     dataGridView1.Rows[n].Cells[0].Value = item["ProductCode"].ToString();
@@ -129,23 +134,14 @@ namespace FYP___OrderManagementSystem
                 QuantityUpDown.Focus();
             }
 
-            sda.Dispose();
-            connection.Close();
+            _sda.Dispose();
+            _connection.Close();
         }
 
         private void DataGridView2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             ProductCodeComboBox.Text = dataGridView2.SelectedRows[0].Cells[0].Value.ToString();
             QuantityUpDown.Text = dataGridView2.SelectedRows[0].Cells[5].Value.ToString();
-        }
-
-        private void CreateOrder_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            connection.Open();
-            SqlCommand command = new SqlCommand("SELECT * FROM[Cart] DELETE FROM[Cart]", connection);
-            command.ExecuteNonQuery();
-            connection.Close();
         }
 
         private static string GenerateRandomCode()
@@ -193,17 +189,17 @@ namespace FYP___OrderManagementSystem
             const string stmt = "SELECT COUNT(*) FROM dbo.Cart";
             int count1 = 0;
             int count2 = 0;
-            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            connection.Open();
-            var cmd = new SqlCommand(stmt, connection);
-            var count = (int)cmd.ExecuteScalar();
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection.Open();
+            _command = new SqlCommand(stmt, _connection);
+            var count = (int)_command.ExecuteScalar();
             string[,] array = new string[count, count];
-            var command1 = new SqlCommand(@"SELECT * FROM[Cart]", connection);
-            connection.Close();
+            var command1 = new SqlCommand(@"SELECT * FROM[Cart]", _connection);
+            _connection.Close();
 
             try
             {
-                connection.Open();
+                _connection.Open();
                 var myReader = command1.ExecuteReader();
 
                 array = new string[count, count];
@@ -216,7 +212,7 @@ namespace FYP___OrderManagementSystem
                     count2--;
                     count1++;
                 }
-                connection.Close();
+                _connection.Close();
             }
             catch (Exception ex)
             {
@@ -241,13 +237,13 @@ namespace FYP___OrderManagementSystem
             else
             {
                 var randCode = GenerateRandomCode();
-                connection.Open();
-                SqlCommand command = new SqlCommand("INSERT IntO[Orders]([OrderID],[NumberOfItems],[Department],[Requestee],[OrderDate],[OrderStatus],[OrderTotal]) VALUES" +
-                                                    "('" + randCode + "', '" + NumOfItems + "', '" + DepComboBox.Text + "', '" + RequesteeTextBox.Text + "', '" + localDate + "', '" + status + "', '" + jj + "')", connection);
-                command.ExecuteNonQuery();
-                SqlCommand commandB = new SqlCommand("SELECT * FROM[Cart] DELETE FROM[Cart]", connection);
-                commandB.ExecuteNonQuery();
-                connection.Close();
+                _connection.Open();
+                _command = new SqlCommand("INSERT IntO[Orders]([OrderID],[NumberOfItems],[Department],[Requestee],[OrderDate],[OrderStatus],[OrderTotal]) VALUES" +
+                                                    "('" + randCode + "', '" + NumOfItems + "', '" + DepComboBox.Text + "', '" + RequesteeTextBox.Text + "', '" + localDate + "', '" + status + "', '" + jj + "')", _connection);
+                _command.ExecuteNonQuery();
+                _command = new SqlCommand("SELECT * FROM[Cart] DELETE FROM[Cart]", _connection);
+                _command.ExecuteNonQuery();
+                _connection.Close();
                 ClearText();
                 dataGridView1.Rows.Clear();
                 NumOfItems = 0;
@@ -255,6 +251,15 @@ namespace FYP___OrderManagementSystem
                     "Your order has been submitted!\n\nPlease check the orders board to check status of your order.\n\nTake note of your Order ID, you'll need it to keep track of your order!\n\nOrder ID = " +
                     randCode + "");
             }
+        }
+
+        private void CreateOrder_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection.Open();
+            _command = new SqlCommand("SELECT * FROM[Cart] DELETE FROM[Cart]", _connection);
+            _command.ExecuteNonQuery();
+            _connection.Close();
         }
     }
 }

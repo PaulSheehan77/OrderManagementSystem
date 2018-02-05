@@ -11,6 +11,10 @@ namespace FYP___OrderManagementSystem
         public static DateTime LogInTime { get; set; }
         public static string UserName { get; set; }
         public static string AccessLevel { get; set; }
+        private SqlConnection _connection;
+        private SqlCommand _command;
+        private SqlDataAdapter _sda;
+        private DataTable _dt;
 
         public Login()
         {
@@ -38,27 +42,28 @@ namespace FYP___OrderManagementSystem
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
-            var errorMessage = "Invalid login details supplied";
+            var errorMessage = "Invalid login details supplied.\n\nPlease try again.";
             var error = "Error";
             var localDate = DateTime.Now;
             LogInTime = localDate;
-            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             // Handles connection.Open() && connection.Close()
-            var sda = new SqlDataAdapter(@"SELECT * FROM [FYP_DB].[dbo].[Login]
-                Where UserName = '"+ unTextBox.Text +"' and Password = '"+ pwTextBox.Text +"'", connection);
-            var dt = new DataTable();
-            sda.Fill(dt);
-            if (dt.Rows.Count == 1)
+            _sda = new SqlDataAdapter(@"SELECT * FROM [FYP_DB].[dbo].[Login]
+                Where UserName = '"+ unTextBox.Text +"' and Password = '"+ pwTextBox.Text +"'", _connection);
+            _dt = new DataTable();
+            _sda.Fill(_dt);
+
+            if (_dt.Rows.Count == 1)
             {
                 UserName = unTextBox.Text;
-                connection.Open();
-                var command = new SqlCommand(@"INSERT INTO[Active] ([Username], [LoggedInAt]) VALUES
-                             ('" + UserName + "', '" + localDate +"')", connection);
-                command.ExecuteNonQuery();
-                connection.Close();
+                _connection.Open();
+                _command = new SqlCommand(@"INSERT INTO[Active] ([Username], [LoggedInAt]) VALUES
+                             ('" + UserName + "', '" + localDate +"')", _connection);
+                _command.ExecuteNonQuery();
+                _connection.Close();
                 Hide();
-                unTextBox.Clear();
                 pwTextBox.Clear();
+                unTextBox.Clear();
                 unTextBox.Focus();
                 var main = new MainMenu();
                 main.Show();
@@ -66,10 +71,9 @@ namespace FYP___OrderManagementSystem
             else
             {
                 MessageBox.Show(errorMessage, error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                unTextBox.Clear();
                 pwTextBox.Clear();
+                unTextBox.Clear();
                 unTextBox.Focus();
-                // 38.43
             }
         }
 

@@ -88,7 +88,7 @@
             this.manageOrdersToolStripMenuItem.Name = "manageOrdersToolStripMenuItem";
             this.manageOrdersToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
             this.manageOrdersToolStripMenuItem.Text = "Manage Orders";
-            this.manageOrdersToolStripMenuItem.Click += new System.EventHandler(this.manageOrdersToolStripMenuItem_Click);
+            this.manageOrdersToolStripMenuItem.Click += new System.EventHandler(this.ManageOrdersToolStripMenuItem_Click);
             // 
             // productsToolStripMenuItem
             // 
@@ -102,7 +102,7 @@
             this.suppliersToolStripMenuItem.Name = "suppliersToolStripMenuItem";
             this.suppliersToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.suppliersToolStripMenuItem.Text = "Suppliers";
-            this.suppliersToolStripMenuItem.Click += new System.EventHandler(this.suppliersToolStripMenuItem_Click_1);
+            this.suppliersToolStripMenuItem.Click += new System.EventHandler(this.SuppliersToolStripMenuItem_Click_1);
             // 
             // accountManagementToolStripMenuItem
             // 

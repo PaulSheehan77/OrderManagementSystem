@@ -7,6 +7,11 @@ namespace FYP___OrderManagementSystem
 {
     public partial class OrderManagement : Form
     {
+        private SqlConnection _connection;
+        private SqlCommand _command;
+        private SqlDataAdapter _sda;
+        private DataTable _dt;
+
         public OrderManagement()
         {
             InitializeComponent();
@@ -18,15 +23,16 @@ namespace FYP___OrderManagementSystem
 
         public void Load_Data()
         {
-            SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            SqlDataAdapter sda = new SqlDataAdapter(@"SELECT * FROM[Orders]", connection);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
+            OrderIDComboBox.Items.Clear();
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _sda = new SqlDataAdapter(@"SELECT * FROM[Orders]", _connection);
+            _dt = new DataTable();
+            _sda.Fill(_dt);
             dataGridView2.Rows.Clear();
             //TimeLabel.Location = new Point(914, 498);
-            FillComboBox(connection);
+            FillComboBox(_connection);
 
-            foreach (DataRow item in dt.Rows)
+            foreach (DataRow item in _dt.Rows)
             {
                 int n = dataGridView2.Rows.Add();
                 dataGridView2.Rows[n].Cells[0].Value = item["OrderID"].ToString();
@@ -36,16 +42,24 @@ namespace FYP___OrderManagementSystem
                 dataGridView2.Rows[n].Cells[4].Value = item["OrderDate"].ToString();
                 dataGridView2.Rows[n].Cells[5].Value = item["OrderStatus"].ToString();
                 dataGridView2.Rows[n].Cells[6].Value = item["OrderTotal"].ToString();
+                /*if ((bool)item["ProductStatus"])
+                {
+                    dataGridView1.Rows[n].Cells[2].Value = "Active";
+                }
+                else
+                {
+                    dataGridView1.Rows[n].Cells[2].Value = "Deactive";
+                }*/
             }
         }
 
         private void FillComboBox(SqlConnection connection)
         {
-            var command = new SqlCommand(@"SELECT * FROM[Orders]", connection);
+            _command = new SqlCommand(@"SELECT * FROM[Orders]", connection);
             try
             {
-                connection.Open();
-                var myReader = command.ExecuteReader();
+                _connection.Open();
+                var myReader = _command.ExecuteReader();
 
                 while (myReader.Read())
                 {
@@ -60,12 +74,12 @@ namespace FYP___OrderManagementSystem
         }
 
 
-        private static bool IfOrderExists(SqlConnection connection, string orderId)
+        private bool IfOrderExists(SqlConnection connection, string orderId)
         {
-            var sda = new SqlDataAdapter(@"SELECT 1 FROM[Orders] WHERE[OrderID] = '" + orderId + "'", connection);
-            var dt = new DataTable();
-            sda.Fill(dt);
-            if (dt.Rows.Count > 0)
+            _sda = new SqlDataAdapter(@"SELECT 1 FROM[Orders] WHERE[OrderID] = '" + orderId + "'", connection);
+            _dt = new DataTable();
+            _sda.Fill(_dt);
+            if (_dt.Rows.Count > 0)
                 return true;
             else
                 return false;
@@ -74,17 +88,17 @@ namespace FYP___OrderManagementSystem
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             const string errorMessage = "An order with this order ID doesn't exist.\n\nPlease enter a different order id.";
-            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            connection.Open();
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection.Open();
 
-            if (IfOrderExists(connection, OrderIDComboBox.Text))
+            if (IfOrderExists(_connection, OrderIDComboBox.Text))
             {
                 var sqlQuery = @"UPDATE[Orders] SET[OrderStatus] = '" + OrderStatusComboBox.Text + "' WHERE [OrderID] = '" + OrderIDComboBox.Text + "'";
                 OrderStatusComboBox.SelectedIndex = -1;
                 OrderIDComboBox.SelectedIndex = -1;
                 OrderIDComboBox.Focus();
-                var command = new SqlCommand(sqlQuery, connection);
-                command.ExecuteNonQuery();
+                _command = new SqlCommand(sqlQuery, _connection);
+                _command.ExecuteNonQuery();
             }
             else
             {
@@ -93,7 +107,7 @@ namespace FYP___OrderManagementSystem
                 OrderIDComboBox.Focus();
             }
 
-            connection.Close();
+            _connection.Close();
             Load_Data();
         }
 
@@ -105,7 +119,7 @@ namespace FYP___OrderManagementSystem
         private void DataGridView2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             OrderIDComboBox.Text = dataGridView2.SelectedRows[0].Cells[0].Value.ToString();
-            OrderStatusComboBox.Text = dataGridView2.SelectedRows[0].Cells[6].Value.ToString();
+            OrderStatusComboBox.Text = dataGridView2.SelectedRows[0].Cells[5].Value.ToString();
         }
     }
 }
