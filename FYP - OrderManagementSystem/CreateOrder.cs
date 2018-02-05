@@ -242,8 +242,8 @@ namespace FYP___OrderManagementSystem
             {
                 var randCode = GenerateRandomCode();
                 connection.Open();
-                SqlCommand command = new SqlCommand("INSERT IntO[Orders]([OrderID],[NumberOfItems],[Department],[Requestee],[OrderDate],[OrderStatus]) VALUES" +
-                                                    "('" + randCode + "', '" + NumOfItems + "', '" + DepComboBox.Text + "', '" + RequesteeTextBox.Text + "', '" + localDate + "', '" + status + "')", connection);
+                SqlCommand command = new SqlCommand("INSERT IntO[Orders]([OrderID],[NumberOfItems],[Department],[Requestee],[OrderDate],[OrderStatus],[OrderTotal]) VALUES" +
+                                                    "('" + randCode + "', '" + NumOfItems + "', '" + DepComboBox.Text + "', '" + RequesteeTextBox.Text + "', '" + localDate + "', '" + status + "', '" + jj + "')", connection);
                 command.ExecuteNonQuery();
                 SqlCommand commandB = new SqlCommand("SELECT * FROM[Cart] DELETE FROM[Cart]", connection);
                 commandB.ExecuteNonQuery();

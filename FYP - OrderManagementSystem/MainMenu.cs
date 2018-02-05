@@ -144,6 +144,12 @@ namespace FYP___OrderManagementSystem
             orderManagement.Show();
         }
 
+        private void suppliersToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            var suppliers = new Suppliers { MdiParent = this };
+            suppliers.Show();
+        }
+
         public int GetTableSize()
         {
             const string stmt = "SELECT COUNT(*) FROM dbo.Products";
