@@ -138,6 +138,12 @@ namespace FYP___OrderManagementSystem
             createOrder.Show();
         }
 
+        private void manageOrdersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var orderManagement = new OrderManagement { MdiParent = this };
+            orderManagement.Show();
+        }
+
         public int GetTableSize()
         {
             const string stmt = "SELECT COUNT(*) FROM dbo.Products";

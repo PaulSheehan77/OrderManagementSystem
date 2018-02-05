@@ -179,10 +179,5 @@ namespace FYP___OrderManagementSystem
         {
             LoadData();
         }
-
-        private void AddButton_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }

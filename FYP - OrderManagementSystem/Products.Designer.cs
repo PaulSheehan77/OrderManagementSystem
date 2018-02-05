@@ -79,7 +79,7 @@
             this.panel1.Controls.Add(this.DeleteButton);
             this.panel1.Location = new System.Drawing.Point(36, 13);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(724, 100);
+            this.panel1.Size = new System.Drawing.Size(714, 100);
             this.panel1.TabIndex = 20;
             // 
             // SCLabel
@@ -87,7 +87,7 @@
             this.SCLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SCLabel.AutoSize = true;
             this.SCLabel.BackColor = System.Drawing.Color.Transparent;
-            this.SCLabel.Location = new System.Drawing.Point(194, 57);
+            this.SCLabel.Location = new System.Drawing.Point(189, 57);
             this.SCLabel.Name = "SCLabel";
             this.SCLabel.Size = new System.Drawing.Size(73, 13);
             this.SCLabel.TabIndex = 42;
@@ -98,7 +98,7 @@
             this.SNLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SNLabel.AutoSize = true;
             this.SNLabel.BackColor = System.Drawing.Color.Transparent;
-            this.SNLabel.Location = new System.Drawing.Point(3, 57);
+            this.SNLabel.Location = new System.Drawing.Point(-2, 57);
             this.SNLabel.Name = "SNLabel";
             this.SNLabel.Size = new System.Drawing.Size(76, 13);
             this.SNLabel.TabIndex = 41;
@@ -107,7 +107,7 @@
             // SCTextBox
             // 
             this.SCTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SCTextBox.Location = new System.Drawing.Point(197, 75);
+            this.SCTextBox.Location = new System.Drawing.Point(192, 75);
             this.SCTextBox.Name = "SCTextBox";
             this.SCTextBox.Size = new System.Drawing.Size(100, 20);
             this.SCTextBox.TabIndex = 4;
@@ -115,7 +115,7 @@
             // SNTextBox
             // 
             this.SNTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SNTextBox.Location = new System.Drawing.Point(6, 74);
+            this.SNTextBox.Location = new System.Drawing.Point(1, 74);
             this.SNTextBox.Name = "SNTextBox";
             this.SNTextBox.Size = new System.Drawing.Size(100, 20);
             this.SNTextBox.TabIndex = 3;
@@ -125,7 +125,7 @@
             this.PNLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PNLabel.AutoSize = true;
             this.PNLabel.BackColor = System.Drawing.Color.Transparent;
-            this.PNLabel.Location = new System.Drawing.Point(194, 9);
+            this.PNLabel.Location = new System.Drawing.Point(189, 9);
             this.PNLabel.Name = "PNLabel";
             this.PNLabel.Size = new System.Drawing.Size(75, 13);
             this.PNLabel.TabIndex = 40;
@@ -136,7 +136,7 @@
             this.PCLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PCLabel.AutoSize = true;
             this.PCLabel.BackColor = System.Drawing.Color.Transparent;
-            this.PCLabel.Location = new System.Drawing.Point(3, 9);
+            this.PCLabel.Location = new System.Drawing.Point(-2, 9);
             this.PCLabel.Name = "PCLabel";
             this.PCLabel.Size = new System.Drawing.Size(72, 13);
             this.PCLabel.TabIndex = 39;
@@ -145,7 +145,7 @@
             // PNTextBox
             // 
             this.PNTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PNTextBox.Location = new System.Drawing.Point(197, 26);
+            this.PNTextBox.Location = new System.Drawing.Point(192, 26);
             this.PNTextBox.Name = "PNTextBox";
             this.PNTextBox.Size = new System.Drawing.Size(100, 20);
             this.PNTextBox.TabIndex = 1;
@@ -153,7 +153,7 @@
             // PCTextBox
             // 
             this.PCTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PCTextBox.Location = new System.Drawing.Point(6, 25);
+            this.PCTextBox.Location = new System.Drawing.Point(1, 25);
             this.PCTextBox.Name = "PCTextBox";
             this.PCTextBox.Size = new System.Drawing.Size(100, 20);
             this.PCTextBox.TabIndex = 0;
@@ -163,7 +163,7 @@
             this.StockLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.StockLabel.AutoSize = true;
             this.StockLabel.BackColor = System.Drawing.Color.Transparent;
-            this.StockLabel.Location = new System.Drawing.Point(381, 57);
+            this.StockLabel.Location = new System.Drawing.Point(376, 57);
             this.StockLabel.Name = "StockLabel";
             this.StockLabel.Size = new System.Drawing.Size(35, 13);
             this.StockLabel.TabIndex = 26;
@@ -172,7 +172,7 @@
             // StockTextBox
             // 
             this.StockTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.StockTextBox.Location = new System.Drawing.Point(384, 74);
+            this.StockTextBox.Location = new System.Drawing.Point(379, 74);
             this.StockTextBox.Name = "StockTextBox";
             this.StockTextBox.Size = new System.Drawing.Size(100, 20);
             this.StockTextBox.TabIndex = 5;
@@ -180,7 +180,7 @@
             // FindButton
             // 
             this.FindButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.FindButton.Location = new System.Drawing.Point(550, 71);
+            this.FindButton.Location = new System.Drawing.Point(545, 71);
             this.FindButton.Name = "FindButton";
             this.FindButton.Size = new System.Drawing.Size(74, 22);
             this.FindButton.TabIndex = 8;
@@ -191,7 +191,7 @@
             // PriceTextBox
             // 
             this.PriceTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PriceTextBox.Location = new System.Drawing.Point(384, 26);
+            this.PriceTextBox.Location = new System.Drawing.Point(379, 26);
             this.PriceTextBox.Name = "PriceTextBox";
             this.PriceTextBox.Size = new System.Drawing.Size(100, 20);
             this.PriceTextBox.TabIndex = 2;
@@ -201,7 +201,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(381, 9);
+            this.label1.Location = new System.Drawing.Point(376, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 25;
@@ -210,7 +210,7 @@
             // UpdateButton
             // 
             this.UpdateButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.UpdateButton.Location = new System.Drawing.Point(644, 27);
+            this.UpdateButton.Location = new System.Drawing.Point(639, 27);
             this.UpdateButton.Name = "UpdateButton";
             this.UpdateButton.Size = new System.Drawing.Size(74, 22);
             this.UpdateButton.TabIndex = 7;
@@ -221,7 +221,7 @@
             // AddButton
             // 
             this.AddButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.AddButton.Location = new System.Drawing.Point(550, 27);
+            this.AddButton.Location = new System.Drawing.Point(545, 27);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(74, 22);
             this.AddButton.TabIndex = 6;
@@ -232,7 +232,7 @@
             // DeleteButton
             // 
             this.DeleteButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DeleteButton.Location = new System.Drawing.Point(644, 70);
+            this.DeleteButton.Location = new System.Drawing.Point(639, 70);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(74, 23);
             this.DeleteButton.TabIndex = 9;
@@ -292,14 +292,14 @@
             this.dataGridView1.Location = new System.Drawing.Point(36, 144);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(718, 277);
+            this.dataGridView1.Size = new System.Drawing.Size(714, 277);
             this.dataGridView1.TabIndex = 11;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.DataGridView1_MouseDoubleClick);
             // 
             // RefreshButton
             // 
             this.RefreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RefreshButton.Location = new System.Drawing.Point(696, 427);
+            this.RefreshButton.Location = new System.Drawing.Point(710, 427);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(58, 26);
             this.RefreshButton.TabIndex = 10;
@@ -311,7 +311,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(772, 466);
+            this.ClientSize = new System.Drawing.Size(786, 466);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.dataGridView1);

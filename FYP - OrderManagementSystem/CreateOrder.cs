@@ -10,6 +10,8 @@ namespace FYP___OrderManagementSystem
         private string status = "Deactive";
         public static DateTime OrderTime { get; set; }
         public static int NumOfItems { get; set; }
+        public static string OrderId { get; set; }
+        public static string Quantity { get; set; }
 
         public CreateOrder()
         {
@@ -57,6 +59,7 @@ namespace FYP___OrderManagementSystem
                     var pCode = myReader.GetString(0);
                     ProductCodeComboBox.Items.Add(pCode);
                 }
+                connection.Close();
             }
             catch(Exception ex)
             {
@@ -78,6 +81,7 @@ namespace FYP___OrderManagementSystem
                     var x = myReader.GetString(0);
                     DepComboBox.Items.Add(x);
                 }
+                connection.Close();
             }
             catch (Exception ex)
             {
@@ -106,7 +110,7 @@ namespace FYP___OrderManagementSystem
                 sdaB.Fill(dtB);
                 dataGridView1.Rows.Clear();
 
-                foreach (DataRow item in dt.Rows)
+                foreach (DataRow unused in dt.Rows)
                 {
                     NumOfItems = NumOfItems + 1;
                 }
@@ -157,6 +161,24 @@ namespace FYP___OrderManagementSystem
             return result;
         }
 
+        private double OrderTotal(string[,] array)
+        {
+            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            connection.Open();
+            double oo = 0;
+            for (int x = 0; x < array.Rank; x++)
+            {
+                var command = new SqlCommand("SELECT [ProductPrice] FROM[Products] WHERE [ProductCode] = '" + array[x,0] + "'", connection);
+                var gg = (double) command.ExecuteScalar();
+                var commandb = new SqlCommand("SELECT [Quantity] FROM[Cart] WHERE [ProductCode] = '" + array[x, 0] + "'", connection);
+                var hh = (int)commandb.ExecuteScalar();
+                oo += gg * hh;
+            }
+
+            connection.Close();
+            return oo;
+        }
+
         private void ClearText()
         {
             ProductCodeComboBox.SelectedIndex = -1;
@@ -168,6 +190,40 @@ namespace FYP___OrderManagementSystem
 
         private void SOButton_Click(object sender, EventArgs e)
         {
+            const string stmt = "SELECT COUNT(*) FROM dbo.Cart";
+            int count1 = 0;
+            int count2 = 0;
+            var connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            connection.Open();
+            var cmd = new SqlCommand(stmt, connection);
+            var count = (int)cmd.ExecuteScalar();
+            string[,] array = new string[count, count];
+            var command1 = new SqlCommand(@"SELECT * FROM[Cart]", connection);
+            connection.Close();
+
+            try
+            {
+                connection.Open();
+                var myReader = command1.ExecuteReader();
+
+                array = new string[count, count];
+
+                while (myReader.Read())
+                {
+                    array[count1, count2] = myReader.GetString(0);
+                    count2++;
+                    array[count1, count2] = Convert.ToString(myReader.GetInt32(1));
+                    count2--;
+                    count1++;
+                }
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+            double jj = Math.Round(OrderTotal(array),2);
             var localDate = DateTime.Now;
             OrderTime = localDate;
             var error = "dialog box empty. Please fill before submitting";
@@ -185,7 +241,6 @@ namespace FYP___OrderManagementSystem
             else
             {
                 var randCode = GenerateRandomCode();
-                SqlConnection connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
                 connection.Open();
                 SqlCommand command = new SqlCommand("INSERT IntO[Orders]([OrderID],[NumberOfItems],[Department],[Requestee],[OrderDate],[OrderStatus]) VALUES" +
                                                     "('" + randCode + "', '" + NumOfItems + "', '" + DepComboBox.Text + "', '" + RequesteeTextBox.Text + "', '" + localDate + "', '" + status + "')", connection);
