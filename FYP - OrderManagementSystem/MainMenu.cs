@@ -30,7 +30,6 @@ namespace FYP___OrderManagementSystem
         private void Timer_Tick(object sender, EventArgs e)
         {
             SimulateProduction();
-            //CheckLowStock();
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -41,15 +40,22 @@ namespace FYP___OrderManagementSystem
             if (MdiChildren.GetLength(0) > 0)
             {
                 panel1.Visible = false;
+                dataGridView2.Visible = false;
+                label2.Visible = false;
+                RefreshButton.Visible = false;
             }
             else
             {
                 panel1.Visible = true;
+                dataGridView2.Visible = true;
+                label2.Visible = true;
+                RefreshButton.Visible = true;
             }
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
+            RefreshButton.BringToFront();
             dataGridView2.Visible = false;
             label2.Visible = false;
             timer1.Start();
@@ -66,9 +72,28 @@ namespace FYP___OrderManagementSystem
             var userName = Login.UserName;
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             _connection.Open();
+            dataGridView2.Visible = true;
+            label2.Visible = true;
+            _sda = new SqlDataAdapter(@"SELECT [OrderID], [Requestee], [OrderStatus] FROM[Orders]", _connection);
+            _dt = new DataTable();
+            _sda.Fill(_dt);
+            dataGridView2.Rows.Clear();
+            //TimeLabel.Location = new Point(914, 498);
 
-            if (userName == "factory")
+            foreach (DataRow item in _dt.Rows)
             {
+                int n = dataGridView2.Rows.Add();
+                dataGridView2.Rows[n].Cells[0].Value = item["OrderID"].ToString();
+                dataGridView2.Rows[n].Cells[1].Value = item["Requestee"].ToString();
+                dataGridView2.Rows[n].Cells[2].Value = item["OrderStatus"].ToString();
+            }
+            char x = userName[userName.Length - 1];
+
+            if (x == '3')
+            {
+                label2.Location = new Point(612, 69);
+                RefreshButton.Location = new Point(712, 422);
+                dataGridView2.Location = new Point(154, 87);
                 productsToolStripMenuItem.Visible = false;
                 manageOrdersToolStripMenuItem.Visible = false;
                 accountManagementToolStripMenuItem.Visible = false;
@@ -76,24 +101,17 @@ namespace FYP___OrderManagementSystem
                 suppliersToolStripMenuItem.Visible = false;
                 dataGridView1.Visible = false;
                 label1.Visible = false;
-                dataGridView2.Visible = true;
-                label2.Visible = true;
-                _sda = new SqlDataAdapter(@"SELECT [OrderID], [Requestee], [OrderStatus] FROM[Orders]", _connection);
-                _dt = new DataTable();
-                _sda.Fill(_dt);
-                dataGridView2.Rows.Clear();
-                //TimeLabel.Location = new Point(914, 498);
-
-                foreach (DataRow item in _dt.Rows)
-                {
-                    int n = dataGridView2.Rows.Add();
-                    dataGridView2.Rows[n].Cells[0].Value = item["OrderID"].ToString();
-                    dataGridView2.Rows[n].Cells[1].Value = item["Requestee"].ToString();
-                    dataGridView2.Rows[n].Cells[2].Value = item["OrderStatus"].ToString();
-                }
             }
             else
             {
+                if (x == '2')
+                {
+                    manageOrdersToolStripMenuItem.Visible = false;
+                }
+
+                label2.Location = new Point(495, 69);
+                RefreshButton.Location = new Point(595, 422);
+                dataGridView2.Location = new Point(52, 87);
                 _sda = new SqlDataAdapter(@"SELECT [ProductCode], [ProductStock] FROM[Products] WHERE [ProductStock] < 10", _connection);
                 _dt = new DataTable();
                 _sda.Fill(_dt);
@@ -112,13 +130,28 @@ namespace FYP___OrderManagementSystem
 
         public void SimulateProduction()
         {
-            Random random = new Random();
-            int randomNumber = random.Next(1, GetTableSize() + 1);
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            _connection.Open();
-            _command = new SqlCommand(@"UPDATE[Products] SET[ProductStock] -= 1 WHERE[ProductCode] =  + '" + randomNumber + "' AND [ProductStock] > 0", _connection);
-            _command.ExecuteNonQuery();
-            _connection.Close();
+            var x = "";
+            var random = new Random();
+            for (int n = 0; n < 4; n++)
+            {
+                var randomNumber = random.Next(1, GetTableSize() + 1);
+                _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+                _connection.Open();
+                _command = new SqlCommand(@"UPDATE[Products] SET[ProductStock] -= 1 WHERE[ProductCode] =  + '" + randomNumber + "' AND [ProductStock] > 0", _connection);
+                _command.ExecuteNonQuery();
+                _connection.Close();
+                _sda = new SqlDataAdapter(@"SELECT * FROM[Products] WHERE[ProductCode] =  + '" + randomNumber + "'", _connection);
+                _dt = new DataTable();
+                _sda.Fill(_dt);
+                //TimeLabel.Location = new Point(914, 498);
+
+                foreach (DataRow item in _dt.Rows)
+                {
+                    x += "" + item["ProductCode"] + "\n";
+                }
+            }
+
+            MessageBox.Show(x);
         }
 
         private void ProductsToolStripMenuItem_Click(object sender, EventArgs e)

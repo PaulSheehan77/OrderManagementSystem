@@ -16,8 +16,9 @@ namespace FYP___OrderManagementSystem
         {
             InitializeComponent();
             Load_Data();
-            OrderStatusComboBox.Items.Add("Deactive");
-            OrderStatusComboBox.Items.Add("Active");
+            OrderStatusComboBox.Items.Add("Declined");
+            OrderStatusComboBox.Items.Add("Accepted");
+            OrderStatusComboBox.Items.Add("In Progress");
             OrderStatusComboBox.Items.Add("Complete");
         }
 

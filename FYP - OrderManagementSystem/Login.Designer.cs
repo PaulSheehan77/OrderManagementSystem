@@ -101,7 +101,7 @@
             this.unTextBox.Name = "unTextBox";
             this.unTextBox.Size = new System.Drawing.Size(207, 20);
             this.unTextBox.TabIndex = 1;
-            this.unTextBox.Text = "admin";
+            this.unTextBox.Text = "ainePUR1";
             // 
             // pwTextBox
             // 

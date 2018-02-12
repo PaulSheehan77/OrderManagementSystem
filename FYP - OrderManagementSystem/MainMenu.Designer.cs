@@ -150,14 +150,11 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.dataGridView2);
             this.panel1.Controls.Add(this.LogoutButton);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.DateLabel);
             this.panel1.Controls.Add(this.TimeLabel);
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.RefreshButton);
             this.panel1.Location = new System.Drawing.Point(667, 51);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(671, 617);
@@ -174,7 +171,7 @@
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.Column3});
-            this.dataGridView2.Location = new System.Drawing.Point(49, 36);
+            this.dataGridView2.Location = new System.Drawing.Point(52, 87);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(567, 314);
@@ -209,7 +206,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label2.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(46, 18);
+            this.label2.Location = new System.Drawing.Point(77, 69);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 15);
             this.label2.TabIndex = 20;
@@ -287,7 +284,7 @@
             // RefreshButton
             // 
             this.RefreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.RefreshButton.Location = new System.Drawing.Point(274, 365);
+            this.RefreshButton.Location = new System.Drawing.Point(595, 419);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(144, 30);
             this.RefreshButton.TabIndex = 17;
@@ -302,7 +299,10 @@
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

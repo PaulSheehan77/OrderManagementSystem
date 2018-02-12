@@ -7,7 +7,7 @@ namespace FYP___OrderManagementSystem
 {
     public partial class CreateOrder : Form
     {
-        private string status = "Deactive";
+        private string status = "Awaiting Authorisation";
         public static DateTime OrderTime { get; set; }
         public static int NumOfItems { get; set; }
         public static string OrderId { get; set; }
