@@ -32,7 +32,7 @@ namespace FYP___OrderManagementSystem
             FillComboBox();
             FillComboBox2();
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            _sda = new SqlDataAdapter(@"SELECT * FROM[Products]", _connection);
+            _sda = new SqlDataAdapter(@"SELECT * FROM[Products] order by len(ProductCode), ProductCode", _connection);
             _dt = new DataTable();
             _sda.Fill(_dt);
             dataGridView2.Rows.Clear();
@@ -46,6 +46,17 @@ namespace FYP___OrderManagementSystem
                 dataGridView2.Rows[n].Cells[3].Value = item["ProductSupplierCode"].ToString();
                 dataGridView2.Rows[n].Cells[4].Value = item["ProductPrice"].ToString();
                 dataGridView2.Rows[n].Cells[5].Value = item["ProductStock"].ToString();
+            }
+
+            _sda = new SqlDataAdapter(@"SELECT * FROM[Cart]", _connection);
+            _dt = new DataTable();
+            _sda.Fill(_dt);
+            dataGridView1.Rows.Clear();
+            foreach (DataRow item in _dt.Rows)
+            {
+                var n = dataGridView1.Rows.Add();
+                dataGridView1.Rows[n].Cells[0].Value = item["ProductCode"].ToString();
+                dataGridView1.Rows[n].Cells[1].Value = item["Quantity"].ToString();
             }
         }
 
@@ -248,8 +259,9 @@ namespace FYP___OrderManagementSystem
                 dataGridView1.Rows.Clear();
                 NumOfItems = 0;
                 MessageBox.Show(
-                    "Your order has been submitted!\n\nPlease check the orders board to check status of your order.\n\nTake note of your Order ID, you'll need it to keep track of your order!\n\nOrder ID = " +
+                    "Your order has been submitted!\n\nPlease view the orders board to check status of your order.\n\nTake note of your Order ID, you'll need it to keep track of your order!\n\n\t\tOrder ID = " +
                     randCode + "");
+                notifyIcon1.ShowBalloonTip(1000, "Important notification", "Something important", ToolTipIcon.Info);
             }
         }
 
@@ -260,6 +272,20 @@ namespace FYP___OrderManagementSystem
             _command = new SqlCommand("SELECT * FROM[Cart] DELETE FROM[Cart]", _connection);
             _command.ExecuteNonQuery();
             _connection.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection.Open();
+            var sqlQuery = @"DELETE FROM[Cart] WHERE[ProductCode] = '" + dataGridView1.Rows[0].Cells[0].Value + "'";
+            _command = new SqlCommand(sqlQuery, _connection);
+            _command.ExecuteNonQuery();
+            _connection.Close();
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                dataGridView1.Rows.RemoveAt(row.Index);
+            }
         }
     }
 }

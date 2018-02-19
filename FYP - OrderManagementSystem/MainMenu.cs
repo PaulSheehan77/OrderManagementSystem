@@ -74,7 +74,7 @@ namespace FYP___OrderManagementSystem
             _connection.Open();
             dataGridView2.Visible = true;
             label2.Visible = true;
-            _sda = new SqlDataAdapter(@"SELECT [OrderID], [Requestee], [OrderStatus] FROM[Orders]", _connection);
+            _sda = new SqlDataAdapter(@"SELECT [OrderID], [Requestee], [OrderStatus] FROM[Orders] order by len(OrderID), OrderID", _connection);
             _dt = new DataTable();
             _sda.Fill(_dt);
             dataGridView2.Rows.Clear();
@@ -112,7 +112,7 @@ namespace FYP___OrderManagementSystem
                 label2.Location = new Point(495, 69);
                 RefreshButton.Location = new Point(595, 422);
                 dataGridView2.Location = new Point(52, 87);
-                _sda = new SqlDataAdapter(@"SELECT [ProductCode], [ProductStock] FROM[Products] WHERE [ProductStock] < 10", _connection);
+                _sda = new SqlDataAdapter(@"SELECT [ProductCode], [ProductStock] FROM[Products] WHERE [ProductStock] < 10 order by len(ProductCode), ProductCode", _connection);
                 _dt = new DataTable();
                 _sda.Fill(_dt);
                 dataGridView1.Rows.Clear();
@@ -130,7 +130,7 @@ namespace FYP___OrderManagementSystem
 
         public void SimulateProduction()
         {
-            var x = "";
+            //var x = "";
             var random = new Random();
             for (int n = 0; n < 4; n++)
             {
@@ -145,13 +145,13 @@ namespace FYP___OrderManagementSystem
                 _sda.Fill(_dt);
                 //TimeLabel.Location = new Point(914, 498);
 
-                foreach (DataRow item in _dt.Rows)
+                /*foreach (DataRow item in _dt.Rows)
                 {
                     x += "" + item["ProductCode"] + "\n";
-                }
+                }*/
             }
 
-            MessageBox.Show(x);
+            //MessageBox.Show(x);
         }
 
         private void ProductsToolStripMenuItem_Click(object sender, EventArgs e)

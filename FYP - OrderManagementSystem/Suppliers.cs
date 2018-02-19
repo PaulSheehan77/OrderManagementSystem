@@ -21,7 +21,7 @@ namespace FYP___OrderManagementSystem
         public void LoadData()
         {
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            _sda = new SqlDataAdapter(@"SELECT * FROM[Suppliers]", _connection);
+            _sda = new SqlDataAdapter(@"SELECT * FROM[Suppliers] order by SupplierName", _connection);
             _dt = new DataTable();
             _sda.Fill(_dt);
             dataGridView1.Rows.Clear();

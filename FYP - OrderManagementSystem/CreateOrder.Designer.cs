@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateOrder));
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +53,8 @@
             this.QuantityLabel = new System.Windows.Forms.Label();
             this.PCLabel = new System.Windows.Forms.Label();
             this.AddButton = new System.Windows.Forms.Button();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -119,6 +122,7 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.DepComboBox);
             this.panel1.Controls.Add(this.RequestedByLabel);
             this.panel1.Controls.Add(this.DepLabel);
@@ -268,6 +272,23 @@
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Red;
+            this.button1.Location = new System.Drawing.Point(12, 86);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(33, 25);
+            this.button1.TabIndex = 57;
+            this.button1.Text = "X";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // CreateOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -284,7 +305,7 @@
             this.MinimumSize = new System.Drawing.Size(617, 453);
             this.Name = "CreateOrder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "CreateOrder";
+            this.Text = "Create Order";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CreateOrder_FormClosing);
             this.Load += new System.EventHandler(this.CreateOrder_Load);
@@ -323,5 +344,7 @@
         private System.Windows.Forms.Label QuantityLabel;
         private System.Windows.Forms.Label PCLabel;
         private System.Windows.Forms.Button AddButton;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.Button button1;
     }
 }
