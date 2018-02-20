@@ -42,8 +42,12 @@ namespace FYP___OrderManagementSystem
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
-            var errorMessage = "Invalid login details supplied.\n\nPlease try again.";
+            var errorMessage1 = "Invalid login details supplied.\n\nPlease try again.";
+            var errorMessage2 = "No username entered.\n\nPlease try again.";
+            var errorMessage3 = "No password entered.\n\nPlease try again.";
+            var errorMessage4 = "No username or password entered.\n\nPlease try again.";
             var error = "Error";
+            var x = "";
             var localDate = DateTime.Now;
             LogInTime = localDate;
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
@@ -53,24 +57,48 @@ namespace FYP___OrderManagementSystem
             _dt = new DataTable();
             _sda.Fill(_dt);
 
-            if (_dt.Rows.Count == 1)
+            if (unTextBox.Text != "")
             {
-                UserName = unTextBox.Text;
-                _connection.Open();
-                _command = new SqlCommand(@"INSERT INTO[Active] ([Username], [LoggedInAt]) VALUES
-                             ('" + UserName + "', '" + localDate +"')", _connection);
-                _command.ExecuteNonQuery();
-                _connection.Close();
-                Hide();
-                pwTextBox.Clear();
-                unTextBox.Clear();
-                unTextBox.Focus();
-                var main = new MainMenu();
-                main.Show();
+                if (pwTextBox.Text == "")
+                {
+                    x = errorMessage3;
+                    
+                }
+                else if (_dt.Rows.Count == 1)
+                {
+                    UserName = unTextBox.Text;
+                    _connection.Open();
+                    _command = new SqlCommand(@"INSERT INTO[Active] ([Username], [LoggedInAt]) VALUES
+                             ('" + UserName + "', '" + localDate + "')", _connection);
+                    _command.ExecuteNonQuery();
+                    _connection.Close();
+                    Hide();
+                    pwTextBox.Clear();
+                    unTextBox.Clear();
+                    unTextBox.Focus();
+                    var main = new MainMenu();
+                    main.Show();
+                }
+                else
+                {
+                    x = errorMessage1;
+                }
             }
             else
             {
-                MessageBox.Show(errorMessage, error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (pwTextBox.Text == "")
+                {
+                    x = errorMessage4;
+                }
+                else
+                {
+                    x = errorMessage2;
+                }
+            }
+
+            if (x != "")
+            {
+                MessageBox.Show(x, error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 pwTextBox.Clear();
                 unTextBox.Clear();
                 unTextBox.Focus();

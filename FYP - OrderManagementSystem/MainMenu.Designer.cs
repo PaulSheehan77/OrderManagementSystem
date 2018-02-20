@@ -38,8 +38,9 @@
             this.suppliersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.monthlySalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.annualSalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.perDepartmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.perSupplierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.LogoutButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -113,23 +114,33 @@
             // reportsToolStripMenuItem
             // 
             this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.monthlySalesToolStripMenuItem,
-            this.annualSalesToolStripMenuItem});
+            this.salesToolStripMenuItem});
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
             this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportsToolStripMenuItem.Text = "Reports";
             // 
-            // monthlySalesToolStripMenuItem
+            // salesToolStripMenuItem
             // 
-            this.monthlySalesToolStripMenuItem.Name = "monthlySalesToolStripMenuItem";
-            this.monthlySalesToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.monthlySalesToolStripMenuItem.Text = "Monthly Sales";
+            this.salesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.perDepartmentToolStripMenuItem,
+            this.perSupplierToolStripMenuItem});
+            this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.salesToolStripMenuItem.Text = "Total Sales";
             // 
-            // annualSalesToolStripMenuItem
+            // perDepartmentToolStripMenuItem
             // 
-            this.annualSalesToolStripMenuItem.Name = "annualSalesToolStripMenuItem";
-            this.annualSalesToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.annualSalesToolStripMenuItem.Text = "Annual Sales";
+            this.perDepartmentToolStripMenuItem.Name = "perDepartmentToolStripMenuItem";
+            this.perDepartmentToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.perDepartmentToolStripMenuItem.Text = "Per Department";
+            this.perDepartmentToolStripMenuItem.Click += new System.EventHandler(this.perDepartmentToolStripMenuItem_Click);
+            // 
+            // perSupplierToolStripMenuItem
+            // 
+            this.perSupplierToolStripMenuItem.Name = "perSupplierToolStripMenuItem";
+            this.perSupplierToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.perSupplierToolStripMenuItem.Text = "Per Supplier";
+            this.perSupplierToolStripMenuItem.Click += new System.EventHandler(this.perSupplierToolStripMenuItem_Click);
             // 
             // timer1
             // 
@@ -333,10 +344,9 @@
         private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createOrderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageOrdersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem monthlySalesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem suppliersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accountManagementToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem annualSalesToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button LogoutButton;
         private System.Windows.Forms.Panel panel1;
@@ -352,6 +362,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button RefreshButton;
+        private System.Windows.Forms.ToolStripMenuItem perDepartmentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem perSupplierToolStripMenuItem;
     }
 }
 

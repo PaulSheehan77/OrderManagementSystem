@@ -278,14 +278,28 @@ namespace FYP___OrderManagementSystem
         {
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             _connection.Open();
-            var sqlQuery = @"DELETE FROM[Cart] WHERE[ProductCode] = '" + dataGridView1.Rows[0].Cells[0].Value + "'";
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                if (row.Index >= 0)
+                {
+                    dataGridView1.Rows.RemoveAt(row.Index);
+                    var sqlQuery = @"DELETE FROM[Cart] WHERE[ProductCode] = '" + dataGridView1.Rows[0].Cells[0].Value + "'";
+                    _command = new SqlCommand(sqlQuery, _connection);
+                    _command.ExecuteNonQuery();
+                }
+            }
+            _connection.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection.Open();
+            dataGridView1.Rows.Clear();
+            var sqlQuery = @"SELECT *FROM[Cart] DELETE FROM[Cart]";
             _command = new SqlCommand(sqlQuery, _connection);
             _command.ExecuteNonQuery();
             _connection.Close();
-            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
-            {
-                dataGridView1.Rows.RemoveAt(row.Index);
-            }
         }
     }
 }

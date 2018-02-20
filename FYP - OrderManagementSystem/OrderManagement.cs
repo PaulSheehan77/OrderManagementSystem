@@ -91,10 +91,23 @@ namespace FYP___OrderManagementSystem
             const string errorMessage = "An order with this order ID doesn't exist.\n\nPlease enter a different order id.";
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             _connection.Open();
+            var sqlQuery = "";
 
             if (IfOrderExists(_connection, OrderIDComboBox.Text))
             {
-                var sqlQuery = @"UPDATE[Orders] SET[OrderStatus] = '" + OrderStatusComboBox.Text + "' WHERE [OrderID] = '" + OrderIDComboBox.Text + "'";
+                if (OrderStatusComboBox.Text == "Complete")
+                {
+                    sqlQuery = @"UPDATE[DepOrders] SET[NumberOFOrders] = [NumberOfOrders] + 1 WHERE [Department] = (SELECT[Department] FROM[Orders] WHERE[OrderID] = '" + OrderIDComboBox.Text + "')";
+                    _command = new SqlCommand(sqlQuery, _connection);
+                    _command.ExecuteNonQuery();
+                    /*
+                     sqlQuery = @"UPDATE[SuppOrders] SET[Orders] = [Orders] + 1 WHERE [Supplier] = (SELECT[Supplier] FROM[Orders] WHERE[OrderID] = '" + OrderIDComboBox.Text + "')";
+                     _command = new SqlCommand(sqlQuery, _connection);
+                     _command.ExecuteNonQuery();
+                    */
+                }
+
+                sqlQuery = @"UPDATE[Orders] SET[OrderStatus] = '" + OrderStatusComboBox.Text + "' WHERE [OrderID] = '" + OrderIDComboBox.Text + "'";
                 OrderStatusComboBox.SelectedIndex = -1;
                 OrderIDComboBox.SelectedIndex = -1;
                 OrderIDComboBox.Focus();
@@ -121,6 +134,20 @@ namespace FYP___OrderManagementSystem
         {
             OrderIDComboBox.Text = dataGridView2.SelectedRows[0].Cells[0].Value.ToString();
             OrderStatusComboBox.Text = dataGridView2.SelectedRows[0].Cells[5].Value.ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection.Open();
+            var sqlQuery = @"DELETE FROM[Orders] WHERE[OrderID] = '" + dataGridView2.Rows[0].Cells[0].Value + "'";
+            _command = new SqlCommand(sqlQuery, _connection);
+            _command.ExecuteNonQuery();
+            _connection.Close();
+            foreach (DataGridViewRow row in dataGridView2.SelectedRows)
+            {
+                dataGridView2.Rows.RemoveAt(row.Index);
+            }
         }
     }
 }

@@ -177,6 +177,17 @@ namespace FYP___OrderManagementSystem
             var suppliers = new Suppliers { MdiParent = this };
             suppliers.Show();
         }
+        private void perDepartmentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var depReports = new PerDepartment { MdiParent = this };
+            depReports.Show();
+        }
+
+        private void perSupplierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var suppReports = new PerSupplier { MdiParent = this };
+            suppReports.Show();
+        }
 
         public int GetTableSize()
         {
