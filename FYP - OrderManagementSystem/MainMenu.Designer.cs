@@ -38,28 +38,25 @@
             this.suppliersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.perDepartmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.perSupplierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ChartsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.LogoutButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.DateLabel = new System.Windows.Forms.Label();
-            this.TimeLabel = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.RefreshButton = new System.Windows.Forms.Button();
+            this.LogoutButton = new System.Windows.Forms.Button();
+            this.DateLabel = new System.Windows.Forms.Label();
+            this.TimeLabel = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -103,7 +100,7 @@
             this.suppliersToolStripMenuItem.Name = "suppliersToolStripMenuItem";
             this.suppliersToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.suppliersToolStripMenuItem.Text = "Suppliers";
-            this.suppliersToolStripMenuItem.Click += new System.EventHandler(this.SuppliersToolStripMenuItem_Click_1);
+            this.suppliersToolStripMenuItem.Click += new System.EventHandler(this.SuppliersToolStripMenuItem_Click);
             // 
             // accountManagementToolStripMenuItem
             // 
@@ -114,131 +111,30 @@
             // reportsToolStripMenuItem
             // 
             this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.salesToolStripMenuItem});
+            this.ChartsToolStripMenuItem,
+            this.FilesToolStripMenuItem});
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
             this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportsToolStripMenuItem.Text = "Reports";
             // 
-            // salesToolStripMenuItem
+            // ChartsToolStripMenuItem
             // 
-            this.salesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.perDepartmentToolStripMenuItem,
-            this.perSupplierToolStripMenuItem});
-            this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
-            this.salesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.salesToolStripMenuItem.Text = "Total Sales";
+            this.ChartsToolStripMenuItem.Name = "ChartsToolStripMenuItem";
+            this.ChartsToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.ChartsToolStripMenuItem.Text = "PieChart";
+            this.ChartsToolStripMenuItem.Click += new System.EventHandler(this.ChartsToolStripMenuItem_Click);
             // 
-            // perDepartmentToolStripMenuItem
+            // FilesToolStripMenuItem
             // 
-            this.perDepartmentToolStripMenuItem.Name = "perDepartmentToolStripMenuItem";
-            this.perDepartmentToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.perDepartmentToolStripMenuItem.Text = "Per Department";
-            this.perDepartmentToolStripMenuItem.Click += new System.EventHandler(this.perDepartmentToolStripMenuItem_Click);
-            // 
-            // perSupplierToolStripMenuItem
-            // 
-            this.perSupplierToolStripMenuItem.Name = "perSupplierToolStripMenuItem";
-            this.perSupplierToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.perSupplierToolStripMenuItem.Text = "Per Supplier";
-            this.perSupplierToolStripMenuItem.Click += new System.EventHandler(this.perSupplierToolStripMenuItem_Click);
+            this.FilesToolStripMenuItem.Name = "FilesToolStripMenuItem";
+            this.FilesToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.FilesToolStripMenuItem.Text = "Files";
+            this.FilesToolStripMenuItem.Click += new System.EventHandler(this.FilesToolStripMenuItem_Click);
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
-            // 
-            // LogoutButton
-            // 
-            this.LogoutButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogoutButton.Location = new System.Drawing.Point(297, 585);
-            this.LogoutButton.Name = "LogoutButton";
-            this.LogoutButton.Size = new System.Drawing.Size(109, 29);
-            this.LogoutButton.TabIndex = 1;
-            this.LogoutButton.Text = "Logout";
-            this.LogoutButton.UseVisualStyleBackColor = true;
-            this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.LogoutButton);
-            this.panel1.Controls.Add(this.DateLabel);
-            this.panel1.Controls.Add(this.TimeLabel);
-            this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(667, 51);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(671, 617);
-            this.panel1.TabIndex = 17;
-            // 
-            // DateLabel
-            // 
-            this.DateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DateLabel.AutoSize = true;
-            this.DateLabel.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.DateLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DateLabel.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.DateLabel.Location = new System.Drawing.Point(276, 534);
-            this.DateLabel.Name = "DateLabel";
-            this.DateLabel.Size = new System.Drawing.Size(44, 19);
-            this.DateLabel.TabIndex = 19;
-            this.DateLabel.Text = "Date";
-            // 
-            // TimeLabel
-            // 
-            this.TimeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.TimeLabel.AutoSize = true;
-            this.TimeLabel.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.TimeLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TimeLabel.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.TimeLabel.Location = new System.Drawing.Point(304, 502);
-            this.TimeLabel.Name = "TimeLabel";
-            this.TimeLabel.Size = new System.Drawing.Size(49, 20);
-            this.TimeLabel.TabIndex = 18;
-            this.TimeLabel.Text = "Time";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2});
-            this.dataGridView1.Location = new System.Drawing.Point(49, 36);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(567, 314);
-            this.dataGridView1.TabIndex = 16;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.FillWeight = 80F;
-            this.Column1.HeaderText = "Product Code";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.FillWeight = 60F;
-            this.Column2.HeaderText = "Quantity";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(74, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 15);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Products Low in Stock";
             // 
             // dataGridView2
             // 
@@ -295,13 +191,94 @@
             // RefreshButton
             // 
             this.RefreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.RefreshButton.Location = new System.Drawing.Point(595, 419);
+            this.RefreshButton.Location = new System.Drawing.Point(594, 407);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(144, 30);
             this.RefreshButton.TabIndex = 17;
             this.RefreshButton.Text = "Refresh";
             this.RefreshButton.UseVisualStyleBackColor = true;
             this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
+            // 
+            // LogoutButton
+            // 
+            this.LogoutButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogoutButton.BackColor = System.Drawing.SystemColors.Control;
+            this.LogoutButton.Location = new System.Drawing.Point(954, 637);
+            this.LogoutButton.Name = "LogoutButton";
+            this.LogoutButton.Size = new System.Drawing.Size(108, 29);
+            this.LogoutButton.TabIndex = 23;
+            this.LogoutButton.Text = "Logout";
+            this.LogoutButton.UseVisualStyleBackColor = false;
+            this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
+            // 
+            // DateLabel
+            // 
+            this.DateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.DateLabel.AutoSize = true;
+            this.DateLabel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.DateLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateLabel.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.DateLabel.Location = new System.Drawing.Point(950, 585);
+            this.DateLabel.Name = "DateLabel";
+            this.DateLabel.Size = new System.Drawing.Size(44, 19);
+            this.DateLabel.TabIndex = 27;
+            this.DateLabel.Text = "Date";
+            // 
+            // TimeLabel
+            // 
+            this.TimeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TimeLabel.AutoSize = true;
+            this.TimeLabel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.TimeLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimeLabel.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.TimeLabel.Location = new System.Drawing.Point(972, 553);
+            this.TimeLabel.Name = "TimeLabel";
+            this.TimeLabel.Size = new System.Drawing.Size(49, 20);
+            this.TimeLabel.TabIndex = 26;
+            this.TimeLabel.Text = "Time";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2});
+            this.dataGridView1.Location = new System.Drawing.Point(710, 87);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(567, 314);
+            this.dataGridView1.TabIndex = 25;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.FillWeight = 80F;
+            this.Column1.HeaderText = "Product Code";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.FillWeight = 60F;
+            this.Column2.HeaderText = "Quantity";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(735, 69);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(132, 15);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "Products Low in Stock";
             // 
             // MainMenu
             // 
@@ -310,12 +287,16 @@
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.LogoutButton);
+            this.Controls.Add(this.DateLabel);
+            this.Controls.Add(this.TimeLabel);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.RefreshButton);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.menuStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -329,10 +310,8 @@
             this.Load += new System.EventHandler(this.MainMenu_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -344,26 +323,24 @@
         private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createOrderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageOrdersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ChartsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem suppliersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accountManagementToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button LogoutButton;
-        private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button RefreshButton;
+        private System.Windows.Forms.ToolStripMenuItem FilesToolStripMenuItem;
+        private System.Windows.Forms.Button LogoutButton;
         private System.Windows.Forms.Label DateLabel;
         private System.Windows.Forms.Label TimeLabel;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button RefreshButton;
-        private System.Windows.Forms.ToolStripMenuItem perDepartmentToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem perSupplierToolStripMenuItem;
     }
 }
 

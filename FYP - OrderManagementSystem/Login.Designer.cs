@@ -42,12 +42,14 @@
             // 
             // enterButton
             // 
+            this.enterButton.BackColor = System.Drawing.Color.LimeGreen;
+            this.enterButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.enterButton.Location = new System.Drawing.Point(443, 266);
             this.enterButton.Name = "enterButton";
             this.enterButton.Size = new System.Drawing.Size(115, 33);
             this.enterButton.TabIndex = 3;
             this.enterButton.Text = "Enter";
-            this.enterButton.UseVisualStyleBackColor = true;
+            this.enterButton.UseVisualStyleBackColor = false;
             this.enterButton.Click += new System.EventHandler(this.EnterButton_Click);
             // 
             // clearUNButton
@@ -114,12 +116,14 @@
             // 
             // exitButton
             // 
+            this.exitButton.BackColor = System.Drawing.Color.Red;
+            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.exitButton.Location = new System.Drawing.Point(306, 266);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(115, 33);
             this.exitButton.TabIndex = 4;
             this.exitButton.Text = "Exit";
-            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.UseVisualStyleBackColor = false;
             this.exitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // clearPWButton
@@ -147,7 +151,7 @@
             this.Controls.Add(this.unLabel);
             this.Controls.Add(this.clearUNButton);
             this.Controls.Add(this.enterButton);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;

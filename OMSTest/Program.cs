@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FYP___OrderManagementSystem
+namespace OMSTest
 {
     static class Program
     {
@@ -16,8 +16,7 @@ namespace FYP___OrderManagementSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Login login = new Login();
-            Application.Run(login);
+            Application.Run(new Form1());
         }
     }
 }

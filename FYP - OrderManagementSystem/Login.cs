@@ -42,10 +42,12 @@ namespace FYP___OrderManagementSystem
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
+            CheckLogInAuthenticity(unTextBox.Text, pwTextBox.Text);
+        }
+
+        public void CheckLogInAuthenticity(string userName, string passWord)
+        {
             var errorMessage1 = "Invalid login details supplied.\n\nPlease try again.";
-            var errorMessage2 = "No username entered.\n\nPlease try again.";
-            var errorMessage3 = "No password entered.\n\nPlease try again.";
-            var errorMessage4 = "No username or password entered.\n\nPlease try again.";
             var error = "Error";
             var x = "";
             var localDate = DateTime.Now;
@@ -53,56 +55,27 @@ namespace FYP___OrderManagementSystem
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             // Handles connection.Open() && connection.Close()
             _sda = new SqlDataAdapter(@"SELECT * FROM [FYP_DB].[dbo].[Login]
-                Where UserName = '"+ unTextBox.Text +"' and Password = '"+ pwTextBox.Text +"'", _connection);
+                Where UserName = '" + userName + "' and Password = '" + passWord + "'", _connection);
             _dt = new DataTable();
             _sda.Fill(_dt);
 
-            if (unTextBox.Text != "")
+            if (_dt.Rows.Count == 1)
             {
-                if (pwTextBox.Text == "")
-                {
-                    x = errorMessage3;
-                    
-                }
-                else if (_dt.Rows.Count == 1)
-                {
-                    UserName = unTextBox.Text;
-                    _connection.Open();
-                    _command = new SqlCommand(@"INSERT INTO[Active] ([Username], [LoggedInAt]) VALUES
-                             ('" + UserName + "', '" + localDate + "')", _connection);
-                    _command.ExecuteNonQuery();
-                    _connection.Close();
-                    Hide();
-                    pwTextBox.Clear();
-                    unTextBox.Clear();
-                    unTextBox.Focus();
-                    var main = new MainMenu();
-                    main.Show();
-                }
-                else
-                {
-                    x = errorMessage1;
-                }
-            }
-            else
-            {
-                if (pwTextBox.Text == "")
-                {
-                    x = errorMessage4;
-                }
-                else
-                {
-                    x = errorMessage2;
-                }
-            }
-
-            if (x != "")
-            {
-                MessageBox.Show(x, error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                UserName = userName;
+                _connection.Open();
+                _command = new SqlCommand(@"INSERT INTO[Active] ([Username], [LoggedInAt]) VALUES
+                             ('" + userName + "', '" + localDate + "')", _connection);
+                _command.ExecuteNonQuery();
+                _connection.Close();
+                Hide();
                 pwTextBox.Clear();
                 unTextBox.Clear();
                 unTextBox.Focus();
+                var main = new MainMenu();
+                main.Show();
             }
+            else
+                throw new ArgumentException(errorMessage1, error);
         }
 
         private void ExitButton_Click(object sender, EventArgs e)

@@ -2,7 +2,9 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
+using Timer = System.Windows.Forms.Timer;
 
 namespace FYP___OrderManagementSystem
 {
@@ -16,7 +18,19 @@ namespace FYP___OrderManagementSystem
 
         public MainMenu()
         {
+            Thread t = new Thread(new ThreadStart(SplashStart));
+            t.Start();
+            Thread.Sleep(5000);
+
             InitializeComponent();
+
+            t.Abort();
+
+        }
+
+        public void SplashStart()
+        {
+            Application.Run(new Loading());
         }
 
         public void InitTimer()
@@ -39,14 +53,23 @@ namespace FYP___OrderManagementSystem
             timer1.Start();
             if (MdiChildren.GetLength(0) > 0)
             {
-                panel1.Visible = false;
+                dataGridView1.Visible = false;
+                label1.Visible = false;
+                TimeLabel.Visible = false;
+                DateLabel.Visible = false;
+                LogoutButton.Visible = false;
+                label2.Visible = false;
                 dataGridView2.Visible = false;
                 label2.Visible = false;
                 RefreshButton.Visible = false;
             }
             else
             {
-                panel1.Visible = true;
+                dataGridView1.Visible = true;
+                label1.Visible = true;
+                TimeLabel.Visible = true;
+                DateLabel.Visible = true;
+                LogoutButton.Visible = true;
                 dataGridView2.Visible = true;
                 label2.Visible = true;
                 RefreshButton.Visible = true;
@@ -55,6 +78,7 @@ namespace FYP___OrderManagementSystem
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
+            LoadData();
             RefreshButton.BringToFront();
             dataGridView2.Visible = false;
             label2.Visible = false;
@@ -64,7 +88,6 @@ namespace FYP___OrderManagementSystem
             dataGridView1.BackgroundColor = Color.White;
             dataGridView2.BackgroundColor = Color.White;
             InitTimer();
-            LoadData();
         }
 
         private void LoadData()
@@ -172,21 +195,22 @@ namespace FYP___OrderManagementSystem
             orderManagement.Show();
         }
 
-        private void SuppliersToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void SuppliersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var suppliers = new Suppliers { MdiParent = this };
             suppliers.Show();
         }
-        private void perDepartmentToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void ChartsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var depReports = new PerDepartment { MdiParent = this };
-            depReports.Show();
+            var charts = new PieChart { MdiParent = this };
+            charts.Show();
         }
 
-        private void perSupplierToolStripMenuItem_Click(object sender, EventArgs e)
+        private void FilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var suppReports = new PerSupplier { MdiParent = this };
-            suppReports.Show();
+            var files = new Files { MdiParent = this };
+            files.Show();
         }
 
         public int GetTableSize()

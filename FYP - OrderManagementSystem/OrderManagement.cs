@@ -100,6 +100,9 @@ namespace FYP___OrderManagementSystem
                     sqlQuery = @"UPDATE[DepOrders] SET[NumberOFOrders] = [NumberOfOrders] + 1 WHERE [Department] = (SELECT[Department] FROM[Orders] WHERE[OrderID] = '" + OrderIDComboBox.Text + "')";
                     _command = new SqlCommand(sqlQuery, _connection);
                     _command.ExecuteNonQuery();
+                    sqlQuery = @"UPDATE[EmpOrders] SET[Orders] = [Orders] + 1 WHERE [Employee] = (SELECT[Requestee] FROM[Orders] WHERE[OrderID] = '" + OrderIDComboBox.Text + "')";
+                    _command = new SqlCommand(sqlQuery, _connection);
+                    _command.ExecuteNonQuery();
                     /*
                      sqlQuery = @"UPDATE[SuppOrders] SET[Orders] = [Orders] + 1 WHERE [Supplier] = (SELECT[Supplier] FROM[Orders] WHERE[OrderID] = '" + OrderIDComboBox.Text + "')";
                      _command = new SqlCommand(sqlQuery, _connection);
