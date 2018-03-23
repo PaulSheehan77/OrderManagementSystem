@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace FYP___OrderManagementSystem
@@ -23,9 +22,6 @@ namespace FYP___OrderManagementSystem
 
         public void Login_Load(object sender, EventArgs e)
         {
-            unLabel.BackColor = Color.Transparent;
-            pwLabel.BackColor = Color.Transparent;
-            forgotPWLink.BackColor = Color.Transparent;
         }
 
         private void ClearUNButton_Click(object sender, EventArgs e)
@@ -49,7 +45,6 @@ namespace FYP___OrderManagementSystem
         {
             var errorMessage1 = "Invalid login details supplied.\n\nPlease try again.";
             var error = "Error";
-            var x = "";
             var localDate = DateTime.Now;
             LogInTime = localDate;
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
@@ -61,21 +56,23 @@ namespace FYP___OrderManagementSystem
 
             if (_dt.Rows.Count == 1)
             {
-                UserName = userName;
-                _connection.Open();
-                _command = new SqlCommand(@"INSERT INTO[Active] ([Username], [LoggedInAt]) VALUES
-                             ('" + userName + "', '" + localDate + "')", _connection);
-                _command.ExecuteNonQuery();
-                _connection.Close();
-                Hide();
-                pwTextBox.Clear();
-                unTextBox.Clear();
-                unTextBox.Focus();
-                var main = new MainMenu();
-                main.Show();
+                MakeRecordOfLogin(userName, localDate);
             }
             else
                 throw new ArgumentException(errorMessage1, error);
+        }
+
+        private void MakeRecordOfLogin(string userName, DateTime localDate)
+        {
+            UserName = userName;
+            _connection.Open();
+            _command = new SqlCommand(@"INSERT INTO[Active] ([Username], [LoggedInAt]) VALUES
+                             ('" + userName + "', '" + localDate + "')", _connection);
+            _command.ExecuteNonQuery();
+            _connection.Close();
+            Hide();
+            var main = new MainMenu();
+            main.Show();
         }
 
         private void ExitButton_Click(object sender, EventArgs e)

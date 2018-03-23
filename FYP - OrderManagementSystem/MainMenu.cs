@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using FYP___OrderManagementSystem.Reports;
 using Timer = System.Windows.Forms.Timer;
 
 namespace FYP___OrderManagementSystem
@@ -15,17 +16,17 @@ namespace FYP___OrderManagementSystem
         private SqlCommand _command;
         private SqlDataAdapter _sda;
         private DataTable _dt;
+        private bool _denoter;
 
         public MainMenu()
         {
-            Thread t = new Thread(new ThreadStart(SplashStart));
+            var t = new Thread(SplashStart);
             t.Start();
             Thread.Sleep(5000);
 
             InitializeComponent();
 
             t.Abort();
-
         }
 
         public void SplashStart()
@@ -49,59 +50,61 @@ namespace FYP___OrderManagementSystem
         private void Timer1_Tick(object sender, EventArgs e)
         {
             TimeLabel.Text = DateTime.Now.ToLongTimeString();
-            timer1.Interval = 20; // in miliseconds
+            timer1.Interval = 1; // in miliseconds
             timer1.Start();
+
             if (MdiChildren.GetLength(0) > 0)
             {
-                dataGridView1.Visible = false;
-                label1.Visible = false;
-                TimeLabel.Visible = false;
-                DateLabel.Visible = false;
-                LogoutButton.Visible = false;
-                label2.Visible = false;
-                dataGridView2.Visible = false;
-                label2.Visible = false;
-                RefreshButton.Visible = false;
+                MenuDisplayChange(false);
             }
             else
             {
-                dataGridView1.Visible = true;
-                label1.Visible = true;
-                TimeLabel.Visible = true;
-                DateLabel.Visible = true;
-                LogoutButton.Visible = true;
-                dataGridView2.Visible = true;
-                label2.Visible = true;
-                RefreshButton.Visible = true;
+                MenuDisplayChange(true);
             }
+        }
+
+        private void MenuDisplayChange(bool denoter)
+        {
+            if (_denoter == false)
+            {
+                dataGridView1.Visible = denoter;
+                label1.Visible = denoter;
+            }
+            dataGridView2.Visible = denoter;
+            label2.Visible = denoter;
+            TimeLabel.Visible = denoter;
+            DateLabel.Visible = denoter;
+            LogoutButton.Visible = denoter;
+            RefreshButton.Visible = denoter;
+        }
+
+        private void MenuFeatureChange(bool denoter)
+        {
+            dataGridView1.Visible = denoter;
+            label1.Visible = denoter;
+            productsToolStripMenuItem.Visible = denoter;
+            manageOrdersToolStripMenuItem.Visible = denoter;
+            accountManagementToolStripMenuItem.Visible = denoter;
+            ReportsToolStripMenuItem.Visible = denoter;
+            suppliersToolStripMenuItem.Visible = denoter;
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
             LoadData();
-            RefreshButton.BringToFront();
-            dataGridView2.Visible = false;
-            label2.Visible = false;
             timer1.Start();
-            TimeLabel.Text = DateTime.Now.ToLongTimeString();
             DateLabel.Text = DateTime.Now.ToLongDateString();
-            dataGridView1.BackgroundColor = Color.White;
-            dataGridView2.BackgroundColor = Color.White;
             InitTimer();
         }
 
-        private void LoadData()
+        private void FilterMenuFeatures(string userName)
         {
-            var userName = Login.UserName;
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             _connection.Open();
-            dataGridView2.Visible = true;
-            label2.Visible = true;
             _sda = new SqlDataAdapter(@"SELECT [OrderID], [Requestee], [OrderStatus] FROM[Orders] order by len(OrderID), OrderID", _connection);
             _dt = new DataTable();
             _sda.Fill(_dt);
             dataGridView2.Rows.Clear();
-            //TimeLabel.Location = new Point(914, 498);
 
             foreach (DataRow item in _dt.Rows)
             {
@@ -110,20 +113,13 @@ namespace FYP___OrderManagementSystem
                 dataGridView2.Rows[n].Cells[1].Value = item["Requestee"].ToString();
                 dataGridView2.Rows[n].Cells[2].Value = item["OrderStatus"].ToString();
             }
+
             char x = userName[userName.Length - 1];
 
             if (x == '3')
             {
-                label2.Location = new Point(612, 69);
-                RefreshButton.Location = new Point(712, 422);
-                dataGridView2.Location = new Point(154, 87);
-                productsToolStripMenuItem.Visible = false;
-                manageOrdersToolStripMenuItem.Visible = false;
-                accountManagementToolStripMenuItem.Visible = false;
-                reportsToolStripMenuItem.Visible = false;
-                suppliersToolStripMenuItem.Visible = false;
-                dataGridView1.Visible = false;
-                label1.Visible = false;
+                _denoter = true;
+                MenuFeatureChange(false);
             }
             else
             {
@@ -131,10 +127,7 @@ namespace FYP___OrderManagementSystem
                 {
                     manageOrdersToolStripMenuItem.Visible = false;
                 }
-
-                label2.Location = new Point(495, 69);
-                RefreshButton.Location = new Point(595, 422);
-                dataGridView2.Location = new Point(52, 87);
+                
                 _sda = new SqlDataAdapter(@"SELECT [ProductCode], [ProductStock] FROM[Products] WHERE [ProductStock] < 10 order by len(ProductCode), ProductCode", _connection);
                 _dt = new DataTable();
                 _sda.Fill(_dt);
@@ -147,8 +140,13 @@ namespace FYP___OrderManagementSystem
                     dataGridView1.Rows[n].Cells[1].Value = item["ProductStock"].ToString();
                 }
             }
-            
+
             _connection.Close();
+        }
+
+        private void LoadData()
+        {
+            FilterMenuFeatures(Login.UserName);
         }
 
         public void SimulateProduction()
@@ -201,16 +199,34 @@ namespace FYP___OrderManagementSystem
             suppliers.Show();
         }
 
-        private void ChartsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LogGRNToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var charts = new PieChart { MdiParent = this };
-            charts.Show();
+            var lGRN = new LogGRN { MdiParent = this };
+            lGRN.Show();
         }
 
-        private void FilesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OPEBarCToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            var files = new Files { MdiParent = this };
-            files.Show();
+            var empOrdersBarChart = new EmpOrdersBarChart();
+            empOrdersBarChart.Show();
+        }
+
+        private void OPEPieCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var empOrdersPieChart = new EmpOrdersPieChart();
+            empOrdersPieChart.Show();
+        }
+
+        private void OPDBarCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var depOrdersBarChart = new DepOrdersBarChart();
+            depOrdersBarChart.Show();
+        }
+
+        private void OPDPieCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var empOrdersPieChart = new EmpOrdersPieChart();
+            empOrdersPieChart.Show();
         }
 
         public int GetTableSize()

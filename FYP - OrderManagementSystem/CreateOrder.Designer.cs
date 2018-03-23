@@ -38,6 +38,7 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.DepComboBox = new System.Windows.Forms.ComboBox();
             this.RequestedByLabel = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
             this.PCLabel = new System.Windows.Forms.Label();
             this.AddButton = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -136,6 +136,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(576, 182);
             this.panel1.TabIndex = 42;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(3, 71);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(45, 48);
+            this.button2.TabIndex = 58;
+            this.button2.Text = "Clear Cart";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -290,16 +300,6 @@
             // 
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(3, 71);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(45, 48);
-            this.button2.TabIndex = 58;
-            this.button2.Text = "Clear Cart";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // CreateOrder
             // 

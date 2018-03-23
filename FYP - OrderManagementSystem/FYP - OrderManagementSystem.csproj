@@ -61,33 +61,50 @@
     <Compile Include="CreateOrder.Designer.cs">
       <DependentUpon>CreateOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FYP_DBDataSet21.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FYP_DBDataSet21.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FYP_DBDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FYP_DBDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DepOrdersBarChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\DepOrdersBarChart.Designer.cs">
+      <DependentUpon>DepOrdersBarChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DepOrdersPieChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\DepOrdersPieChart.Designer.cs">
+      <DependentUpon>DepOrdersPieChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Error Logger.cs" />
+    <Compile Include="FYP_DBDataSet11.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FYP_DBDataSet11.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FYP_DBDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FYP_DBDataSet2.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Loading.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Loading.Designer.cs">
       <DependentUpon>Loading.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Files.cs">
+    <Compile Include="LogGRN.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\Files.Designer.cs">
-      <DependentUpon>Files.cs</DependentUpon>
+    <Compile Include="LogGRN.Designer.cs">
+      <DependentUpon>LogGRN.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -115,11 +132,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\PieChart.cs">
+    <Compile Include="Reports\EmpOrdersBarChart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\PieChart.Designer.cs">
-      <DependentUpon>PieChart.cs</DependentUpon>
+    <Compile Include="Reports\EmpOrdersBarChart.Designer.cs">
+      <DependentUpon>EmpOrdersBarChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\EmpOrdersPieChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\EmpOrdersPieChart.Designer.cs">
+      <DependentUpon>EmpOrdersPieChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Requirements.cs" />
     <Compile Include="Suppliers.cs">
@@ -131,8 +154,17 @@
     <EmbeddedResource Include="CreateOrder.resx">
       <DependentUpon>CreateOrder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DepOrdersBarChart.resx">
+      <DependentUpon>DepOrdersBarChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DepOrdersPieChart.resx">
+      <DependentUpon>DepOrdersPieChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Loading.resx">
       <DependentUpon>Loading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogGRN.resx">
+      <DependentUpon>LogGRN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -155,18 +187,58 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Reports\PieChart.resx">
-      <DependentUpon>PieChart.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\EmpOrdersBarChart.resx">
+      <DependentUpon>EmpOrdersBarChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\EmpOrdersPieChart.resx">
+      <DependentUpon>EmpOrdersPieChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Suppliers.resx">
       <DependentUpon>Suppliers.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="Model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
+    <None Include="FYP_DBDataSet11.xsc">
+      <DependentUpon>FYP_DBDataSet11.xsd</DependentUpon>
+    </None>
+    <None Include="FYP_DBDataSet11.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FYP_DBDataSet11.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FYP_DBDataSet11.xss">
+      <DependentUpon>FYP_DBDataSet11.xsd</DependentUpon>
+    </None>
+    <None Include="FYP_DBDataSet2.xsc">
+      <DependentUpon>FYP_DBDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="FYP_DBDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FYP_DBDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FYP_DBDataSet2.xss">
+      <DependentUpon>FYP_DBDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="FYP_DBDataSet21.xsc">
+      <DependentUpon>FYP_DBDataSet21.xsd</DependentUpon>
+    </None>
+    <None Include="FYP_DBDataSet21.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FYP_DBDataSet21.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FYP_DBDataSet21.xss">
+      <DependentUpon>FYP_DBDataSet21.xsd</DependentUpon>
+    </None>
+    <None Include="FYP_DBDataSet3.xsc">
+      <DependentUpon>FYP_DBDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="FYP_DBDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FYP_DBDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FYP_DBDataSet3.xss">
+      <DependentUpon>FYP_DBDataSet3.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -186,16 +258,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
-    </Content>
+    <Folder Include="DataSets\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

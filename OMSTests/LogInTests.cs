@@ -10,7 +10,7 @@ namespace OMSTests
         public void LogIn_WithValidAccount_AllowAccess()
         {
             // arrange  
-            var userName = "ainePUR11";
+            var userName = "ainePUR1";
             var passWord = "pass123";
             Login login = new Login();
 

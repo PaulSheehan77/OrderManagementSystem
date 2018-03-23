@@ -16,6 +16,7 @@ namespace FYP___OrderManagementSystem
         private SqlCommand _command;
         private SqlDataAdapter _sda;
         private DataTable _dt;
+        private readonly string _randCode = GenerateRandomCode();
 
         public CreateOrder()
         {
@@ -123,6 +124,9 @@ namespace FYP___OrderManagementSystem
                     NumOfItems = NumOfItems + 1;
                 }
 
+                _command = new SqlCommand(@"INSERT INTO[OrderedItems]([OrderID], [ProductCode], [Quantity]) VALUES
+                   ('" + _randCode + "', '" + prodCode + "', '" + quantity + "')", _connection);
+                _command.ExecuteNonQuery();
                 _command = new SqlCommand(@"INSERT INTO[Cart]([ProductCode], [Quantity]) VALUES
                    ('" + prodCode + "', '" + quantity + "')", _connection);
                 _command.ExecuteNonQuery();
@@ -247,12 +251,11 @@ namespace FYP___OrderManagementSystem
             }
             else
             {
-                var randCode = GenerateRandomCode();
                 _connection.Open();
-                _command = new SqlCommand("INSERT IntO[Orders]([OrderID],[NumberOfItems],[Department],[Requestee],[OrderDate],[OrderStatus],[OrderTotal]) VALUES" +
-                                                    "('" + randCode + "', '" + NumOfItems + "', '" + DepComboBox.Text + "', '" + RequesteeTextBox.Text + "', '" + localDate + "', '" + status + "', '" + jj + "')", _connection);
+                _command = new SqlCommand("INSERT INTO[Orders]([OrderID],[NumberOfItems],[Department],[Requestee],[OrderDate],[OrderStatus],[OrderTotal]) VALUES" +
+                                                    "('" + _randCode + "', '" + NumOfItems + "', '" + DepComboBox.Text + "', '" + RequesteeTextBox.Text + "', '" + localDate + "', '" + status + "', '" + jj + "')", _connection);
                 _command.ExecuteNonQuery();
-                _command = new SqlCommand("SELECT * FROM[Cart] DELETE FROM[Cart]", _connection);
+                _command = new SqlCommand("SELECT * FROM Cart", _connection);
                 _command.ExecuteNonQuery();
                 _connection.Close();
                 ClearText();
@@ -260,7 +263,7 @@ namespace FYP___OrderManagementSystem
                 NumOfItems = 0;
                 MessageBox.Show(
                     "Your order has been submitted!\n\nPlease view the orders board to check status of your order.\n\nTake note of your Order ID, you'll need it to keep track of your order!\n\n\t\tOrder ID = " +
-                    randCode + "");
+                    _randCode + "");
                 notifyIcon1.ShowBalloonTip(1000, "Important notification", "Something important", ToolTipIcon.Info);
             }
         }
@@ -283,8 +286,9 @@ namespace FYP___OrderManagementSystem
                 if (row.Index >= 0)
                 {
                     dataGridView1.Rows.RemoveAt(row.Index);
-                    var sqlQuery = @"DELETE FROM[Cart] WHERE[ProductCode] = '" + dataGridView1.Rows[0].Cells[0].Value + "'";
-                    _command = new SqlCommand(sqlQuery, _connection);
+                    _command = new SqlCommand(@"DELETE FROM[Cart] WHERE[ProductCode] = '" + dataGridView1.Rows[0].Cells[0].Value + "'", _connection);
+                    _command.ExecuteNonQuery();
+                    _command = new SqlCommand(@"DELETE FROM[OrderItems] WHERE[ProductCode] = '" + dataGridView1.Rows[0].Cells[0].Value + "'", _connection);
                     _command.ExecuteNonQuery();
                 }
             }
