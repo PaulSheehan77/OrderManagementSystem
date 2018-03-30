@@ -61,6 +61,12 @@
     <Compile Include="CreateOrder.Designer.cs">
       <DependentUpon>CreateOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExistingAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExistingAccount.Designer.cs">
+      <DependentUpon>ExistingAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="FYP_DBDataSet21.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -70,6 +76,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FYP_DBDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="NewAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewAccount.Designer.cs">
+      <DependentUpon>NewAccount.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\DepOrdersBarChart.cs">
       <SubType>Form</SubType>
@@ -153,6 +165,9 @@
     </Compile>
     <EmbeddedResource Include="CreateOrder.resx">
       <DependentUpon>CreateOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewAccount.resx">
+      <DependentUpon>NewAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\DepOrdersBarChart.resx">
       <DependentUpon>DepOrdersBarChart.cs</DependentUpon>

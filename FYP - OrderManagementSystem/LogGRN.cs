@@ -11,7 +11,8 @@ namespace FYP___OrderManagementSystem
         private SqlCommand _command;
         private SqlDataAdapter _sda;
         private DataTable _dt;
-        private float newQuantity;
+        private double _newQuantity;
+        private double _currQuantity;
 
         public LogGRN()
         {
@@ -72,7 +73,7 @@ namespace FYP___OrderManagementSystem
                 while (myReader.Read())
                 {
                     var pCode = myReader.GetString(1);
-                    newQuantity = myReader.GetFloat(2);
+                    _newQuantity = myReader.GetDouble(2);
                     PCComboBox.Items.Add(pCode);
                 }
                 _connection.Close();
@@ -90,10 +91,10 @@ namespace FYP___OrderManagementSystem
 
         private void LogItemButton_Click(object sender, EventArgs e)
         {
-            newQuantity = newQuantity - (Convert.ToSingle(QuantityUpDown.Text));
+            _newQuantity = _currQuantity - (Convert.ToSingle(QuantityUpDown.Text));
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             _connection.Open();
-            var sqlQuery = @"UPDATE [OrderedItems] SET [Quantity] = newQuantity WHERE[ProductCode] = '" + PCComboBox.Text + "' AND [OrderID] = '" + OIDComboBox + "'";
+            var sqlQuery = @"UPDATE [OrderedItems] SET [Quantity] = '" + _newQuantity + "' WHERE[ProductCode] = '" + PCComboBox.Text + "' AND [OrderID] = '" + OIDComboBox.Text + "'";
             _command = new SqlCommand(sqlQuery, _connection);
             _command.ExecuteNonQuery();
             _connection.Close();
@@ -111,7 +112,8 @@ namespace FYP___OrderManagementSystem
 
                 while (myReader.Read())
                 {
-                    //QuantityUpDown.Maximum = new decimal(myReader.GetFloat(0));
+                    QuantityUpDown.Maximum = new decimal(myReader.GetDouble(0));
+                    _currQuantity = myReader.GetDouble(0);
                 }
                 _connection.Close();
             }

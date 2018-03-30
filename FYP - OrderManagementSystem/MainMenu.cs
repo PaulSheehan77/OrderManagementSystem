@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using FYP___OrderManagementSystem.Reports;
@@ -16,7 +15,6 @@ namespace FYP___OrderManagementSystem
         private SqlCommand _command;
         private SqlDataAdapter _sda;
         private DataTable _dt;
-        private bool _denoter;
 
         public MainMenu()
         {
@@ -65,7 +63,7 @@ namespace FYP___OrderManagementSystem
 
         private void MenuDisplayChange(bool denoter)
         {
-            if (_denoter == false)
+            if (Login.AccessLevel != 3)
             {
                 dataGridView1.Visible = denoter;
                 label1.Visible = denoter;
@@ -97,7 +95,7 @@ namespace FYP___OrderManagementSystem
             InitTimer();
         }
 
-        private void FilterMenuFeatures(string userName)
+        private void FilterMenuFeatures()
         {
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             _connection.Open();
@@ -114,16 +112,13 @@ namespace FYP___OrderManagementSystem
                 dataGridView2.Rows[n].Cells[2].Value = item["OrderStatus"].ToString();
             }
 
-            char x = userName[userName.Length - 1];
-
-            if (x == '3')
+            if (Login.AccessLevel == 3)
             {
-                _denoter = true;
                 MenuFeatureChange(false);
             }
             else
             {
-                if (x == '2')
+                if (Login.AccessLevel == 2)
                 {
                     manageOrdersToolStripMenuItem.Visible = false;
                 }
@@ -146,7 +141,7 @@ namespace FYP___OrderManagementSystem
 
         private void LoadData()
         {
-            FilterMenuFeatures(Login.UserName);
+            FilterMenuFeatures();
         }
 
         public void SimulateProduction()
@@ -203,6 +198,18 @@ namespace FYP___OrderManagementSystem
         {
             var lGRN = new LogGRN { MdiParent = this };
             lGRN.Show();
+        }
+        
+        private void existingAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var existingAcc = new ExistingAccount();
+            existingAcc.Show();
+        }
+
+        private void newAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var newAcc = new NewAccount();
+            newAcc.Show();
         }
 
         private void OPEBarCToolStripMenuItem1_Click(object sender, EventArgs e)

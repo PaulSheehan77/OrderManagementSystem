@@ -91,10 +91,10 @@ namespace FYP___OrderManagementSystem
             const string errorMessage = "An order with this order ID doesn't exist.\n\nPlease enter a different order id.";
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             _connection.Open();
-            var sqlQuery = "";
 
             if (IfOrderExists(_connection, OrderIDComboBox.Text))
             {
+                string sqlQuery;
                 if (OrderStatusComboBox.Text == "Complete")
                 {
                     sqlQuery = @"UPDATE[DepOrders] SET[NumberOFOrders] = [NumberOfOrders] + 1 WHERE [Department] = (SELECT[Department] FROM[Orders] WHERE[OrderID] = '" + OrderIDComboBox.Text + "')";

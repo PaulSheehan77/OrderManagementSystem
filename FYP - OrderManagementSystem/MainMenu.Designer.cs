@@ -40,8 +40,10 @@
             this.accountManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BarCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OPDBarCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OPEBarCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PieCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OPDePieCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OPEPieCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -57,8 +59,8 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.OPDBarCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.OPDePieCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.existingAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -117,6 +119,9 @@
             // 
             // accountManagementToolStripMenuItem
             // 
+            this.accountManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.existingAccountToolStripMenuItem,
+            this.newAccountToolStripMenuItem});
             this.accountManagementToolStripMenuItem.Name = "accountManagementToolStripMenuItem";
             this.accountManagementToolStripMenuItem.Size = new System.Drawing.Size(138, 20);
             this.accountManagementToolStripMenuItem.Text = "Account Management";
@@ -136,8 +141,15 @@
             this.OPDBarCToolStripMenuItem,
             this.OPEBarCToolStripMenuItem});
             this.BarCToolStripMenuItem.Name = "BarCToolStripMenuItem";
-            this.BarCToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.BarCToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.BarCToolStripMenuItem.Text = "Bar Chart";
+            // 
+            // OPDBarCToolStripMenuItem
+            // 
+            this.OPDBarCToolStripMenuItem.Name = "OPDBarCToolStripMenuItem";
+            this.OPDBarCToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.OPDBarCToolStripMenuItem.Text = "Orders Per Department";
+            this.OPDBarCToolStripMenuItem.Click += new System.EventHandler(this.OPDBarCToolStripMenuItem_Click);
             // 
             // OPEBarCToolStripMenuItem
             // 
@@ -152,8 +164,15 @@
             this.OPDePieCToolStripMenuItem,
             this.OPEPieCToolStripMenuItem});
             this.PieCToolStripMenuItem.Name = "PieCToolStripMenuItem";
-            this.PieCToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.PieCToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.PieCToolStripMenuItem.Text = "Pie Chart";
+            // 
+            // OPDePieCToolStripMenuItem
+            // 
+            this.OPDePieCToolStripMenuItem.Name = "OPDePieCToolStripMenuItem";
+            this.OPDePieCToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.OPDePieCToolStripMenuItem.Text = "Orders Per Department";
+            this.OPDePieCToolStripMenuItem.Click += new System.EventHandler(this.OPDPieCToolStripMenuItem_Click);
             // 
             // OPEPieCToolStripMenuItem
             // 
@@ -316,19 +335,19 @@
             this.label1.TabIndex = 24;
             this.label1.Text = "Products Low in Stock";
             // 
-            // OPDBarCToolStripMenuItem
+            // existingAccountToolStripMenuItem
             // 
-            this.OPDBarCToolStripMenuItem.Name = "OPDBarCToolStripMenuItem";
-            this.OPDBarCToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.OPDBarCToolStripMenuItem.Text = "Orders Per Department";
-            this.OPDBarCToolStripMenuItem.Click += new System.EventHandler(this.OPDBarCToolStripMenuItem_Click);
+            this.existingAccountToolStripMenuItem.Name = "existingAccountToolStripMenuItem";
+            this.existingAccountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.existingAccountToolStripMenuItem.Text = "Existing account";
+            this.existingAccountToolStripMenuItem.Click += new System.EventHandler(this.existingAccountToolStripMenuItem_Click);
             // 
-            // OPDePieCToolStripMenuItem
+            // newAccountToolStripMenuItem
             // 
-            this.OPDePieCToolStripMenuItem.Name = "OPDePieCToolStripMenuItem";
-            this.OPDePieCToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.OPDePieCToolStripMenuItem.Text = "Orders Per Department";
-            this.OPDePieCToolStripMenuItem.Click += new System.EventHandler(this.OPDPieCToolStripMenuItem_Click);
+            this.newAccountToolStripMenuItem.Name = "newAccountToolStripMenuItem";
+            this.newAccountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newAccountToolStripMenuItem.Text = "New account";
+            this.newAccountToolStripMenuItem.Click += new System.EventHandler(this.newAccountToolStripMenuItem_Click);
             // 
             // MainMenu
             // 
@@ -398,6 +417,8 @@
         private System.Windows.Forms.ToolStripMenuItem OPEPieCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OPDBarCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OPDePieCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem existingAccountToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newAccountToolStripMenuItem;
     }
 }
 

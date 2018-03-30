@@ -9,7 +9,7 @@ namespace FYP___OrderManagementSystem
     {
         public static DateTime LogInTime { get; set; }
         public static string UserName { get; set; }
-        public static string AccessLevel { get; set; }
+        public static int AccessLevel { get; set; }
         private SqlConnection _connection;
         private SqlCommand _command;
         private SqlDataAdapter _sda;
@@ -56,23 +56,46 @@ namespace FYP___OrderManagementSystem
 
             if (_dt.Rows.Count == 1)
             {
-                MakeRecordOfLogin(userName, localDate);
+                UserName = userName;
+                SetAccessLevel();
+                MakeRecordOfLogin();
+                
             }
             else
                 throw new ArgumentException(errorMessage1, error);
         }
 
-        private void MakeRecordOfLogin(string userName, DateTime localDate)
+        private void MakeRecordOfLogin()
         {
-            UserName = userName;
             _connection.Open();
             _command = new SqlCommand(@"INSERT INTO[Active] ([Username], [LoggedInAt]) VALUES
-                             ('" + userName + "', '" + localDate + "')", _connection);
+                             ('" + UserName + "', '" + LogInTime + "')", _connection);
             _command.ExecuteNonQuery();
             _connection.Close();
             Hide();
             var main = new MainMenu();
             main.Show();
+        }
+
+        private void SetAccessLevel()
+        {
+            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _command = new SqlCommand(@"SELECT * FROM[Login] WHERE [Username] = '" + UserName + "'", _connection);
+            try
+            {
+                _connection.Open();
+                var myReader = _command.ExecuteReader();
+
+                while (myReader.Read())
+                {
+                    AccessLevel = myReader.GetInt32(2);
+                }
+                _connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
