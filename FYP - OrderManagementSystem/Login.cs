@@ -10,6 +10,8 @@ namespace FYP___OrderManagementSystem
         public static DateTime LogInTime { get; set; }
         public static string UserName { get; set; }
         public static int AccessLevel { get; set; }
+        public static string Forename { get; set; }
+        public static string PassWord { get; set; }
         private SqlConnection _connection;
         private SqlCommand _command;
         private SqlDataAdapter _sda;
@@ -49,7 +51,7 @@ namespace FYP___OrderManagementSystem
             LogInTime = localDate;
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             // Handles connection.Open() && connection.Close()
-            _sda = new SqlDataAdapter(@"SELECT * FROM [FYP_DB].[dbo].[Login]
+            _sda = new SqlDataAdapter(@"SELECT * FROM [FYP_DB].[dbo].[Users]
                 Where UserName = '" + userName + "' and Password = '" + passWord + "'", _connection);
             _dt = new DataTable();
             _sda.Fill(_dt);
@@ -57,9 +59,9 @@ namespace FYP___OrderManagementSystem
             if (_dt.Rows.Count == 1)
             {
                 UserName = userName;
+                PassWord = passWord;
                 SetAccessLevel();
                 MakeRecordOfLogin();
-                
             }
             else
                 throw new ArgumentException(errorMessage1, error);
@@ -80,7 +82,7 @@ namespace FYP___OrderManagementSystem
         private void SetAccessLevel()
         {
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            _command = new SqlCommand(@"SELECT * FROM[Login] WHERE [Username] = '" + UserName + "'", _connection);
+            _command = new SqlCommand(@"SELECT * FROM[Users] WHERE [Username] = '" + UserName + "'", _connection);
             try
             {
                 _connection.Open();
@@ -88,7 +90,9 @@ namespace FYP___OrderManagementSystem
 
                 while (myReader.Read())
                 {
-                    AccessLevel = myReader.GetInt32(2);
+                    AccessLevel = myReader.GetInt32(4);
+                    Forename = myReader.GetString(0);
+                    Forename = Forename.Substring(0, Forename.IndexOf(' ') + 1);
                 }
                 _connection.Close();
             }

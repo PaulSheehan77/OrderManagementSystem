@@ -89,6 +89,11 @@ namespace FYP___OrderManagementSystem
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
+            if (Login.PassWord == "default")
+            {
+                ChangePassword cpw = new ChangePassword { MdiParent = this };
+                cpw.Show();
+            }
             LoadData();
             timer1.Start();
             DateLabel.Text = DateTime.Now.ToLongDateString();
@@ -196,7 +201,7 @@ namespace FYP___OrderManagementSystem
 
         private void LogGRNToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var lGRN = new LogGRN { MdiParent = this };
+            var lGRN = new LogGRN();// { MdiParent = this };
             lGRN.Show();
         }
         

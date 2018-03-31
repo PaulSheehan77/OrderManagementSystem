@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.FNTextBox = new System.Windows.Forms.TextBox();
+            this.DepTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.ALTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.SNTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.CAButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -48,83 +48,84 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Forename";
             // 
-            // textBox1
+            // FNTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(141, 46);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
+            this.FNTextBox.Location = new System.Drawing.Point(141, 46);
+            this.FNTextBox.Name = "FNTextBox";
+            this.FNTextBox.Size = new System.Drawing.Size(100, 20);
+            this.FNTextBox.TabIndex = 1;
             // 
-            // textBox2
+            // DepTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(141, 90);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 3;
+            this.DepTextBox.Location = new System.Drawing.Point(141, 136);
+            this.DepTextBox.Name = "DepTextBox";
+            this.DepTextBox.Size = new System.Drawing.Size(100, 20);
+            this.DepTextBox.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(61, 90);
+            this.label2.Location = new System.Drawing.Point(61, 136);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Department";
             // 
-            // textBox3
+            // ALTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(141, 142);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 5;
+            this.ALTextBox.Location = new System.Drawing.Point(141, 188);
+            this.ALTextBox.Name = "ALTextBox";
+            this.ALTextBox.Size = new System.Drawing.Size(100, 20);
+            this.ALTextBox.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(61, 142);
+            this.label3.Location = new System.Drawing.Point(61, 188);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Access Level";
             // 
-            // textBox6
+            // SNTextBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(336, 46);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 7;
+            this.SNTextBox.Location = new System.Drawing.Point(141, 90);
+            this.SNTextBox.Name = "SNTextBox";
+            this.SNTextBox.Size = new System.Drawing.Size(100, 20);
+            this.SNTextBox.TabIndex = 7;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(269, 46);
+            this.label6.Location = new System.Drawing.Point(61, 90);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 13);
             this.label6.TabIndex = 6;
             this.label6.Text = "Surname";
             // 
-            // button1
+            // CAButton
             // 
-            this.button1.Location = new System.Drawing.Point(179, 197);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(153, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Create Account!";
-            this.button1.UseVisualStyleBackColor = true;
+            this.CAButton.Location = new System.Drawing.Point(76, 277);
+            this.CAButton.Name = "CAButton";
+            this.CAButton.Size = new System.Drawing.Size(153, 23);
+            this.CAButton.TabIndex = 8;
+            this.CAButton.Text = "Create Account!";
+            this.CAButton.UseVisualStyleBackColor = true;
+            this.CAButton.Click += new System.EventHandler(this.CAButton_Click);
             // 
             // NewAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 252);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox6);
+            this.ClientSize = new System.Drawing.Size(302, 332);
+            this.Controls.Add(this.CAButton);
+            this.Controls.Add(this.SNTextBox);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.ALTextBox);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.DepTextBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.FNTextBox);
             this.Controls.Add(this.label1);
             this.Name = "NewAccount";
             this.Text = "NewAccount";
@@ -136,13 +137,13 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox FNTextBox;
+        private System.Windows.Forms.TextBox DepTextBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox ALTextBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox SNTextBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button CAButton;
     }
 }

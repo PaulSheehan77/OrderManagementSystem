@@ -159,7 +159,7 @@ namespace FYP___OrderManagementSystem
             QuantityUpDown.Text = dataGridView2.SelectedRows[0].Cells[5].Value.ToString();
         }
 
-        private static string GenerateRandomCode()
+        public static string GenerateRandomCode()
         {
             Random random = new Random();
             string result = "";
