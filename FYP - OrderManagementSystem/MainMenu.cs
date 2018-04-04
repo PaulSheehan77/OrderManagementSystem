@@ -23,7 +23,7 @@ namespace FYP___OrderManagementSystem
             Thread.Sleep(5000);
 
             InitializeComponent();
-
+            ReportsToolStripMenuItem.Visible = false;
             t.Abort();
         }
 
@@ -48,32 +48,8 @@ namespace FYP___OrderManagementSystem
         private void Timer1_Tick(object sender, EventArgs e)
         {
             TimeLabel.Text = DateTime.Now.ToLongTimeString();
-            timer1.Interval = 1; // in miliseconds
-            timer1.Start();
-
-            if (MdiChildren.GetLength(0) > 0)
-            {
-                MenuDisplayChange(false);
-            }
-            else
-            {
-                MenuDisplayChange(true);
-            }
-        }
-
-        private void MenuDisplayChange(bool denoter)
-        {
-            if (Login.AccessLevel != 3)
-            {
-                dataGridView1.Visible = denoter;
-                label1.Visible = denoter;
-            }
-            dataGridView2.Visible = denoter;
-            label2.Visible = denoter;
-            TimeLabel.Visible = denoter;
-            DateLabel.Visible = denoter;
-            LogoutButton.Visible = denoter;
-            RefreshButton.Visible = denoter;
+            //Timer1.Interval = 1; // in miliseconds
+           // Timer1.Start();
         }
 
         private void MenuFeatureChange(bool denoter)
@@ -83,7 +59,7 @@ namespace FYP___OrderManagementSystem
             productsToolStripMenuItem.Visible = denoter;
             manageOrdersToolStripMenuItem.Visible = denoter;
             accountManagementToolStripMenuItem.Visible = denoter;
-            ReportsToolStripMenuItem.Visible = denoter;
+            //ReportsToolStripMenuItem.Visible = denoter;
             suppliersToolStripMenuItem.Visible = denoter;
         }
 
@@ -91,11 +67,16 @@ namespace FYP___OrderManagementSystem
         {
             if (Login.PassWord == "default")
             {
-                ChangePassword cpw = new ChangePassword { MdiParent = this };
+                ChangePassword cpw = new ChangePassword(); //{ MdiParent = this };
                 cpw.Show();
             }
+            if (Login.AccessLevel == 3)
+            {
+                dataGridView1.Visible = false;
+                label1.Visible = false;
+            }
             LoadData();
-            timer1.Start();
+            Timer1.Start();
             DateLabel.Text = DateTime.Now.ToLongDateString();
             InitTimer();
         }
@@ -104,7 +85,7 @@ namespace FYP___OrderManagementSystem
         {
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             _connection.Open();
-            _sda = new SqlDataAdapter(@"SELECT [OrderID], [Requestee], [OrderStatus] FROM[Orders] order by len(OrderID), OrderID", _connection);
+            _sda = new SqlDataAdapter(@"SELECT * FROM[Orders] order by len(OrderID), OrderID", _connection);
             _dt = new DataTable();
             _sda.Fill(_dt);
             dataGridView2.Rows.Clear();
@@ -115,6 +96,8 @@ namespace FYP___OrderManagementSystem
                 dataGridView2.Rows[n].Cells[0].Value = item["OrderID"].ToString();
                 dataGridView2.Rows[n].Cells[1].Value = item["Requestee"].ToString();
                 dataGridView2.Rows[n].Cells[2].Value = item["OrderStatus"].ToString();
+                dataGridView2.Rows[n].Cells[3].Value = item["OrderDate"].ToString();
+                dataGridView2.Rows[n].Cells[4].Value = item["EstDDate"].ToString();
             }
 
             if (Login.AccessLevel == 3)
@@ -177,25 +160,25 @@ namespace FYP___OrderManagementSystem
 
         private void ProductsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var products = new Products {MdiParent = this};
+            var products = new Products();// {MdiParent = this};
             products.Show();
         }
 
         private void CreateOrderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var createOrder = new CreateOrder {MdiParent = this};
+            var createOrder = new CreateOrder();// {MdiParent = this};
             createOrder.Show();
         }
 
         private void ManageOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var orderManagement = new OrderManagement { MdiParent = this };
+            var orderManagement = new OrderManagement();// { MdiParent = this };
             orderManagement.Show();
         }
 
         private void SuppliersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var suppliers = new Suppliers { MdiParent = this };
+            var suppliers = new Suppliers();// { MdiParent = this };
             suppliers.Show();
         }
 
@@ -205,19 +188,19 @@ namespace FYP___OrderManagementSystem
             lGRN.Show();
         }
         
-        private void existingAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExistingAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var existingAcc = new ExistingAccount();
             existingAcc.Show();
         }
 
-        private void newAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        private void NewAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var newAcc = new NewAccount();
             newAcc.Show();
         }
 
-        private void OPEBarCToolStripMenuItem1_Click(object sender, EventArgs e)
+        /*private void OPEBarCToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             var empOrdersBarChart = new EmpOrdersBarChart();
             empOrdersBarChart.Show();
@@ -239,7 +222,7 @@ namespace FYP___OrderManagementSystem
         {
             var empOrdersPieChart = new EmpOrdersPieChart();
             empOrdersPieChart.Show();
-        }
+        }*/
 
         public int GetTableSize()
         {
@@ -269,7 +252,7 @@ namespace FYP___OrderManagementSystem
             var logInTime = Login.LogInTime;
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             _connection.Open();
-            _command = new SqlCommand(@"UPDATE[Active] SET[LoggedOutAt] = '" + localDate + "' WHERE[Username] = '" + userName + "' AND [LoggedInAt] = '" + logInTime + "'", _connection);
+            _command = new SqlCommand(@"UPDATE[Active Users] SET[LoggedOutAt] = '" + localDate + "' WHERE[Username] = '" + userName + "' AND [LoggedInAt] = '" + logInTime + "'", _connection);
             _command.ExecuteNonQuery();
             _connection.Close();
         }

@@ -70,7 +70,7 @@ namespace FYP___OrderManagementSystem
         private void MakeRecordOfLogin()
         {
             _connection.Open();
-            _command = new SqlCommand(@"INSERT INTO[Active] ([Username], [LoggedInAt]) VALUES
+            _command = new SqlCommand(@"INSERT INTO[Active Users] ([Username], [LoggedInAt]) VALUES
                              ('" + UserName + "', '" + LogInTime + "')", _connection);
             _command.ExecuteNonQuery();
             _connection.Close();

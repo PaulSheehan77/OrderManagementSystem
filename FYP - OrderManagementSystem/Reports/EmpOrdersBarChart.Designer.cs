@@ -33,19 +33,13 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.fYP_DBDataSet2 = new FYP___OrderManagementSystem.FYP_DBDataSet2();
-            this.empOrdersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.empOrdersTableAdapter = new FYP___OrderManagementSystem.FYP_DBDataSet2TableAdapters.EmpOrdersTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fYP_DBDataSet2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.empOrdersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // chart1
             // 
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.DataSource = this.empOrdersBindingSource;
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(24, 22);
@@ -60,20 +54,6 @@
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
             // 
-            // fYP_DBDataSet2
-            // 
-            this.fYP_DBDataSet2.DataSetName = "FYP_DBDataSet2";
-            this.fYP_DBDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // empOrdersBindingSource
-            // 
-            this.empOrdersBindingSource.DataMember = "EmpOrders";
-            this.empOrdersBindingSource.DataSource = this.fYP_DBDataSet2;
-            // 
-            // empOrdersTableAdapter
-            // 
-            this.empOrdersTableAdapter.ClearBeforeFill = true;
-            // 
             // EmpOrdersBarChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -84,8 +64,6 @@
             this.Text = "EmpOrdersBarChart";
             this.Load += new System.EventHandler(this.EmpOrdersBarChart_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fYP_DBDataSet2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.empOrdersBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -93,8 +71,5 @@
         #endregion
 
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private FYP_DBDataSet2 fYP_DBDataSet2;
-        private System.Windows.Forms.BindingSource empOrdersBindingSource;
-        private FYP_DBDataSet2TableAdapters.EmpOrdersTableAdapter empOrdersTableAdapter;
     }
 }

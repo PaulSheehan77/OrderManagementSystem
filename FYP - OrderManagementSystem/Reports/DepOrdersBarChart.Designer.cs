@@ -33,19 +33,13 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.fYP_DBDataSet = new FYP___OrderManagementSystem.FYP_DBDataSet();
-            this.depOrdersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.depOrdersTableAdapter = new FYP___OrderManagementSystem.FYP_DBDataSetTableAdapters.DepOrdersTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fYP_DBDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.depOrdersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // chart1
             // 
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.DataSource = this.depOrdersBindingSource;
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(24, 22);
@@ -60,20 +54,6 @@
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
-            // fYP_DBDataSet
-            // 
-            this.fYP_DBDataSet.DataSetName = "FYP_DBDataSet";
-            this.fYP_DBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // depOrdersBindingSource
-            // 
-            this.depOrdersBindingSource.DataMember = "DepOrders";
-            this.depOrdersBindingSource.DataSource = this.fYP_DBDataSet;
-            // 
-            // depOrdersTableAdapter
-            // 
-            this.depOrdersTableAdapter.ClearBeforeFill = true;
-            // 
             // DepOrdersBarChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -84,8 +64,6 @@
             this.Text = "DepOrdersBarChart";
             this.Load += new System.EventHandler(this.DepOrdersBarChart_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fYP_DBDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.depOrdersBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -93,8 +71,5 @@
         #endregion
 
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private FYP_DBDataSet fYP_DBDataSet;
-        private System.Windows.Forms.BindingSource depOrdersBindingSource;
-        private FYP_DBDataSetTableAdapters.DepOrdersTableAdapter depOrdersTableAdapter;
     }
 }

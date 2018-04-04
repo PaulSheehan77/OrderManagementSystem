@@ -124,7 +124,7 @@ namespace FYP___OrderManagementSystem
                     NumOfItems = NumOfItems + 1;
                 }
 
-                _command = new SqlCommand(@"INSERT INTO[OrderedItems]([OrderID], [ProductCode], [Quantity]) VALUES
+                _command = new SqlCommand(@"INSERT INTO[Ordered Items]([OrderID], [ProductCode], [Quantity]) VALUES
                    ('" + _randCode + "', '" + prodCode + "', '" + quantity + "')", _connection);
                 _command.ExecuteNonQuery();
                 _command = new SqlCommand(@"INSERT INTO[Cart]([ProductCode], [Quantity]) VALUES
@@ -235,7 +235,7 @@ namespace FYP___OrderManagementSystem
             }
             
             double jj = Math.Round(OrderTotal(array),2);
-            var localDate = DateTime.Now;
+            var localDate = DateTime.Today;
             OrderTime = localDate;
             var error = "dialog box empty. Please fill before submitting";
 
@@ -253,7 +253,7 @@ namespace FYP___OrderManagementSystem
             {
                 _connection.Open();
                 _command = new SqlCommand("INSERT INTO[Orders]([OrderID],[NumberOfItems],[Department],[Requestee],[OrderDate],[OrderStatus],[OrderTotal]) VALUES" +
-                                                    "('" + _randCode + "', '" + NumOfItems + "', '" + DepComboBox.Text + "', '" + RequesteeTextBox.Text + "', '" + localDate + "', '" + status + "', '" + jj + "')", _connection);
+                                                    "('" + _randCode + "', '" + NumOfItems + "', '" + DepComboBox.Text + "', '" + RequesteeTextBox.Text + "', '" + localDate.ToString().Substring(0,10) + "', '" + status + "', '" + jj + "')", _connection);
                 _command.ExecuteNonQuery();
                 _command = new SqlCommand("SELECT * FROM Cart", _connection);
                 _command.ExecuteNonQuery();
@@ -277,7 +277,7 @@ namespace FYP___OrderManagementSystem
             _connection.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             _connection.Open();
@@ -295,7 +295,7 @@ namespace FYP___OrderManagementSystem
             _connection.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void ClearButton_Click(object sender, EventArgs e)
         {
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             _connection.Open();

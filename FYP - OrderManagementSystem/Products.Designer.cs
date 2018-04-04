@@ -321,7 +321,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(788, 505);
             this.Name = "Products";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Products";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Products_Load);

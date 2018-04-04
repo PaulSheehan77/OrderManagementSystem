@@ -73,16 +73,6 @@
     <Compile Include="ExistingAccount.Designer.cs">
       <DependentUpon>ExistingAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="FYP_DBDataSet21.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FYP_DBDataSet21.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="FYP_DBDataSet3.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FYP_DBDataSet3.xsd</DependentUpon>
-    </Compile>
     <Compile Include="NewAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,16 +92,6 @@
       <DependentUpon>DepOrdersPieChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Error Logger.cs" />
-    <Compile Include="FYP_DBDataSet11.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FYP_DBDataSet11.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="FYP_DBDataSet2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FYP_DBDataSet2.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Loading.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +155,9 @@
     <EmbeddedResource Include="CreateOrder.resx">
       <DependentUpon>CreateOrder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ExistingAccount.resx">
+      <DependentUpon>ExistingAccount.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewAccount.resx">
       <DependentUpon>NewAccount.cs</DependentUpon>
     </EmbeddedResource>
@@ -220,50 +203,6 @@
     <EmbeddedResource Include="Suppliers.resx">
       <DependentUpon>Suppliers.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="FYP_DBDataSet11.xsc">
-      <DependentUpon>FYP_DBDataSet11.xsd</DependentUpon>
-    </None>
-    <None Include="FYP_DBDataSet11.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>FYP_DBDataSet11.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="FYP_DBDataSet11.xss">
-      <DependentUpon>FYP_DBDataSet11.xsd</DependentUpon>
-    </None>
-    <None Include="FYP_DBDataSet2.xsc">
-      <DependentUpon>FYP_DBDataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="FYP_DBDataSet2.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>FYP_DBDataSet2.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="FYP_DBDataSet2.xss">
-      <DependentUpon>FYP_DBDataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="FYP_DBDataSet21.xsc">
-      <DependentUpon>FYP_DBDataSet21.xsd</DependentUpon>
-    </None>
-    <None Include="FYP_DBDataSet21.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>FYP_DBDataSet21.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="FYP_DBDataSet21.xss">
-      <DependentUpon>FYP_DBDataSet21.xsd</DependentUpon>
-    </None>
-    <None Include="FYP_DBDataSet3.xsc">
-      <DependentUpon>FYP_DBDataSet3.xsd</DependentUpon>
-    </None>
-    <None Include="FYP_DBDataSet3.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>FYP_DBDataSet3.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="FYP_DBDataSet3.xss">
-      <DependentUpon>FYP_DBDataSet3.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -281,8 +220,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataSets\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewAccount));
             this.label1 = new System.Windows.Forms.Label();
             this.FNTextBox = new System.Windows.Forms.TextBox();
             this.DepTextBox = new System.Windows.Forms.TextBox();
@@ -76,7 +77,7 @@
             this.ALTextBox.Location = new System.Drawing.Point(141, 188);
             this.ALTextBox.Name = "ALTextBox";
             this.ALTextBox.Size = new System.Drawing.Size(100, 20);
-            this.ALTextBox.TabIndex = 5;
+            this.ALTextBox.TabIndex = 4;
             // 
             // label3
             // 
@@ -92,7 +93,7 @@
             this.SNTextBox.Location = new System.Drawing.Point(141, 90);
             this.SNTextBox.Name = "SNTextBox";
             this.SNTextBox.Size = new System.Drawing.Size(100, 20);
-            this.SNTextBox.TabIndex = 7;
+            this.SNTextBox.TabIndex = 2;
             // 
             // label6
             // 
@@ -108,7 +109,7 @@
             this.CAButton.Location = new System.Drawing.Point(76, 277);
             this.CAButton.Name = "CAButton";
             this.CAButton.Size = new System.Drawing.Size(153, 23);
-            this.CAButton.TabIndex = 8;
+            this.CAButton.TabIndex = 5;
             this.CAButton.Text = "Create Account!";
             this.CAButton.UseVisualStyleBackColor = true;
             this.CAButton.Click += new System.EventHandler(this.CAButton_Click);
@@ -127,8 +128,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.FNTextBox);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NewAccount";
-            this.Text = "NewAccount";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "New Account";
             this.ResumeLayout(false);
             this.PerformLayout();
 

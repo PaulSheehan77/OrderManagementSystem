@@ -24,7 +24,7 @@ namespace FYP___OrderManagementSystem
         private void FillDataGridView()
         {
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            _sda = new SqlDataAdapter(@"SELECT * FROM[OrderedItems] order by len(OrderID), OrderID", _connection);
+            _sda = new SqlDataAdapter(@"SELECT * FROM[Ordered Items] order by len(OrderID), OrderID", _connection);
             _dt = new DataTable();
             _sda.Fill(_dt);
             dataGridView2.Rows.Clear();
@@ -41,7 +41,7 @@ namespace FYP___OrderManagementSystem
         private void FillComboBox()
         {
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            _command = new SqlCommand(@"SELECT DISTINCT [OrderID] FROM[OrderedItems]", _connection);
+            _command = new SqlCommand(@"SELECT DISTINCT [OrderID] FROM[Ordered Items]", _connection);
             try
             {
                 _connection.Open();
@@ -64,7 +64,7 @@ namespace FYP___OrderManagementSystem
         {
             PCComboBox.Items.Clear();
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            _command = new SqlCommand(@"SELECT * FROM[OrderedItems] WHERE [OrderID] = '" + OIDComboBox.Text + "'", _connection);
+            _command = new SqlCommand(@"SELECT * FROM[Ordered Items] WHERE [OrderID] = '" + OIDComboBox.Text + "'", _connection);
             try
             {
                 _connection.Open();
@@ -94,7 +94,10 @@ namespace FYP___OrderManagementSystem
             _newQuantity = _currQuantity - (Convert.ToSingle(QuantityUpDown.Text));
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             _connection.Open();
-            var sqlQuery = @"UPDATE [OrderedItems] SET [Quantity] = '" + _newQuantity + "' WHERE[ProductCode] = '" + PCComboBox.Text + "' AND [OrderID] = '" + OIDComboBox.Text + "'";
+            var sqlQuery = @"UPDATE [Ordered Items] SET [Quantity] = '" + _newQuantity + "' WHERE[ProductCode] = '" + PCComboBox.Text + "' AND [OrderID] = '" + OIDComboBox.Text + "'";
+            _command = new SqlCommand(sqlQuery, _connection);
+            _command.ExecuteNonQuery();
+            sqlQuery = @"DELETE FROM [Ordered Items] WHERE [Quantity] = 0 ";
             _command = new SqlCommand(sqlQuery, _connection);
             _command.ExecuteNonQuery();
             _connection.Close();
@@ -104,7 +107,7 @@ namespace FYP___OrderManagementSystem
         private void PCComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            _command = new SqlCommand(@"SELECT [Quantity] FROM[OrderedItems] WHERE [OrderID] = '" + OIDComboBox.Text + "' AND [ProductCode] = '" + PCComboBox.Text + "'", _connection);
+            _command = new SqlCommand(@"SELECT [Quantity] FROM[Ordered Items] WHERE [OrderID] = '" + OIDComboBox.Text + "' AND [ProductCode] = '" + PCComboBox.Text + "'", _connection);
             try
             {
                 _connection.Open();

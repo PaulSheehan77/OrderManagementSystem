@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogGRN));
             this.panel2 = new System.Windows.Forms.Panel();
             this.PCComboBox = new System.Windows.Forms.ComboBox();
             this.PCLabel = new System.Windows.Forms.Label();
@@ -175,10 +176,11 @@
             // 
             // RefreshButton
             // 
-            this.RefreshButton.Location = new System.Drawing.Point(215, 382);
+            this.RefreshButton.Location = new System.Drawing.Point(202, 385);
             this.RefreshButton.Name = "RefreshButton";
-            this.RefreshButton.Size = new System.Drawing.Size(20, 12);
+            this.RefreshButton.Size = new System.Drawing.Size(58, 23);
             this.RefreshButton.TabIndex = 47;
+            this.RefreshButton.Text = "Refresh";
             this.RefreshButton.UseVisualStyleBackColor = true;
             this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
@@ -190,8 +192,10 @@
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dataGridView2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LogGRN";
-            this.Text = "LogGRN";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Log GRN";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.QuantityUpDown)).EndInit();

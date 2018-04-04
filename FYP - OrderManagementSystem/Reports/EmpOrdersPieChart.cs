@@ -12,9 +12,6 @@ namespace FYP___OrderManagementSystem.Reports
 
         private void EmpOrdersPieChart_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'fYP_DBDataSet3.EmpOrders' table. You can move, or remove it, as needed.
-            this.empOrdersTableAdapter.Fill(this.fYP_DBDataSet3.EmpOrders);
-
         }
     }
 }

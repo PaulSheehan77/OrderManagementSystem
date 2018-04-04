@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FYP___OrderManagementSystem
@@ -16,8 +12,8 @@ namespace FYP___OrderManagementSystem
 
         private SqlConnection _connection;
         private SqlCommand _command;
-        private SqlDataAdapter _sda;
-        private DataTable _dt;
+        //private SqlDataAdapter _sda;
+        //private DataTable _dt;
 
         public NewAccount()
         {

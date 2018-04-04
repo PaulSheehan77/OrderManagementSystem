@@ -88,6 +88,7 @@ namespace FYP___OrderManagementSystem
 
         private void UpdateButton_Click(object sender, EventArgs e)
         {
+            var localDate = DateTime.Today;
             const string errorMessage = "An order with this order ID doesn't exist.\n\nPlease enter a different order id.";
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             _connection.Open();
@@ -97,10 +98,10 @@ namespace FYP___OrderManagementSystem
                 string sqlQuery;
                 if (OrderStatusComboBox.Text == "Complete")
                 {
-                    sqlQuery = @"UPDATE[DepOrders] SET[NumberOFOrders] = [NumberOfOrders] + 1 WHERE [Department] = (SELECT[Department] FROM[Orders] WHERE[OrderID] = '" + OrderIDComboBox.Text + "')";
+                    sqlQuery = @"UPDATE[Orders p/Department] SET[Orders] = [Orders] + 1 WHERE [Department] = (SELECT[Department] FROM[Orders] WHERE[OrderID] = '" + OrderIDComboBox.Text + "')";
                     _command = new SqlCommand(sqlQuery, _connection);
                     _command.ExecuteNonQuery();
-                    sqlQuery = @"UPDATE[EmpOrders] SET[Orders] = [Orders] + 1 WHERE [Employee] = (SELECT[Requestee] FROM[Orders] WHERE[OrderID] = '" + OrderIDComboBox.Text + "')";
+                    sqlQuery = @"UPDATE[Orders p/Employee] SET[Orders] = [Orders] + 1 WHERE [Employee] = (SELECT[Requestee] FROM[Orders] WHERE[OrderID] = '" + OrderIDComboBox.Text + "')";
                     _command = new SqlCommand(sqlQuery, _connection);
                     _command.ExecuteNonQuery();
                     /*
@@ -110,10 +111,13 @@ namespace FYP___OrderManagementSystem
                     */
                 }
 
-                sqlQuery = @"UPDATE[Orders] SET[OrderStatus] = '" + OrderStatusComboBox.Text + "' WHERE [OrderID] = '" + OrderIDComboBox.Text + "'";
+                sqlQuery = @"UPDATE[Orders] SET[OrderStatus] = '" + OrderStatusComboBox.Text + "' WHERE [OrderID] = '" + OrderIDComboBox.Text + "'" ;
                 OrderStatusComboBox.SelectedIndex = -1;
                 OrderIDComboBox.SelectedIndex = -1;
                 OrderIDComboBox.Focus();
+                _command = new SqlCommand(sqlQuery, _connection);
+                _command.ExecuteNonQuery();
+                sqlQuery = @"UPDATE[Orders] SET[OrderDate] = '" + localDate.ToString().Substring(0, 10) + "' WHERE [OrderID] = '" + OrderIDComboBox.Text + "'";
                 _command = new SqlCommand(sqlQuery, _connection);
                 _command.ExecuteNonQuery();
             }
@@ -139,7 +143,7 @@ namespace FYP___OrderManagementSystem
             OrderStatusComboBox.Text = dataGridView2.SelectedRows[0].Cells[5].Value.ToString();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             _connection.Open();

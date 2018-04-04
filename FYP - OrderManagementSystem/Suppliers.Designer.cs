@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Suppliers));
             this.panel1 = new System.Windows.Forms.Panel();
             this.SNULabel = new System.Windows.Forms.Label();
             this.SNLabel = new System.Windows.Forms.Label();
@@ -256,9 +257,10 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(410, 15);
             this.Name = "Suppliers";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Suppliers";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

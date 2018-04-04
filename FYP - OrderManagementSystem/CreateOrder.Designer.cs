@@ -38,8 +38,8 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ClearButton = new System.Windows.Forms.Button();
+            this.DeleteButton = new System.Windows.Forms.Button();
             this.DepComboBox = new System.Windows.Forms.ComboBox();
             this.RequestedByLabel = new System.Windows.Forms.Label();
             this.DepLabel = new System.Windows.Forms.Label();
@@ -123,8 +123,8 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.ClearButton);
+            this.panel1.Controls.Add(this.DeleteButton);
             this.panel1.Controls.Add(this.DepComboBox);
             this.panel1.Controls.Add(this.RequestedByLabel);
             this.panel1.Controls.Add(this.DepLabel);
@@ -137,32 +137,32 @@
             this.panel1.Size = new System.Drawing.Size(576, 182);
             this.panel1.TabIndex = 42;
             // 
-            // button2
+            // ClearButton
             // 
-            this.button2.Location = new System.Drawing.Point(3, 71);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(45, 48);
-            this.button2.TabIndex = 58;
-            this.button2.Text = "Clear Cart";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.ClearButton.Location = new System.Drawing.Point(0, 151);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(61, 26);
+            this.ClearButton.TabIndex = 58;
+            this.ClearButton.Text = "Clear Cart";
+            this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
-            // button1
+            // DeleteButton
             // 
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Red;
-            this.button1.Location = new System.Drawing.Point(398, 141);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(19, 25);
-            this.button1.TabIndex = 57;
-            this.button1.Text = "X";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.DeleteButton.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteButton.ForeColor = System.Drawing.Color.Red;
+            this.DeleteButton.Location = new System.Drawing.Point(377, 152);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(19, 27);
+            this.DeleteButton.TabIndex = 57;
+            this.DeleteButton.Text = "X";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // DepComboBox
             // 
             this.DepComboBox.FormattingEnabled = true;
-            this.DepComboBox.Location = new System.Drawing.Point(459, 26);
+            this.DepComboBox.Location = new System.Drawing.Point(441, 43);
             this.DepComboBox.Name = "DepComboBox";
             this.DepComboBox.Size = new System.Drawing.Size(100, 21);
             this.DepComboBox.TabIndex = 3;
@@ -171,7 +171,7 @@
             // 
             this.RequestedByLabel.AutoSize = true;
             this.RequestedByLabel.BackColor = System.Drawing.Color.Transparent;
-            this.RequestedByLabel.Location = new System.Drawing.Point(456, 55);
+            this.RequestedByLabel.Location = new System.Drawing.Point(438, 71);
             this.RequestedByLabel.Name = "RequestedByLabel";
             this.RequestedByLabel.Size = new System.Drawing.Size(73, 13);
             this.RequestedByLabel.TabIndex = 56;
@@ -181,7 +181,7 @@
             // 
             this.DepLabel.AutoSize = true;
             this.DepLabel.BackColor = System.Drawing.Color.Transparent;
-            this.DepLabel.Location = new System.Drawing.Point(456, 11);
+            this.DepLabel.Location = new System.Drawing.Point(438, 27);
             this.DepLabel.Name = "DepLabel";
             this.DepLabel.Size = new System.Drawing.Size(62, 13);
             this.DepLabel.TabIndex = 55;
@@ -189,7 +189,7 @@
             // 
             // RequesteeTextBox
             // 
-            this.RequesteeTextBox.Location = new System.Drawing.Point(459, 71);
+            this.RequesteeTextBox.Location = new System.Drawing.Point(441, 87);
             this.RequesteeTextBox.Name = "RequesteeTextBox";
             this.RequesteeTextBox.Size = new System.Drawing.Size(100, 20);
             this.RequesteeTextBox.TabIndex = 4;
@@ -197,15 +197,18 @@
             // CartLabel
             // 
             this.CartLabel.AutoSize = true;
-            this.CartLabel.Location = new System.Drawing.Point(9, 11);
+            this.CartLabel.BackColor = System.Drawing.Color.Transparent;
+            this.CartLabel.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CartLabel.ForeColor = System.Drawing.Color.Blue;
+            this.CartLabel.Location = new System.Drawing.Point(3, 3);
             this.CartLabel.Name = "CartLabel";
-            this.CartLabel.Size = new System.Drawing.Size(26, 13);
+            this.CartLabel.Size = new System.Drawing.Size(34, 16);
             this.CartLabel.TabIndex = 53;
             this.CartLabel.Text = "Cart";
             // 
             // SOButton
             // 
-            this.SOButton.Location = new System.Drawing.Point(471, 151);
+            this.SOButton.Location = new System.Drawing.Point(454, 126);
             this.SOButton.Name = "SOButton";
             this.SOButton.Size = new System.Drawing.Size(78, 26);
             this.SOButton.TabIndex = 5;
@@ -222,10 +225,10 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column5,
             this.Column1});
-            this.dataGridView1.Location = new System.Drawing.Point(51, 11);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(380, 166);
+            this.dataGridView1.Size = new System.Drawing.Size(396, 146);
             this.dataGridView1.TabIndex = 7;
             // 
             // Column5
@@ -316,7 +319,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(617, 453);
             this.Name = "CreateOrder";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create Order";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CreateOrder_FormClosing);
@@ -345,7 +348,6 @@
         private System.Windows.Forms.Label RequestedByLabel;
         private System.Windows.Forms.Label DepLabel;
         private System.Windows.Forms.TextBox RequesteeTextBox;
-        private System.Windows.Forms.Label CartLabel;
         private System.Windows.Forms.Button SOButton;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
@@ -357,7 +359,8 @@
         private System.Windows.Forms.Label PCLabel;
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Button ClearButton;
+        private System.Windows.Forms.Label CartLabel;
     }
 }

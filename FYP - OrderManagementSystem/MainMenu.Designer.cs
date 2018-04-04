@@ -38,18 +38,22 @@
             this.productsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.suppliersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.existingAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BarCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PieCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OPDBarCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OPEBarCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PieCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OPDePieCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OPEPieCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Timer1 = new System.Windows.Forms.Timer(this.components);
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.RefreshButton = new System.Windows.Forms.Button();
             this.LogoutButton = new System.Windows.Forms.Button();
@@ -59,8 +63,6 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.existingAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -126,6 +128,20 @@
             this.accountManagementToolStripMenuItem.Size = new System.Drawing.Size(138, 20);
             this.accountManagementToolStripMenuItem.Text = "Account Management";
             // 
+            // existingAccountToolStripMenuItem
+            // 
+            this.existingAccountToolStripMenuItem.Name = "existingAccountToolStripMenuItem";
+            this.existingAccountToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.existingAccountToolStripMenuItem.Text = "Existing account";
+            this.existingAccountToolStripMenuItem.Click += new System.EventHandler(this.ExistingAccountToolStripMenuItem_Click);
+            // 
+            // newAccountToolStripMenuItem
+            // 
+            this.newAccountToolStripMenuItem.Name = "newAccountToolStripMenuItem";
+            this.newAccountToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.newAccountToolStripMenuItem.Text = "New account";
+            this.newAccountToolStripMenuItem.Click += new System.EventHandler(this.NewAccountToolStripMenuItem_Click);
+            // 
             // ReportsToolStripMenuItem
             // 
             this.ReportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -137,54 +153,37 @@
             // 
             // BarCToolStripMenuItem
             // 
-            this.BarCToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OPDBarCToolStripMenuItem,
-            this.OPEBarCToolStripMenuItem});
             this.BarCToolStripMenuItem.Name = "BarCToolStripMenuItem";
-            this.BarCToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.BarCToolStripMenuItem.Text = "Bar Chart";
+            this.BarCToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // PieCToolStripMenuItem
+            // 
+            this.PieCToolStripMenuItem.Name = "PieCToolStripMenuItem";
+            this.PieCToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
             // 
             // OPDBarCToolStripMenuItem
             // 
             this.OPDBarCToolStripMenuItem.Name = "OPDBarCToolStripMenuItem";
-            this.OPDBarCToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.OPDBarCToolStripMenuItem.Text = "Orders Per Department";
-            this.OPDBarCToolStripMenuItem.Click += new System.EventHandler(this.OPDBarCToolStripMenuItem_Click);
+            this.OPDBarCToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             // 
             // OPEBarCToolStripMenuItem
             // 
             this.OPEBarCToolStripMenuItem.Name = "OPEBarCToolStripMenuItem";
-            this.OPEBarCToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.OPEBarCToolStripMenuItem.Text = "Orders Per Employee";
-            this.OPEBarCToolStripMenuItem.Click += new System.EventHandler(this.OPEBarCToolStripMenuItem1_Click);
-            // 
-            // PieCToolStripMenuItem
-            // 
-            this.PieCToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OPDePieCToolStripMenuItem,
-            this.OPEPieCToolStripMenuItem});
-            this.PieCToolStripMenuItem.Name = "PieCToolStripMenuItem";
-            this.PieCToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.PieCToolStripMenuItem.Text = "Pie Chart";
+            this.OPEBarCToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             // 
             // OPDePieCToolStripMenuItem
             // 
             this.OPDePieCToolStripMenuItem.Name = "OPDePieCToolStripMenuItem";
-            this.OPDePieCToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.OPDePieCToolStripMenuItem.Text = "Orders Per Department";
-            this.OPDePieCToolStripMenuItem.Click += new System.EventHandler(this.OPDPieCToolStripMenuItem_Click);
+            this.OPDePieCToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             // 
             // OPEPieCToolStripMenuItem
             // 
             this.OPEPieCToolStripMenuItem.Name = "OPEPieCToolStripMenuItem";
-            this.OPEPieCToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.OPEPieCToolStripMenuItem.Text = "Orders Per Employee";
-            this.OPEPieCToolStripMenuItem.Click += new System.EventHandler(this.OPEPieCToolStripMenuItem_Click);
+            this.OPEPieCToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             // 
-            // timer1
+            // Timer1
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.Timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // dataGridView2
             // 
@@ -197,7 +196,9 @@
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
-            this.Column3});
+            this.Column3,
+            this.Column4,
+            this.Column5});
             this.dataGridView2.Location = new System.Drawing.Point(711, 87);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
@@ -207,7 +208,7 @@
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.FillWeight = 53.76453F;
+            this.dataGridViewTextBoxColumn1.FillWeight = 80F;
             this.dataGridViewTextBoxColumn1.HeaderText = "Order ID";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
@@ -215,17 +216,34 @@
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.FillWeight = 77.95859F;
+            this.dataGridViewTextBoxColumn2.FillWeight = 80F;
             this.dataGridViewTextBoxColumn2.HeaderText = "Requestee";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // Column3
             // 
-            this.Column3.FillWeight = 50F;
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column3.FillWeight = 70F;
             this.Column3.HeaderText = "Status";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.FillWeight = 70F;
+            this.Column4.HeaderText = "Date";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column5.FillWeight = 70F;
+            this.Column5.HeaderText = "Est. Del. Date";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             // 
             // label2
             // 
@@ -233,7 +251,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label2.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(708, 69);
+            this.label2.Location = new System.Drawing.Point(954, 69);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 15);
             this.label2.TabIndex = 20;
@@ -243,9 +261,9 @@
             // 
             this.RefreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.RefreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RefreshButton.Location = new System.Drawing.Point(947, 496);
+            this.RefreshButton.Location = new System.Drawing.Point(624, 365);
             this.RefreshButton.Name = "RefreshButton";
-            this.RefreshButton.Size = new System.Drawing.Size(135, 25);
+            this.RefreshButton.Size = new System.Drawing.Size(82, 36);
             this.RefreshButton.TabIndex = 17;
             this.RefreshButton.Text = "Refresh Tables";
             this.RefreshButton.UseVisualStyleBackColor = true;
@@ -257,9 +275,9 @@
             this.LogoutButton.BackColor = System.Drawing.Color.Black;
             this.LogoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LogoutButton.ForeColor = System.Drawing.Color.White;
-            this.LogoutButton.Location = new System.Drawing.Point(963, 635);
+            this.LogoutButton.Location = new System.Drawing.Point(957, 629);
             this.LogoutButton.Name = "LogoutButton";
-            this.LogoutButton.Size = new System.Drawing.Size(108, 29);
+            this.LogoutButton.Size = new System.Drawing.Size(108, 33);
             this.LogoutButton.TabIndex = 23;
             this.LogoutButton.Text = "Logout";
             this.LogoutButton.UseVisualStyleBackColor = false;
@@ -270,11 +288,11 @@
             this.DateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.DateLabel.AutoSize = true;
             this.DateLabel.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.DateLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateLabel.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.DateLabel.Location = new System.Drawing.Point(955, 587);
+            this.DateLabel.Location = new System.Drawing.Point(915, 546);
             this.DateLabel.Name = "DateLabel";
-            this.DateLabel.Size = new System.Drawing.Size(44, 19);
+            this.DateLabel.Size = new System.Drawing.Size(76, 33);
             this.DateLabel.TabIndex = 27;
             this.DateLabel.Text = "Date";
             // 
@@ -283,11 +301,11 @@
             this.TimeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.TimeLabel.AutoSize = true;
             this.TimeLabel.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.TimeLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TimeLabel.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.TimeLabel.Location = new System.Drawing.Point(974, 555);
+            this.TimeLabel.Location = new System.Drawing.Point(943, 485);
             this.TimeLabel.Name = "TimeLabel";
-            this.TimeLabel.Size = new System.Drawing.Size(49, 20);
+            this.TimeLabel.Size = new System.Drawing.Size(81, 33);
             this.TimeLabel.TabIndex = 26;
             this.TimeLabel.Text = "Time";
             // 
@@ -329,25 +347,11 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(487, 69);
+            this.label1.Location = new System.Drawing.Point(256, 69);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(132, 15);
             this.label1.TabIndex = 24;
             this.label1.Text = "Products Low in Stock";
-            // 
-            // existingAccountToolStripMenuItem
-            // 
-            this.existingAccountToolStripMenuItem.Name = "existingAccountToolStripMenuItem";
-            this.existingAccountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.existingAccountToolStripMenuItem.Text = "Existing account";
-            this.existingAccountToolStripMenuItem.Click += new System.EventHandler(this.existingAccountToolStripMenuItem_Click);
-            // 
-            // newAccountToolStripMenuItem
-            // 
-            this.newAccountToolStripMenuItem.Name = "newAccountToolStripMenuItem";
-            this.newAccountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.newAccountToolStripMenuItem.Text = "New account";
-            this.newAccountToolStripMenuItem.Click += new System.EventHandler(this.newAccountToolStripMenuItem_Click);
             // 
             // MainMenu
             // 
@@ -395,11 +399,8 @@
         private System.Windows.Forms.ToolStripMenuItem BarCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem suppliersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accountManagementToolStripMenuItem;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer Timer1;
         public System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button RefreshButton;
         private System.Windows.Forms.ToolStripMenuItem PieCToolStripMenuItem;
@@ -419,6 +420,11 @@
         private System.Windows.Forms.ToolStripMenuItem OPDePieCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem existingAccountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newAccountToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }
 }
 
