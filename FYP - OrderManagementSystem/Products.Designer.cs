@@ -40,7 +40,6 @@
             this.PCTextBox = new System.Windows.Forms.TextBox();
             this.StockLabel = new System.Windows.Forms.Label();
             this.StockTextBox = new System.Windows.Forms.TextBox();
-            this.FindButton = new System.Windows.Forms.Button();
             this.PriceTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.UpdateButton = new System.Windows.Forms.Button();
@@ -71,7 +70,6 @@
             this.panel1.Controls.Add(this.PCTextBox);
             this.panel1.Controls.Add(this.StockLabel);
             this.panel1.Controls.Add(this.StockTextBox);
-            this.panel1.Controls.Add(this.FindButton);
             this.panel1.Controls.Add(this.PriceTextBox);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.UpdateButton);
@@ -87,7 +85,7 @@
             this.SCLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SCLabel.AutoSize = true;
             this.SCLabel.BackColor = System.Drawing.Color.Transparent;
-            this.SCLabel.Location = new System.Drawing.Point(189, 57);
+            this.SCLabel.Location = new System.Drawing.Point(222, 59);
             this.SCLabel.Name = "SCLabel";
             this.SCLabel.Size = new System.Drawing.Size(73, 13);
             this.SCLabel.TabIndex = 42;
@@ -98,7 +96,7 @@
             this.SNLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SNLabel.AutoSize = true;
             this.SNLabel.BackColor = System.Drawing.Color.Transparent;
-            this.SNLabel.Location = new System.Drawing.Point(-2, 57);
+            this.SNLabel.Location = new System.Drawing.Point(31, 59);
             this.SNLabel.Name = "SNLabel";
             this.SNLabel.Size = new System.Drawing.Size(76, 13);
             this.SNLabel.TabIndex = 41;
@@ -107,7 +105,7 @@
             // SCTextBox
             // 
             this.SCTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SCTextBox.Location = new System.Drawing.Point(192, 75);
+            this.SCTextBox.Location = new System.Drawing.Point(225, 77);
             this.SCTextBox.Name = "SCTextBox";
             this.SCTextBox.Size = new System.Drawing.Size(100, 20);
             this.SCTextBox.TabIndex = 4;
@@ -115,7 +113,7 @@
             // SNTextBox
             // 
             this.SNTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SNTextBox.Location = new System.Drawing.Point(1, 74);
+            this.SNTextBox.Location = new System.Drawing.Point(34, 76);
             this.SNTextBox.Name = "SNTextBox";
             this.SNTextBox.Size = new System.Drawing.Size(100, 20);
             this.SNTextBox.TabIndex = 3;
@@ -125,7 +123,7 @@
             this.PNLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PNLabel.AutoSize = true;
             this.PNLabel.BackColor = System.Drawing.Color.Transparent;
-            this.PNLabel.Location = new System.Drawing.Point(189, 9);
+            this.PNLabel.Location = new System.Drawing.Point(222, 11);
             this.PNLabel.Name = "PNLabel";
             this.PNLabel.Size = new System.Drawing.Size(75, 13);
             this.PNLabel.TabIndex = 40;
@@ -136,7 +134,7 @@
             this.PCLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PCLabel.AutoSize = true;
             this.PCLabel.BackColor = System.Drawing.Color.Transparent;
-            this.PCLabel.Location = new System.Drawing.Point(-2, 9);
+            this.PCLabel.Location = new System.Drawing.Point(31, 11);
             this.PCLabel.Name = "PCLabel";
             this.PCLabel.Size = new System.Drawing.Size(72, 13);
             this.PCLabel.TabIndex = 39;
@@ -145,7 +143,7 @@
             // PNTextBox
             // 
             this.PNTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PNTextBox.Location = new System.Drawing.Point(192, 26);
+            this.PNTextBox.Location = new System.Drawing.Point(225, 28);
             this.PNTextBox.Name = "PNTextBox";
             this.PNTextBox.Size = new System.Drawing.Size(100, 20);
             this.PNTextBox.TabIndex = 1;
@@ -153,7 +151,7 @@
             // PCTextBox
             // 
             this.PCTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PCTextBox.Location = new System.Drawing.Point(1, 25);
+            this.PCTextBox.Location = new System.Drawing.Point(34, 27);
             this.PCTextBox.Name = "PCTextBox";
             this.PCTextBox.Size = new System.Drawing.Size(100, 20);
             this.PCTextBox.TabIndex = 0;
@@ -163,7 +161,7 @@
             this.StockLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.StockLabel.AutoSize = true;
             this.StockLabel.BackColor = System.Drawing.Color.Transparent;
-            this.StockLabel.Location = new System.Drawing.Point(376, 57);
+            this.StockLabel.Location = new System.Drawing.Point(409, 59);
             this.StockLabel.Name = "StockLabel";
             this.StockLabel.Size = new System.Drawing.Size(35, 13);
             this.StockLabel.TabIndex = 26;
@@ -172,26 +170,15 @@
             // StockTextBox
             // 
             this.StockTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.StockTextBox.Location = new System.Drawing.Point(379, 74);
+            this.StockTextBox.Location = new System.Drawing.Point(412, 76);
             this.StockTextBox.Name = "StockTextBox";
             this.StockTextBox.Size = new System.Drawing.Size(100, 20);
             this.StockTextBox.TabIndex = 5;
             // 
-            // FindButton
-            // 
-            this.FindButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.FindButton.Location = new System.Drawing.Point(545, 71);
-            this.FindButton.Name = "FindButton";
-            this.FindButton.Size = new System.Drawing.Size(74, 22);
-            this.FindButton.TabIndex = 8;
-            this.FindButton.Text = "Find";
-            this.FindButton.UseVisualStyleBackColor = true;
-            this.FindButton.Click += new System.EventHandler(this.FindButton_Click);
-            // 
             // PriceTextBox
             // 
             this.PriceTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PriceTextBox.Location = new System.Drawing.Point(379, 26);
+            this.PriceTextBox.Location = new System.Drawing.Point(412, 28);
             this.PriceTextBox.Name = "PriceTextBox";
             this.PriceTextBox.Size = new System.Drawing.Size(100, 20);
             this.PriceTextBox.TabIndex = 2;
@@ -201,7 +188,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(376, 9);
+            this.label1.Location = new System.Drawing.Point(409, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 25;
@@ -210,7 +197,7 @@
             // UpdateButton
             // 
             this.UpdateButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.UpdateButton.Location = new System.Drawing.Point(639, 27);
+            this.UpdateButton.Location = new System.Drawing.Point(581, 39);
             this.UpdateButton.Name = "UpdateButton";
             this.UpdateButton.Size = new System.Drawing.Size(74, 22);
             this.UpdateButton.TabIndex = 7;
@@ -221,7 +208,7 @@
             // AddButton
             // 
             this.AddButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.AddButton.Location = new System.Drawing.Point(545, 27);
+            this.AddButton.Location = new System.Drawing.Point(581, 11);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(74, 22);
             this.AddButton.TabIndex = 6;
@@ -232,7 +219,7 @@
             // DeleteButton
             // 
             this.DeleteButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DeleteButton.Location = new System.Drawing.Point(639, 70);
+            this.DeleteButton.Location = new System.Drawing.Point(580, 67);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(74, 23);
             this.DeleteButton.TabIndex = 9;
@@ -344,7 +331,6 @@
         private System.Windows.Forms.TextBox PCTextBox;
         private System.Windows.Forms.Label StockLabel;
         private System.Windows.Forms.TextBox StockTextBox;
-        private System.Windows.Forms.Button FindButton;
         private System.Windows.Forms.TextBox PriceTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button UpdateButton;

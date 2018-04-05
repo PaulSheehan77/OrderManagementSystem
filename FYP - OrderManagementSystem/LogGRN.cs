@@ -24,6 +24,7 @@ namespace FYP___OrderManagementSystem
         private void FillDataGridView()
         {
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection.Open();
             _sda = new SqlDataAdapter(@"SELECT * FROM[Ordered Items] order by len(OrderID), OrderID", _connection);
             _dt = new DataTable();
             _sda.Fill(_dt);
@@ -52,7 +53,7 @@ namespace FYP___OrderManagementSystem
                     var oID = myReader.GetString(0);
                     OIDComboBox.Items.Add(oID);
                 }
-                _connection.Close();
+               _connection.Close();
             }
             catch (Exception ex)
             {
@@ -95,6 +96,9 @@ namespace FYP___OrderManagementSystem
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             _connection.Open();
             var sqlQuery = @"UPDATE [Ordered Items] SET [Quantity] = '" + _newQuantity + "' WHERE[ProductCode] = '" + PCComboBox.Text + "' AND [OrderID] = '" + OIDComboBox.Text + "'";
+            _command = new SqlCommand(sqlQuery, _connection);
+            _command.ExecuteNonQuery();
+            sqlQuery = @"DELETE FROM [Orders] WHERE [NumberOfItems] = 0 ";
             _command = new SqlCommand(sqlQuery, _connection);
             _command.ExecuteNonQuery();
             sqlQuery = @"DELETE FROM [Ordered Items] WHERE [Quantity] = 0 ";

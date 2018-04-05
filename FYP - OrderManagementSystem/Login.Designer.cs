@@ -103,7 +103,7 @@
             this.unTextBox.Name = "unTextBox";
             this.unTextBox.Size = new System.Drawing.Size(207, 20);
             this.unTextBox.TabIndex = 1;
-            this.unTextBox.Text = "ainePUR1";
+            this.unTextBox.Text = "user1";
             // 
             // pwTextBox
             // 
@@ -112,7 +112,7 @@
             this.pwTextBox.PasswordChar = '*';
             this.pwTextBox.Size = new System.Drawing.Size(207, 20);
             this.pwTextBox.TabIndex = 2;
-            this.pwTextBox.Text = "pass123";
+            this.pwTextBox.Text = "password";
             // 
             // exitButton
             // 
