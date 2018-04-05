@@ -3,7 +3,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Windows.Forms;
-using FYP___OrderManagementSystem.Reports;
 using Timer = System.Windows.Forms.Timer;
 
 namespace FYP___OrderManagementSystem
@@ -85,7 +84,7 @@ namespace FYP___OrderManagementSystem
         {
             _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
             _connection.Open();
-            _sda = new SqlDataAdapter(@"SELECT * FROM[Orders] order by len(OrderID), OrderID", _connection);
+            _sda = new SqlDataAdapter(@"SELECT * FROM[Orders] order by len(OrderDate), OrderDate", _connection);
             _dt = new DataTable();
             _sda.Fill(_dt);
             dataGridView2.Rows.Clear();
@@ -97,7 +96,7 @@ namespace FYP___OrderManagementSystem
                 dataGridView2.Rows[n].Cells[1].Value = item["Requestee"].ToString();
                 dataGridView2.Rows[n].Cells[2].Value = item["OrderStatus"].ToString();
                 dataGridView2.Rows[n].Cells[3].Value = item["OrderDate"].ToString();
-                dataGridView2.Rows[n].Cells[4].Value = item["EstDDate"].ToString();
+                //dataGridView2.Rows[n].Cells[4].Value = item["EstDDate"].ToString();
             }
 
             if (Login.AccessLevel == 3)
