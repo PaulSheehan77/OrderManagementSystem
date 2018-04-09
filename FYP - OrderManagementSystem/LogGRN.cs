@@ -50,8 +50,8 @@ namespace FYP___OrderManagementSystem
 
                 while (myReader.Read())
                 {
-                    var oID = myReader.GetString(0);
-                    OIDComboBox.Items.Add(oID);
+                    var _Oid = myReader.GetString(0);
+                    OIDComboBox.Items.Add(_Oid);
                 }
                _connection.Close();
             }
