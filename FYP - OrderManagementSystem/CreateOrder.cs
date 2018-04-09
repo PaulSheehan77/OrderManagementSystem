@@ -8,6 +8,9 @@ namespace FYP___OrderManagementSystem
     public partial class CreateOrder : Form
     {
         private string status = "Awaiting Authorisation";
+
+        private string message = "Your order has been submitted!\n\nPlease view the orders board to check status of your order.\n\n" +
+                                 "Take note of your Order ID,you'll need it to keep track of your order!\n\n\t\tOrder ID = ";
         public static DateTime OrderTime { get; set; }
         public static int NumOfItems { get; set; }
         public static string OrderId { get; set; }
@@ -32,7 +35,7 @@ namespace FYP___OrderManagementSystem
         {
             FillComboBox();
             FillComboBox2();
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _sda = new SqlDataAdapter(@"SELECT * FROM[Products] order by len(ProductCode), ProductCode", _connection);
             _dt = new DataTable();
             _sda.Fill(_dt);
@@ -63,7 +66,7 @@ namespace FYP___OrderManagementSystem
 
         private void FillComboBox()
         {
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _command = new SqlCommand(@"SELECT * FROM[Products]", _connection);
             try
             {
@@ -85,7 +88,7 @@ namespace FYP___OrderManagementSystem
 
         private void FillComboBox2()
         {
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _command = new SqlCommand(@"SELECT * FROM[Department]", _connection);
             try
             {
@@ -107,10 +110,10 @@ namespace FYP___OrderManagementSystem
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            const string error = "The quantity you have chosen exceeds the current stock level.\n\nPlease enter another quantity.";
+            const string error = "You have provided invalid details. Please try again.";
             var quantity = Convert.ToInt32(QuantityUpDown.Text);
             var prodCode = ProductCodeComboBox.Text;
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _connection.Open();
             _sda = new SqlDataAdapter(@"SELECT * FROM[Products] WHERE[ProductCode] = '" + prodCode + "'", _connection);
             _dt = new DataTable();
@@ -204,7 +207,7 @@ namespace FYP___OrderManagementSystem
             const string stmt = "SELECT COUNT(*) FROM dbo.Cart";
             int count1 = 0;
             int count2 = 0;
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _connection.Open();
             _command = new SqlCommand(stmt, _connection);
             var count = (int)_command.ExecuteScalar();
@@ -237,11 +240,16 @@ namespace FYP___OrderManagementSystem
             double jj = Math.Round(OrderTotal(array),2);
             var localDate = DateTime.Today;
             OrderTime = localDate;
-            var error = "dialog box empty. Please fill before submitting";
+            var error = "dialog box('s) empty. Please fill before submitting";
 
-            if (DepComboBox.Text == "")
+            if (DepComboBox.Text == "" && RequesteeTextBox.Text == "")
             {
-                MessageBox.Show("Department " + error);
+                MessageBox.Show("Both" + error);
+                DepComboBox.Focus();
+            }
+            else if (DepComboBox.Text == "")
+            {
+                MessageBox.Show("Department" + error);
                 DepComboBox.Focus();
             }
             else if (RequesteeTextBox.Text == "")
@@ -261,16 +269,14 @@ namespace FYP___OrderManagementSystem
                 ClearText();
                 dataGridView1.Rows.Clear();
                 NumOfItems = 0;
-                MessageBox.Show(
-                    "Your order has been submitted!\n\nPlease view the orders board to check status of your order.\n\nTake note of your Order ID, you'll need it to keep track of your order!\n\n\t\tOrder ID = " +
-                    _randCode + "");
+                MessageBox.Show(message + _randCode + "");
                 notifyIcon1.ShowBalloonTip(1000, "Important notification", "Something important", ToolTipIcon.Info);
             }
         }
 
         private void CreateOrder_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _connection.Open();
             _command = new SqlCommand("SELECT * FROM[Cart] DELETE FROM[Cart]", _connection);
             _command.ExecuteNonQuery();
@@ -279,7 +285,7 @@ namespace FYP___OrderManagementSystem
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _connection.Open();
             foreach (DataGridViewRow row in dataGridView1.SelectedRows)
             {
@@ -297,7 +303,7 @@ namespace FYP___OrderManagementSystem
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _connection.Open();
             dataGridView1.Rows.Clear();
             var sqlQuery = @"SELECT *FROM[Cart] DELETE FROM[Cart]";

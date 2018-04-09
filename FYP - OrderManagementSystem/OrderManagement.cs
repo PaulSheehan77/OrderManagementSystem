@@ -25,7 +25,7 @@ namespace FYP___OrderManagementSystem
         public void Load_Data()
         {
             OrderIDComboBox.Items.Clear();
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _sda = new SqlDataAdapter(@"SELECT * FROM[Orders]", _connection);
             _dt = new DataTable();
             _sda.Fill(_dt);
@@ -38,20 +38,32 @@ namespace FYP___OrderManagementSystem
                 int n = dataGridView2.Rows.Add();
                 dataGridView2.Rows[n].Cells[0].Value = item["OrderID"].ToString();
                 dataGridView2.Rows[n].Cells[1].Value = item["NumberOFItems"].ToString();
-                dataGridView2.Rows[n].Cells[2].Value = item["Department"].ToString();
-                dataGridView2.Rows[n].Cells[3].Value = item["Requestee"].ToString();
+                dataGridView2.Rows[n].Cells[2].Value = item[Constants.dep].ToString();
+                dataGridView2.Rows[n].Cells[3].Value = item[Constants.req].ToString();
                 dataGridView2.Rows[n].Cells[4].Value = item["OrderDate"].ToString();
                 dataGridView2.Rows[n].Cells[5].Value = item["OrderStatus"].ToString();
                 dataGridView2.Rows[n].Cells[6].Value = item["OrderTotal"].ToString();
-                /*if ((bool)item["ProductStatus"])
-                {
-                    dataGridView1.Rows[n].Cells[2].Value = "Active";
-                }
-                else
-                {
-                    dataGridView1.Rows[n].Cells[2].Value = "Deactive";
-                }*/
             }
+        }
+
+        private bool CheckIfDepExists(SqlConnection connection, string dep)
+        {
+            _sda = new SqlDataAdapter(@"SELECT 1 FROM[Orders p/Department] WHERE[Department] = '" + dep + "'", connection);
+            _dt = new DataTable();
+            _sda.Fill(_dt);
+            if (_dt.Rows.Count > 0)
+                return true;
+            return false;
+        }
+
+        private bool CheckIfEmpExists(SqlConnection connection, string emp)
+        {
+            _sda = new SqlDataAdapter(@"SELECT 1 FROM[Orders p/Employee] WHERE[Employee] = '" + emp + "'", connection);
+            _dt = new DataTable();
+            _sda.Fill(_dt);
+            if (_dt.Rows.Count > 0)
+                return true;
+            return false;
         }
 
         private void FillComboBox(SqlConnection connection)
@@ -89,37 +101,76 @@ namespace FYP___OrderManagementSystem
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             var localDate = DateTime.Today;
+            var dep = "";
+            var emp = "";
             const string errorMessage = "An order with this order ID doesn't exist.\n\nPlease enter a different order id.";
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-            _connection.Open();
+            _connection = DB_Connect.connect();
 
             if (IfOrderExists(_connection, OrderIDComboBox.Text))
             {
                 string sqlQuery;
                 if (OrderStatusComboBox.Text == "Complete")
                 {
+                    _command = new SqlCommand(@"SELECT * FROM[Orders] WHERE [OrderId] = '" + OrderIDComboBox.Text + "'", _connection);
+                    _connection.Open();
+                    try
+                    {
+                        var myReader = _command.ExecuteReader();
+
+                        while (myReader.Read())
+                        {
+                            dep = myReader.GetString(2);
+                            emp = myReader.GetString(3);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    _connection.Close();
+
+                    if (!CheckIfDepExists(_connection, dep))
+                    {
+                        sqlQuery = @"INSERT INTO[Orders p/Department] ([Department],[Orders]) VALUES ('" + dep + "','" + 0 + "')";
+                        _connection.Open();
+                        _command = new SqlCommand(sqlQuery, _connection);
+                        _command.ExecuteNonQuery();
+                        _connection.Close();
+                    }
                     sqlQuery = @"UPDATE[Orders p/Department] SET[Orders] = [Orders] + 1 WHERE [Department] = (SELECT[Department] FROM[Orders] WHERE[OrderID] = '" + OrderIDComboBox.Text + "')";
+                    _connection.Open();
                     _command = new SqlCommand(sqlQuery, _connection);
                     _command.ExecuteNonQuery();
+                    _connection.Close();
+
+                    if (!CheckIfEmpExists(_connection, emp))
+                    {
+                        sqlQuery = @"INSERT INTO[Orders p/Employee] ([Employee],[Orders]) VALUES ('" + emp + "','" + 0 + "')";
+                        _connection.Open();
+                        _command = new SqlCommand(sqlQuery, _connection);
+                        _command.ExecuteNonQuery();
+                        _connection.Close();
+                    }
                     sqlQuery = @"UPDATE[Orders p/Employee] SET[Orders] = [Orders] + 1 WHERE [Employee] = (SELECT[Requestee] FROM[Orders] WHERE[OrderID] = '" + OrderIDComboBox.Text + "')";
+                    _connection.Open();
                     _command = new SqlCommand(sqlQuery, _connection);
                     _command.ExecuteNonQuery();
-                    /*
-                     sqlQuery = @"UPDATE[SuppOrders] SET[Orders] = [Orders] + 1 WHERE [Supplier] = (SELECT[Supplier] FROM[Orders] WHERE[OrderID] = '" + OrderIDComboBox.Text + "')";
-                     _command = new SqlCommand(sqlQuery, _connection);
-                     _command.ExecuteNonQuery();
-                    */
+                    _connection.Close();
                 }
 
-                sqlQuery = @"UPDATE[Orders] SET[OrderStatus] = '" + OrderStatusComboBox.Text + "' WHERE [OrderID] = '" + OrderIDComboBox.Text + "'" ;
+                sqlQuery = @"UPDATE[Orders] SET[OrderStatus] = '" + OrderStatusComboBox.Text + "' WHERE [OrderID] = '" + OrderIDComboBox.Text + "'";
+                _connection.Open();
                 OrderStatusComboBox.SelectedIndex = -1;
                 OrderIDComboBox.SelectedIndex = -1;
                 OrderIDComboBox.Focus();
                 _command = new SqlCommand(sqlQuery, _connection);
                 _command.ExecuteNonQuery();
+                _connection.Close();
                 sqlQuery = @"UPDATE[Orders] SET[OrderDate] = '" + localDate.ToString().Substring(0, 10) + "' WHERE [OrderID] = '" + OrderIDComboBox.Text + "'";
+                _connection.Open();
                 _command = new SqlCommand(sqlQuery, _connection);
                 _command.ExecuteNonQuery();
+                _connection.Close();
             }
             else
             {
@@ -127,8 +178,6 @@ namespace FYP___OrderManagementSystem
                 OrderIDComboBox.SelectedIndex = -1;
                 OrderIDComboBox.Focus();
             }
-
-            _connection.Close();
             Load_Data();
         }
 
@@ -145,7 +194,7 @@ namespace FYP___OrderManagementSystem
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _connection.Open();
             var sqlQuery = @"DELETE FROM[Orders] WHERE[OrderID] = '" + dataGridView2.Rows[0].Cells[0].Value + "'";
             _command = new SqlCommand(sqlQuery, _connection);

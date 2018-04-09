@@ -15,16 +15,12 @@ namespace FYP___OrderManagementSystem
         public Products()
         {
             InitializeComponent();
-        }
-
-        private void Products_Load(object sender, EventArgs e)
-        {
             LoadData();
         }
 
         public void LoadData()
         {
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _sda = new SqlDataAdapter(@"SELECT * FROM[Products] order by len(ProductCode), ProductCode", _connection);
             _dt = new DataTable();
             _sda.Fill(_dt);
@@ -39,14 +35,6 @@ namespace FYP___OrderManagementSystem
                 dataGridView1.Rows[n].Cells[3].Value = item["ProductSupplierCode"].ToString();
                 dataGridView1.Rows[n].Cells[4].Value = item["ProductPrice"].ToString();
                 dataGridView1.Rows[n].Cells[5].Value = item["ProductStock"].ToString();
-                /*if ((bool)item["ProductStatus"])
-                {
-                    dataGridView1.Rows[n].Cells[2].Value = "Active";
-                }
-                else
-                {
-                    dataGridView1.Rows[n].Cells[2].Value = "Deactive";
-                }*/
             }
         }
 
@@ -73,7 +61,7 @@ namespace FYP___OrderManagementSystem
         private void AddButton_Click(object sender, EventArgs e)
         {
             const string errorMessage = "An item with this product code already exists.\n\nPlease enter a different product code.";
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _connection.Open();
 
             if (IfProductExists(_connection, PCTextBox.Text))
@@ -99,7 +87,7 @@ namespace FYP___OrderManagementSystem
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             const string errorMessage = "An item with this product code doesn't exist.\n\nPlease enter a different product code.";
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _connection.Open();
 
             if (IfProductExists(_connection, PCTextBox.Text))
@@ -121,35 +109,10 @@ namespace FYP___OrderManagementSystem
             LoadData();
         }
 
-        private void FindButton_Click(object sender, EventArgs e)
-        {
-            const string errorMessage = "This item does not exist!";
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
-
-            if (IfProductExists(_connection, PCTextBox.Text))
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (!row.Cells[1].Value.ToString().Equals(PCTextBox.Text)) continue;
-                    dataGridView1.FirstDisplayedScrollingRowIndex = row.Index;
-                    break;
-                }
-                PCTextBox.Focus();
-            }
-            else
-            {
-                MessageBox.Show(errorMessage);
-                ClearText();
-                PCTextBox.Focus();
-            }
-
-            LoadData();
-        }
-
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             const string errorMessage = "This item does not exist!";
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
 
             if (IfProductExists(_connection, PCTextBox.Text))
             {

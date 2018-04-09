@@ -91,6 +91,7 @@
             this.UNcb.Name = "UNcb";
             this.UNcb.Size = new System.Drawing.Size(126, 21);
             this.UNcb.TabIndex = 63;
+            this.UNcb.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
             // 
             // UpdateButton
             // 
@@ -101,6 +102,7 @@
             this.UpdateButton.TabIndex = 57;
             this.UpdateButton.Text = "Update";
             this.UpdateButton.UseVisualStyleBackColor = true;
+            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
             // DeleteButton
             // 
@@ -111,6 +113,7 @@
             this.DeleteButton.TabIndex = 58;
             this.DeleteButton.Text = "Delete";
             this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // SNLabel
             // 
@@ -183,6 +186,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(373, 155);
             this.dataGridView1.TabIndex = 34;
+            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.DataGridView1_MouseDoubleClick);
             // 
             // Column3
             // 
@@ -211,22 +215,25 @@
             // 
             // RefreshButton
             // 
-            this.RefreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RefreshButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.RefreshButton.Location = new System.Drawing.Point(165, 309);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(58, 26);
             this.RefreshButton.TabIndex = 33;
             this.RefreshButton.Text = "Refresh";
             this.RefreshButton.UseVisualStyleBackColor = true;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
             // ExistingAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(399, 346);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ExistingAccount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

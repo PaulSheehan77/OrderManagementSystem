@@ -16,15 +16,15 @@ namespace FYP___OrderManagementSystem
         {
             InitializeComponent();
 
-            DEPcb.Items.Add("Aluminium"); DEPcb.Items.Add("Glass"); DEPcb.Items.Add("Pine"); DEPcb.Items.Add("PVC"); DEPcb.Items.Add("Accounting"); DEPcb.Items.Add("Purchasing");
-            DEPcb.Items.Add("Teak"); ALcb.Items.Add("1"); ALcb.Items.Add("2"); ALcb.Items.Add("3");
+            DEPcb.Items.Add(Constants.alu); DEPcb.Items.Add(Constants.gla); DEPcb.Items.Add(Constants.pine); DEPcb.Items.Add(Constants.pvc); DEPcb.Items.Add("Accounting"); DEPcb.Items.Add(Constants.pur);
+            DEPcb.Items.Add(Constants.teak); ALcb.Items.Add("1"); ALcb.Items.Add("2"); ALcb.Items.Add("3");
             LoadData();
         }
 
         public void LoadData()
         {
             FillComboBox2();
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _sda = new SqlDataAdapter(@"SELECT * FROM[Users] order by UserName", _connection);
             _dt = new DataTable();
             _sda.Fill(_dt);
@@ -34,7 +34,7 @@ namespace FYP___OrderManagementSystem
             {
                 var n = dataGridView1.Rows.Add();
                 dataGridView1.Rows[n].Cells[0].Value = item["UserName"].ToString();
-                dataGridView1.Rows[n].Cells[1].Value = item["Department"].ToString();
+                dataGridView1.Rows[n].Cells[1].Value = item[Constants.dep].ToString();
                 dataGridView1.Rows[n].Cells[2].Value = item["AccessLevel"].ToString();
                 dataGridView1.Rows[n].Cells[3].Value = item["Password"].ToString();
             }
@@ -42,20 +42,28 @@ namespace FYP___OrderManagementSystem
 
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            var error = "Password entered is too short. Please enter a password with 6 characters or more.";
+            _connection = DB_Connect.connect();
             _connection.Open();
 
-            var sqlQuery = @"UPDATE[Users] SET[Password] = '" + PWTextBox.Text + "', [AccessLevel] = '" + ALcb.Text + "' , [Department] = '" + DEPcb.Text + "' WHERE[UserName] = '" + UNcb.Text + "'";
-            UNcb.Focus();
-            _command = new SqlCommand(sqlQuery, _connection);
-            _command.ExecuteNonQuery();
-            _connection.Close();
-            LoadData();
+            if (PWTextBox.Text.Length > 1 && PWTextBox.Text.Length < 6)
+            {
+                MessageBox.Show(error);
+            }
+            else
+            {
+                var sqlQuery = @"UPDATE[Users] SET[Password] = '" + PWTextBox.Text + "', [AccessLevel] = '" + ALcb.Text + "' , [Department] = '" + DEPcb.Text + "' WHERE[UserName] = '" + UNcb.Text + "'";
+                UNcb.Focus();
+                _command = new SqlCommand(sqlQuery, _connection);
+                _command.ExecuteNonQuery();
+                _connection.Close();
+                LoadData();
+            }
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
 
             _connection.Open();
                 var sqlQuery = @"DELETE FROM[Users] WHERE[UserName] = '" + UNcb.Text + "'";
@@ -87,7 +95,7 @@ namespace FYP___OrderManagementSystem
 
         private void FillComboBox()
         {
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _command = new SqlCommand(@"SELECT * FROM[Users] WHERE[UserName] = '" + UNcb.Text + "'", _connection);
             try
             {
@@ -112,7 +120,7 @@ namespace FYP___OrderManagementSystem
 
         private void FillComboBox2()
         {
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _command = new SqlCommand(@"SELECT [UserName] FROM[Users]", _connection);
             try
             {

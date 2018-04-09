@@ -61,11 +61,23 @@
     <Compile Include="ChangePassword.Designer.cs">
       <DependentUpon>ChangePassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Constants.cs" />
     <Compile Include="CreateOrder.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CreateOrder.Designer.cs">
       <DependentUpon>CreateOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DB_Connect.cs" />
+    <Compile Include="DB_EmpOrders.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_EmpOrders.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DB_DepOrders.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_DepOrders.xsd</DependentUpon>
     </Compile>
     <Compile Include="ExistingAccount.cs">
       <SubType>Form</SubType>
@@ -79,17 +91,17 @@
     <Compile Include="NewAccount.Designer.cs">
       <DependentUpon>NewAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\ChartView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ChartView.Designer.cs">
+      <DependentUpon>ChartView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\DepOrdersBarChart.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reports\DepOrdersBarChart.Designer.cs">
       <DependentUpon>DepOrdersBarChart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\DepOrdersPieChart.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reports\DepOrdersPieChart.Designer.cs">
-      <DependentUpon>DepOrdersPieChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Error Logger.cs" />
     <Compile Include="Loading.cs">
@@ -130,17 +142,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\DepOrdersLineChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\DepOrdersLineChart.Designer.cs">
+      <DependentUpon>DepOrdersLineChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\EmpOrdersBarChart.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reports\EmpOrdersBarChart.Designer.cs">
       <DependentUpon>EmpOrdersBarChart.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\EmpOrdersPieChart.cs">
+    <Compile Include="Reports\EmpOrdersLineChart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\EmpOrdersPieChart.Designer.cs">
-      <DependentUpon>EmpOrdersPieChart.cs</DependentUpon>
+    <Compile Include="Reports\EmpOrdersLineChart.Designer.cs">
+      <DependentUpon>EmpOrdersLineChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Requirements.cs" />
     <Compile Include="Suppliers.cs">
@@ -161,11 +179,11 @@
     <EmbeddedResource Include="NewAccount.resx">
       <DependentUpon>NewAccount.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ChartView.resx">
+      <DependentUpon>ChartView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\DepOrdersBarChart.resx">
       <DependentUpon>DepOrdersBarChart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\DepOrdersPieChart.resx">
-      <DependentUpon>DepOrdersPieChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Loading.resx">
       <DependentUpon>Loading.cs</DependentUpon>
@@ -194,15 +212,42 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reports\DepOrdersLineChart.resx">
+      <DependentUpon>DepOrdersLineChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\EmpOrdersBarChart.resx">
       <DependentUpon>EmpOrdersBarChart.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\EmpOrdersPieChart.resx">
-      <DependentUpon>EmpOrdersPieChart.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\EmpOrdersLineChart.resx">
+      <DependentUpon>EmpOrdersLineChart.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Suppliers.resx">
       <DependentUpon>Suppliers.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="DB_EmpOrders.xsc">
+      <DependentUpon>DB_EmpOrders.xsd</DependentUpon>
+    </None>
+    <None Include="DB_EmpOrders.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DB_EmpOrders.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DB_EmpOrders.xss">
+      <DependentUpon>DB_EmpOrders.xsd</DependentUpon>
+    </None>
+    <None Include="DB_DepOrders.xsc">
+      <DependentUpon>DB_DepOrders.xsd</DependentUpon>
+    </None>
+    <None Include="DB_DepOrders.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DB_DepOrders.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DB_DepOrders.xss">
+      <DependentUpon>DB_DepOrders.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

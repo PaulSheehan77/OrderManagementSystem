@@ -23,7 +23,7 @@ namespace FYP___OrderManagementSystem
 
         private void FillDataGridView()
         {
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _connection.Open();
             _sda = new SqlDataAdapter(@"SELECT * FROM[Ordered Items] order by len(OrderID), OrderID", _connection);
             _dt = new DataTable();
@@ -41,7 +41,7 @@ namespace FYP___OrderManagementSystem
 
         private void FillComboBox()
         {
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _command = new SqlCommand(@"SELECT DISTINCT [OrderID] FROM[Ordered Items]", _connection);
             try
             {
@@ -64,7 +64,7 @@ namespace FYP___OrderManagementSystem
         private void OIDComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             PCComboBox.Items.Clear();
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _command = new SqlCommand(@"SELECT * FROM[Ordered Items] WHERE [OrderID] = '" + OIDComboBox.Text + "'", _connection);
             try
             {
@@ -93,7 +93,7 @@ namespace FYP___OrderManagementSystem
         private void LogItemButton_Click(object sender, EventArgs e)
         {
             _newQuantity = _currQuantity - (Convert.ToSingle(QuantityUpDown.Text));
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _connection.Open();
             var sqlQuery = @"UPDATE [Ordered Items] SET [Quantity] = '" + _newQuantity + "' WHERE[ProductCode] = '" + PCComboBox.Text + "' AND [OrderID] = '" + OIDComboBox.Text + "'";
             _command = new SqlCommand(sqlQuery, _connection);
@@ -110,7 +110,7 @@ namespace FYP___OrderManagementSystem
 
         private void PCComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _command = new SqlCommand(@"SELECT [Quantity] FROM[Ordered Items] WHERE [OrderID] = '" + OIDComboBox.Text + "' AND [ProductCode] = '" + PCComboBox.Text + "'", _connection);
             try
             {

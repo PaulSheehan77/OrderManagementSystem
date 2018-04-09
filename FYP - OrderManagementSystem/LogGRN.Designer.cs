@@ -176,6 +176,7 @@
             // 
             // RefreshButton
             // 
+            this.RefreshButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.RefreshButton.Location = new System.Drawing.Point(202, 385);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(58, 23);
@@ -188,10 +189,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(450, 417);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dataGridView2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LogGRN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

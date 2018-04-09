@@ -196,8 +196,8 @@
             // 
             // RefreshButton
             // 
-            this.RefreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RefreshButton.Location = new System.Drawing.Point(683, 311);
+            this.RefreshButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.RefreshButton.Location = new System.Drawing.Point(371, 320);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(58, 26);
             this.RefreshButton.TabIndex = 47;
@@ -209,10 +209,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(772, 367);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.panel2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(410, 15);
             this.Name = "OrderManagement";

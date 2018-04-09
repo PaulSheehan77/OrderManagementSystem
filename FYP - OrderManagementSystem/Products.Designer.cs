@@ -285,8 +285,8 @@
             // 
             // RefreshButton
             // 
-            this.RefreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RefreshButton.Location = new System.Drawing.Point(710, 427);
+            this.RefreshButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.RefreshButton.Location = new System.Drawing.Point(372, 428);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(58, 26);
             this.RefreshButton.TabIndex = 10;
@@ -298,10 +298,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(786, 466);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.dataGridView1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(410, 15);
             this.MaximizeBox = false;
@@ -311,7 +313,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Products";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.Products_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -181,8 +181,8 @@
             // 
             // RefreshButton
             // 
-            this.RefreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RefreshButton.Location = new System.Drawing.Point(701, 427);
+            this.RefreshButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.RefreshButton.Location = new System.Drawing.Point(379, 427);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(58, 26);
             this.RefreshButton.TabIndex = 21;
@@ -240,10 +240,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(786, 466);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.dataGridView1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(410, 15);
             this.Name = "Suppliers";

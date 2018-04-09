@@ -49,7 +49,7 @@ namespace FYP___OrderManagementSystem
             var error = "Error";
             var localDate = DateTime.Now;
             LogInTime = localDate;
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             // Handles connection.Open() && connection.Close()
             _sda = new SqlDataAdapter(@"SELECT * FROM [FYP_DB].[dbo].[Users]
                 Where UserName = '" + userName + "' and Password = '" + passWord + "'", _connection);
@@ -64,7 +64,7 @@ namespace FYP___OrderManagementSystem
                 MakeRecordOfLogin();
             }
             else
-                throw new ArgumentException(errorMessage1, error);
+                MessageBox.Show(errorMessage1, error);
         }
 
         private void MakeRecordOfLogin()
@@ -81,7 +81,7 @@ namespace FYP___OrderManagementSystem
 
         private void SetAccessLevel()
         {
-            _connection = new SqlConnection("Data Source=LAPTOP;Initial Catalog=FYP_DB;Integrated Security=True");
+            _connection = DB_Connect.connect();
             _command = new SqlCommand(@"SELECT * FROM[Users] WHERE [Username] = '" + UserName + "'", _connection);
             try
             {
